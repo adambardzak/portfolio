@@ -1,7 +1,6 @@
 // TODO: always be focused on the input field
 // TODO: add a loading indicator when the command is being executed
 
-
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
@@ -157,6 +156,7 @@ const Terminal = () => {
         return response;
       } catch (error) {
         setIsLoading(false);
+        console.error(error);
         return {
           type: "error",
           content: "An error occurred while executing the command",
