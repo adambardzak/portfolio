@@ -1,5 +1,4 @@
 import Hero from "@/components/Hero";
-import Terminal from "@/components/Terminal";
 import TunnelSection from "@/components/TunnelSection";
 
 export default function Home() {

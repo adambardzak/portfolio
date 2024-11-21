@@ -1,9 +1,7 @@
 import Terminal from "@/components/Terminal";
 import React from "react";
 
-type Props = {};
-
-function page({}: Props) {
+function page() {
   return (
     <div>
       <Terminal />

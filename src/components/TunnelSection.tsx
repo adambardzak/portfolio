@@ -7,14 +7,7 @@ import type { Skill } from "@/data/skills";
 import { skills } from "@/data/skills";
 import clsx from "clsx";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  AnimatePresence,
-  MotionValue,
-  color,
-} from "framer-motion";
+import { motion, AnimatePresence, color } from "framer-motion";
 import { X } from "lucide-react";
 import { createPortal } from "react-dom";
 
