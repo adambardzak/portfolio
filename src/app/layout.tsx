@@ -1,5 +1,21 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Space_Grotesk } from "next/font/google";
+import Navbar from "@/components/Navbar";
+import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeScript } from "../components/theme-script";
+import localFont from "next/font/local";
+import Footer from "@/components/Footer";
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const monument = localFont({
+  src: "../../public/fonts/MonumentExtended-Regular.otf",
+  variable: "--font-monument",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,7 +29,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={` antialiased`}>{children}</body>
+      <head>
+        <ThemeScript />
+      </head>
+      <ThemeProvider>
+        <body
+          className={`${spaceGrotesk.className} ${monument.variable} bg-light dark:bg-dark`}
+        >
+          <Navbar />
+          {children}
+          <Footer />
+        </body>
+      </ThemeProvider>
     </html>
   );
 }

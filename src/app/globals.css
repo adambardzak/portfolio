@@ -25,3 +25,13 @@ body {
     text-wrap: balance;
   }
 }
+
+@layer base {
+  body {
+    @apply bg-light text-text-light transition-colors duration-300;
+  }
+
+  .dark body {
+    @apply bg-dark text-text-dark;
+  }
+}
