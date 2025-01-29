@@ -1,6 +1,3 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-
 type Props = {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;

@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Code, Paintbrush, Rocket } from "lucide-react";
-import SketchyUnderline from "./HandDrawLine";
+// import SketchyUnderline from "./HandDrawLine";
 
 const services = [
   {

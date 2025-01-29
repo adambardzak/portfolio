@@ -31,7 +31,7 @@ const Footer = () => {
                 viewport={{ once: true }}
                 className="font-monument text-5xl text-text-light dark:text-text-dark leading-tight"
               >
-                Let's Start <br />
+                Let&apos;s Start <br />
                 Something New
               </motion.h2>
             </div>

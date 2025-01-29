@@ -7,10 +7,7 @@ type SketchyUnderlineProps = {
   color?: string;
 };
 
-const SketchyUnderline = ({
-  className = "",
-  color = "#db2777",
-}: SketchyUnderlineProps) => {
+const SketchyUnderline = ({ color = "#db2777" }: SketchyUnderlineProps) => {
   const createSketchyPath = () => {
     let path = "";
     const segments = 16; // More segments for more controlled zigzag

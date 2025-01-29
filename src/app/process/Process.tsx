@@ -88,7 +88,7 @@ const Process = () => {
       </section>
 
       {/* Process Steps */}
-      {processSteps.map((step, index) => (
+      {processSteps.map((step) => (
         <section
           key={step.phase}
           className="min-h-screen py-32 flex items-center relative"

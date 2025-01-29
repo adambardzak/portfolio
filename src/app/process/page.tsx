@@ -1,9 +1,7 @@
 import React from "react";
 import Process from "./Process";
 
-type Props = {};
-
-function page({}: Props) {
+function page() {
   return (
     <div>
       <Process />

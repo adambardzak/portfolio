@@ -1,17 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import {
-  AArrowDownIcon,
-  ArrowDown,
-  ArrowDown01,
-  ArrowDownAZ,
-  ArrowDownCircle,
-  ArrowUpDown,
-  ArrowUpDownIcon,
-  ArrowUpRight,
-} from "lucide-react";
-import ProjectPreview from "./ProjectsShowcase";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
+
 import { motion } from "framer-motion";
 
 const Hero = () => {
@@ -148,7 +139,7 @@ const Hero = () => {
                 animate={{ opacity: 1, y: [0, 10, 0] }}
                 transition={{
                   opacity: { duration: 1, delay: 1.2 },
-                //   y: { duration: 2, repeat: Infinity, ease: "easeInOut" },
+                  //   y: { duration: 2, repeat: Infinity, ease: "easeInOut" },
                 }}
                 className="text-text-muted-light dark:text-text-muted-dark text-sm tracking-wide flex items-center gap-2 group cursor-pointer"
               >
