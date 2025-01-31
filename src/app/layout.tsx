@@ -6,7 +6,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeScript } from "../components/theme-script";
 import localFont from "next/font/local";
 import Footer from "@/components/Footer";
-
+import AnimatedCursor from "@/components/AnimatedCursor";
+import TransitionLayout from "./TransitionLayout";
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   display: "swap",
@@ -33,13 +34,16 @@ export default function RootLayout({
         <ThemeScript />
       </head>
       <ThemeProvider>
-        <body
-          className={`${spaceGrotesk.className} ${monument.variable} bg-light dark:bg-dark`}
-        >
-          <Navbar />
-          {children}
-          <Footer />
-        </body>
+        <TransitionLayout>
+          <body
+            className={`${spaceGrotesk.className} ${monument.variable} bg-light dark:bg-dark`}
+          >
+            <Navbar />
+            {children}
+            <Footer />
+            <AnimatedCursor />
+          </body>
+        </TransitionLayout>
       </ThemeProvider>
     </html>
   );

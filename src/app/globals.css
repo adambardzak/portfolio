@@ -35,3 +35,7 @@ body {
     @apply bg-dark text-text-dark;
   }
 }
+
+* {
+  cursor: none !important;
+}
