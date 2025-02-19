@@ -1,0 +1,39 @@
+<svg width="800" height="400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Boxes -->
+  <g fill="white" stroke="#333" stroke-width="2">
+    <!-- Client -->
+    <rect x="100" y="100" width="140" height="60" rx="4"/>
+    
+    <!-- Next.js -->
+    <rect x="330" y="100" width="140" height="60" rx="4"/>
+    
+    <!-- Strapi -->
+    <rect x="560" y="100" width="140" height="60" rx="4"/>
+    
+    <!-- Database -->
+    <rect x="560" y="250" width="140" height="60" rx="4"/>
+  </g>
+
+  <!-- Labels -->
+  <g font-family="system-ui" fill="#333" font-size="16">
+    <text x="170" y="135" text-anchor="middle">Client</text>
+    <text x="400" y="135" text-anchor="middle">Next.js</text>
+    <text x="630" y="135" text-anchor="middle">Strapi</text>
+    <text x="630" y="285" text-anchor="middle">MariaDB</text>
+  </g>
+
+  <!-- Arrows -->
+  <g stroke="#333" stroke-width="2" fill="none">
+    <path d="M240,130 L330,130" marker-end="url(#arrow)"/>
+    <path d="M470,130 L560,130" marker-end="url(#arrow)"/>
+    <path d="M630,160 L630,250" marker-end="url(#arrow)"/>
+  </g>
+
+  <!-- Arrow marker -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="7" 
+            refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+    </marker>
+  </defs>
+</svg>

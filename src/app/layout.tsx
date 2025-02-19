@@ -8,6 +8,7 @@ import localFont from "next/font/local";
 import Footer from "@/components/Footer";
 import AnimatedCursor from "@/components/AnimatedCursor";
 import TransitionLayout from "./TransitionLayout";
+import FaceCanvas from "@/components/Character/FaceCanvas";
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   display: "swap",

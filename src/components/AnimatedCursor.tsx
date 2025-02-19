@@ -39,7 +39,6 @@ const AnimatedCursor = () => {
     setIsTransitioning(true);
     setClickPosition({ x: e.clientX, y: e.clientY });
 
-    // Longer animation duration
     await new Promise((resolve) => setTimeout(resolve, 1200));
     router.push(href);
     setIsTransitioning(false);
@@ -97,7 +96,7 @@ const AnimatedCursor = () => {
           }}
           transition={{ duration: 0.2 }}
         >
-          <div className="w-1.5 h-1.5 bg-text-light dark:bg-text-dark rounded-full" />
+          <div className="w-1.5 h-1.5 rounded-full bg-text-light dark:bg-text-dark mix-blend-color-dodge" />
         </motion.div>
       </motion.div>
 

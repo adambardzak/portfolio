@@ -1,183 +1,125 @@
 "use client";
 
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 
-type Project = {
-  id: number;
-  name: string;
-  year: string;
-  category: string;
-  images: string[];
-};
-
-const projects: Project[] = [
+const projects = [
   {
     id: 1,
-    name: "OFTA",
-    year: "2024 - 2025",
-    category: "Eye surgery clinic",
-    images: [
-      "/projects/ofta/ofta_1.png",
-      "/projects/ofta/ofta_2.png",
-      "/projects/ofta/ofta_3.png",
-      "/projects/ofta/ofta_4.png",
-      "/projects/ofta/ofta_5.png",
-      "/projects/ofta/ofta_6.png",
-      "/projects/ofta/ofta_7.png",
-      "/projects/ofta/ofta_mobil_1.png",
-      "/projects/ofta/ofta_mobil_2.png",
-      "/projects/ofta/ofta_mobil_3.png",
-      "/projects/ofta/ofta_mobil_4.png",
-    ],
+    title: "E-commerce Platforma",
+    description:
+      "Moderní e-shop s pokročilými funkcemi a intuitivním rozhraním",
+    image: "/projects/project1.jpg",
+    tags: ["Next.js", "TypeScript", "Tailwind"],
+    gradient: "from-purple-500/80 via-purple-400/70 to-purple-300/80",
   },
   {
     id: 2,
-    name: "OFTA",
-    year: "2024",
-    category: "E-commerce Platform",
-    images: [
-      "/projects/ofta/ofta_1.png",
-      "/projects/ofta/ofta_2.png",
-      "/projects/ofta/ofta_3.png",
-      "/projects/ofta/ofta_4.png",
-      "/projects/ofta/ofta_5.png",
-      "/projects/ofta/ofta_6.png",
-      "/projects/ofta/ofta_7.png",
-      "/projects/ofta/ofta_mobil_1.png",
-      "/projects/ofta/ofta_mobil_2.png",
-      "/projects/ofta/ofta_mobil_3.png",
-      "/projects/ofta/ofta_mobil_4.png",
-    ],
+    title: "Firemní Systém",
+    description: "Komplexní systém pro správu firemních procesů a dokumentů",
+    image: "/projects/project2.jpg",
+    tags: ["React", "Node.js", "MongoDB"],
+    gradient: "from-purple-400/80 via-purple-300/70 to-purple-200/80",
   },
   {
     id: 3,
-    name: "OFTA",
-    year: "2024",
-    category: "E-commerce Platform",
-    images: [
-      "/projects/ofta/ofta_1.png",
-      "/projects/ofta/ofta_2.png",
-      "/projects/ofta/ofta_3.png",
-      "/projects/ofta/ofta_4.png",
-      "/projects/ofta/ofta_5.png",
-      "/projects/ofta/ofta_6.png",
-      "/projects/ofta/ofta_7.png",
-      "/projects/ofta/ofta_mobil_1.png",
-      "/projects/ofta/ofta_mobil_2.png",
-      "/projects/ofta/ofta_mobil_3.png",
-      "/projects/ofta/ofta_mobil_4.png",
-    ],
+    title: "Mobilní Aplikace",
+    description: "Cross-platformní aplikace pro správu osobních financí",
+    image: "/projects/project3.jpg",
+    tags: ["React Native", "Firebase", "Redux"],
+    gradient: "from-purple-500/80 via-purple-400/70 to-purple-300/80",
   },
-  // Add more projects
 ];
 
-const ProjectPreview = () => {
-  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
-  const [imageIndex, setImageIndex] = useState(0);
-
-  // Automatically cycle through images when project is hovered
-  React.useEffect(() => {
-    if (hoveredProject !== null) {
-      const interval = setInterval(() => {
-        setImageIndex((prev) => {
-          const project = projects.find((p) => p.id === hoveredProject);
-          if (!project) return 0;
-          return (prev + 1) % project.images.length;
-        });
-      }, 1000);
-      return () => clearInterval(interval);
-    }
-    return () => setImageIndex(0);
-  }, [hoveredProject]);
-
+export default function ProjectsShowcase() {
   return (
-    <div className="w-full flex justify-end relative">
-      {/* Projects List */}
-      <div className="w-full pl-36">
-        {projects.map((project) => (
-          <motion.div
-            key={project.id}
-            onHoverStart={() => setHoveredProject(project.id)}
-            onHoverEnd={() => setHoveredProject(null)}
-            className="group relative py-6 cursor-pointer"
-          >
-            <div className="space-y-1">
-              <div className="flex items-baseline gap-4">
-                <span className="font-space text-sm text-text-muted-light dark:text-text-muted-dark">
-                  {String(project.id).padStart(2, "0")}
-                </span>
-                <h2 className="font-monument text-4xl text-text-light dark:text-text-dark">
-                  {project.name}
-                </h2>
-                <span className="font-space text-sm text-text-muted-light dark:text-text-muted-dark ml-auto">
-                  {project.year}
-                </span>
-              </div>
-              <p className="font-space text-sm text-text-muted-light dark:text-text-muted-dark ml-10">
-                {project.category}
-              </p>
-            </div>
-          </motion.div>
-        ))}
-      </div>
+    <section className="relative min-h-screen flex items-center bg-light dark:bg-dark transition-colors duration-300 py-32">
+      <div className="max-w-7xl mx-auto px-8 lg:px-16 w-full">
+        {/* Section Header */}
+        <div className="space-y-4 mb-24">
+          <div className="overflow-hidden">
+            <motion.p
+              initial={{ y: "100%" }}
+              whileInView={{ y: 0 }}
+              transition={{
+                duration: 1,
+                ease: [0.16, 1, 0.3, 1],
+                delay: 0.2,
+              }}
+              viewport={{ once: true }}
+              className="font-monument text-sm text-text-muted-light dark:text-text-muted-dark tracking-wide"
+            >
+              Portfolio
+            </motion.p>
+          </div>
+          <div className="overflow-hidden">
+            <motion.h2
+              initial={{ y: "100%" }}
+              whileInView={{ y: 0 }}
+              transition={{
+                duration: 1,
+                ease: [0.16, 1, 0.3, 1],
+                delay: 0.4,
+              }}
+              viewport={{ once: true }}
+              className="font-monument text-4xl text-text-light dark:text-text-dark max-w-xl"
+            >
+              Vybrané projekty
+            </motion.h2>
+          </div>
+        </div>
 
-      {/* Image Preview */}
-      <div className="w-full absolute pointer-events-none">
-        <div className="sticky  pl-12">
-          <AnimatePresence>
-            {hoveredProject !== null && (
-              <motion.div
-                className="w-full aspect-[4/3] relative"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
-                transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <div className="relative w-full h-full rounded-lg overflow-hidden bg-hover-light dark:bg-hover-dark">
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={imageIndex}
-                      className=" inset-0"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <Image
-                        src={
-                          projects.find((p) => p.id === hoveredProject)?.images[
-                            imageIndex
-                          ] || ""
-                        }
-                        alt="Project preview"
-                        fill
-                        className="object-cover"
-                        priority
-                      />
-                    </motion.div>
-                  </AnimatePresence>
-
-                  {/* Image counter */}
+        {/* Projects Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 + index * 0.1 }}
+              viewport={{ once: true }}
+              className="group cursor-pointer"
+            >
+              <div className="space-y-6">
+                <div className="aspect-video relative rounded-2xl overflow-hidden">
                   <div
-                    className="absolute bottom-4 right-4 px-2 py-1 bg-black/20 backdrop-blur-sm rounded text-xs 
-                    font-space text-white"
-                  >
-                    {imageIndex + 1} /{" "}
-                    {
-                      projects.find((p) => p.id === hoveredProject)?.images
-                        .length
-                    }
+                    className={`absolute inset-0 bg-gradient-to-r ${project.gradient} opacity-80 mix-blend-multiply`}
+                  />
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <div className="space-y-4">
+                  <h3 className="font-monument text-xl text-text-light dark:text-text-dark">
+                    {project.title}
+                  </h3>
+                  <p className="text-text-muted-light dark:text-text-muted-dark">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-3 py-1 text-sm rounded-full border border-border-light dark:border-border-dark text-text-muted-light dark:text-text-muted-dark"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex items-center gap-2 text-text-light dark:text-text-dark font-medium group-hover:gap-4 transition-all duration-300">
+                    <span>Zobrazit detail</span>
+                    <ArrowRight className="w-4 h-4" />
                   </div>
                 </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
-};
-
-export default ProjectPreview;
+}

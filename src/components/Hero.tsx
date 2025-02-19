@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
-
+import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import WebBuildingAnimation from "./WebBuildingAnimation";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -17,142 +17,85 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen  select-none font-space">
-      <div className="relative min-h-screen flex items-center py-32">
-        <div className="max-w-7xl mx-auto px-8 lg:px-16 w-full">
-          {/* Main container with initial fade */}
-          <div
-            className={`space-y-16 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] flex justify-between w-full
-              ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
-              }`}
-          >
-            <div>
-              <div className="space-y-8">
-                {/* Title with slide up */}
-                <div className="overflow-hidden">
-                  <div
-                    className={`text-lg text-text-muted-light dark:text-text-muted-dark tracking-wide
-                    transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[200ms]
-                    ${isVisible ? "translate-y-0" : "translate-y-full"}`}
-                  >
-                    Fullstack Developer & Designer
-                  </div>
-                </div>
-
-                <h1 className="space-y-3">
-                  {/* First name with slide up */}
-                  <div className="overflow-hidden">
-                    <div
-                      className={`block text-6xl md:text-8xl font-normal text-text-light dark:text-text-dark
-                      tracking-tight cursor-default hover:translate-x-2 hover:text-text-muted-light
-                      dark:hover:text-text-muted-dark transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]
-                      delay-[400ms] ${
-                        isVisible ? "translate-y-0" : "translate-y-full"
-                      }`}
-                    >
-                      Adam
-                    </div>
-                  </div>
-                  {/* Last name with slide up */}
-                  <div className="overflow-hidden">
-                    <div
-                      className={`block text-6xl md:text-8xl font-normal text-text-light dark:text-text-dark
-                      tracking-tight cursor-default hover:translate-x-2 hover:text-text-muted-light
-                      dark:hover:text-text-muted-dark transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]
-                      delay-[600ms] ${
-                        isVisible ? "translate-y-0" : "translate-y-full"
-                      }`}
-                    >
-                      Bardzak
-                    </div>
-                  </div>
-                </h1>
-
-                {/* Description with slide up */}
-                <div className="overflow-hidden max-w-xl">
-                  <div
-                    className={`text-lg text-text-muted-light dark:text-text-muted-dark leading-relaxed
-                    tracking-wide transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]
-                    delay-[800ms] ${
-                      isVisible ? "translate-y-0" : "translate-y-full"
-                    }`}
-                  >
-                    Creating thoughtful digital experiences through clean
-                    aesthetics and functional design solutions.
-                  </div>
-                </div>
-              </div>
-
-              {/* CTA with slide up */}
-              <div className="overflow-hidden pt-8">
-                <div
-                  className={`inline-block transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]
-                  delay-[1000ms] ${
-                    isVisible ? "translate-y-0" : "translate-y-full"
-                  }`}
-                >
-                  <button className="group flex items-center gap-4">
-                    <span className="text-text-light dark:text-text-dark text-lg relative tracking-wide">
-                      Get In Touch
-                      <span
-                        className="absolute left-0 right-0 bottom-0 h-px bg-text-light dark:bg-text-dark 
-                        transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 
-                        ease-[cubic-bezier(0.16,1,0.3,1)]"
-                      />
-                    </span>
-                    <ArrowUpRight
-                      className="w-5 h-5 text-text-light dark:text-text-dark transform 
-                      transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-                    />
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* <div className="relative pt-24 w-full flex justify-end">
-              <ProjectPreview />
-            </div> */}
-          </div>
-
-          {/* Footer with fade up */}
-          <div
-            className={`absolute bottom-12 left-0 right-0 px-8 lg:px-16 transition-all
-              duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] delay-[1200ms]
-              ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
-              }`}
-          >
-            <div className="flex justify-between items-end max-w-7xl mx-auto">
-              <motion.button
-                onClick={() =>
-                  window.scrollTo({
-                    top: window.innerHeight,
-                    behavior: "smooth",
-                  })
-                }
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, y: [0, 10, 0] }}
-                transition={{
-                  opacity: { duration: 1, delay: 1.2 },
-                  //   y: { duration: 2, repeat: Infinity, ease: "easeInOut" },
-                }}
-                className="text-text-muted-light dark:text-text-muted-dark text-sm tracking-wide flex items-center gap-2 group cursor-pointer"
+    <section className="min-h-screen flex items-center bg-light dark:bg-dark transition-colors duration-300">
+      <div className="max-w-7xl mx-auto px-8 lg:px-16 w-full py-32">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="space-y-10">
+            <div className="space-y-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="inline-block"
               >
-                Scroll Down
-                <ArrowDown className="w-4 h-4  group-hover:translate-y-1 transition-transform duration-300" />
-              </motion.button>
-              <div className="text-text-muted-light dark:text-text-muted-dark text-sm tracking-wide flex items-center gap-2">
-                <div className="bg-green-500 aspect-square h-3 w-3 rounded-full animate-pulse" />
-                <b className="text-green-500"> Available now </b> — Prague,
-                Czech Republic
-              </div>
+                <span className="text-sm tracking-wider text-text-muted-light dark:text-text-muted-dark font-medium px-4 py-2 rounded-full border border-border-light dark:border-border-dark">
+                  KVALITNÍ WEBY BEZ KOMPROMISŮ
+                </span>
+              </motion.div>
+              
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="font-monument text-4xl lg:text-5xl xl:text-6xl text-text-light dark:text-text-dark leading-tight"
+              >
+                Děláte byznys?<br />
+                Potřebujete web.
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="text-text-muted-light dark:text-text-muted-dark text-lg max-w-xl"
+              >
+                Žádné šablony, žádné kompromisy. Postavím vám web na míru, který bude fungovat a vydělávat.
+              </motion.p>
             </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="flex flex-col sm:flex-row gap-8"
+            >
+              <a
+                href="#calculator"
+                className="flex items-center justify-center gap-2 px-8 py-4 bg-text-light dark:bg-text-dark text-light dark:text-dark rounded-lg font-medium hover:opacity-90 transition-all duration-300 shadow-lg shadow-text-light/5 dark:shadow-text-dark/5"
+              >
+                Kolik to stojí?
+                <ArrowRight className="w-4 h-4" />
+              </a>
+
+              <div className="flex items-center divide-x divide-border-light dark:divide-border-dark">
+                <div className="pr-8">
+                  <div className="font-monument text-3xl text-text-light dark:text-text-dark mb-1">
+                    5+
+                  </div>
+                  <div className="text-sm text-text-muted-light dark:text-text-muted-dark">
+                    Let praxe
+                  </div>
+                </div>
+                <div className="pl-8">
+                  <div className="font-monument text-3xl text-text-light dark:text-text-dark mb-1">
+                    100%
+                  </div>
+                  <div className="text-sm text-text-muted-light dark:text-text-muted-dark">
+                    Bez šablon
+                  </div>
+                </div>
+              </div>
+            </motion.div>
           </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="relative aspect-square rounded-2xl  overflow-hidden p-8 backdrop-blur-sm border border-text-light/10 dark:border-text-dark/10 "
+          >
+            <WebBuildingAnimation />
+          </motion.div>
         </div>
       </div>
     </section>

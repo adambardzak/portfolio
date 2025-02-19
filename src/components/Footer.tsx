@@ -7,33 +7,25 @@ import { ArrowUpRight } from "lucide-react";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  const socialLinks = [
-    { name: "Instagram", url: "#" },
-    { name: "LinkedIn", url: "#" },
-    { name: "Github", url: "#" },
-  ];
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
-    <footer className="w-full bg-light dark:bg-dark transition-colors duration-300 py-32">
+    <footer className="bg-light dark:bg-dark transition-colors duration-300 py-32">
       <div className="max-w-7xl mx-auto px-8 lg:px-16">
-        <div className="grid grid-cols-2 gap-16">
+        <div className="grid md:grid-cols-2 gap-16 md:gap-24">
           {/* Left Column */}
           <div className="space-y-8">
             <div className="overflow-hidden">
-              <motion.h2
+              <motion.h3
                 initial={{ y: "100%" }}
                 whileInView={{ y: 0 }}
-                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                transition={{
+                  duration: 1,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
                 viewport={{ once: true }}
-                className="font-monument text-5xl text-text-light dark:text-text-dark leading-tight"
+                className="font-monument text-3xl text-text-light dark:text-text-dark"
               >
-                Let&apos;s Start <br />
-                Something New
-              </motion.h2>
+                Pojďme společně vytvořit něco výjimečného
+              </motion.h3>
             </div>
 
             <div className="overflow-hidden">
@@ -61,53 +53,79 @@ const Footer = () => {
           </div>
 
           {/* Right Column */}
-          <div className="flex justify-between items-end">
-            {/* Social Links */}
-            <div className="space-y-4">
-              {socialLinks.map((link, index) => (
-                <div key={link.name} className="overflow-hidden">
-                  <motion.div
-                    initial={{ y: "100%" }}
-                    whileInView={{ y: 0 }}
-                    transition={{
-                      duration: 1,
-                      ease: [0.16, 1, 0.3, 1],
-                      delay: 0.2 + index * 0.1,
-                    }}
-                    viewport={{ once: true }}
-                  >
+          <div className="space-y-8">
+            <div className="grid grid-cols-2 gap-8">
+              <div className="space-y-4">
+                <h4 className="font-monument text-sm text-purple-600 dark:text-purple-400">
+                  Navigace
+                </h4>
+                <ul className="space-y-3">
+                  <li>
                     <a
-                      href={link.url}
-                      className="font-monument text-text-muted-light dark:text-text-muted-dark hover:text-text-light hover:dark:text-text-dark transition-colors duration-300"
+                      href="#services"
+                      className="text-text-muted-light dark:text-text-muted-dark hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
                     >
-                      {link.name}
+                      Služby
                     </a>
-                  </motion.div>
-                </div>
-              ))}
-            </div>
+                  </li>
+                  <li>
+                    <a
+                      href="#process"
+                      className="text-text-muted-light dark:text-text-muted-dark hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                    >
+                      Proces
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#projects"
+                      className="text-text-muted-light dark:text-text-muted-dark hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                    >
+                      Projekty
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#contact"
+                      className="text-text-muted-light dark:text-text-muted-dark hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                    >
+                      Kontakt
+                    </a>
+                  </li>
+                </ul>
+              </div>
 
-            {/* Back to Top */}
-            <div className="overflow-hidden">
-              <motion.button
-                onClick={scrollToTop}
-                initial={{ y: "100%" }}
-                whileInView={{ y: 0 }}
-                transition={{
-                  duration: 1,
-                  ease: [0.16, 1, 0.3, 1],
-                  delay: 0.4,
-                }}
-                viewport={{ once: true }}
-                className="font-monument text-sm text-text-muted-light dark:text-text-muted-dark hover:text-text-light hover:dark:text-text-dark transition-colors duration-300"
-              >
-                Back to Top
-              </motion.button>
+              <div className="space-y-4">
+                <h4 className="font-monument text-sm text-purple-600 dark:text-purple-400">
+                  Sociální sítě
+                </h4>
+                <ul className="space-y-3">
+                  <li>
+                    <a
+                      href="https://github.com/adambardzak"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-text-muted-light dark:text-text-muted-dark hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                    >
+                      GitHub
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://linkedin.com/in/adambardzak"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-text-muted-light dark:text-text-muted-dark hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                    >
+                      LinkedIn
+                    </a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Copyright */}
         <motion.div
           className="mt-32 pt-8 border-t border-border-light dark:border-border-dark"
           initial={{ opacity: 0 }}
@@ -120,7 +138,7 @@ const Footer = () => {
               © {currentYear} Adam Bardzak
             </span>
             <span className="font-monument text-sm text-text-muted-light dark:text-text-muted-dark">
-              Built with Care
+              Vytvořeno s láskou
             </span>
           </div>
         </motion.div>

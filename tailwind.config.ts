@@ -37,6 +37,23 @@ const config: Config = {
         // Active progress colors
         "progress-active-light": "rgb(35 35 35 / 0.15)", // #232323 with 15% opacity
         "progress-active-dark": "rgb(245 245 243 / 0.15)", // #f5f5f3 with 15% opacity
+
+        // OFTA colors
+        "ofta-blue": {
+          150: "#EEF5F6",
+          300: "#DCEAEC",
+          450: "#3D95D9",
+          600: "#00B8D2",
+          900: "#006C87",
+        },
+        "ofta-yellow": {
+          300: "#FEF6E0",
+          600: "#FFEAB6",
+          900: "#FBBF18",
+        },
+        "ofta-gray": "#F5F5F5",
+        "ofta-apricot": "#FFD9B5",
+        "ofta-green": "#3DD9B7",
       },
     },
   },
