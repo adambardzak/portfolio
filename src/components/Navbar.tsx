@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useLayoutEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Moon, Sun, ArrowUpRight, Menu, X } from "lucide-react";
+import { Moon, Sun, ArrowUpRight } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
 import AnimatedMenuButton from "./AnimatedMenuButton";
 import clsx from "clsx";
@@ -10,10 +10,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
-type NavItem = {
-  label: string;
-  href: string;
-};
+// type NavItem = {
+//   label: string;
+//   href: string;
+// };
 
 const Navbar = () => {
   const [mounted, setMounted] = useState(false);
