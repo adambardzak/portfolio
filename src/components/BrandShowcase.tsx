@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Logo } from "./Logo";
 import { Card } from "./ui/Card";
 import { Button } from "./ui/Button";
@@ -71,4 +70,4 @@ const BrandShowcase = () => {
   );
 };
 
-export default BrandShowcase; 
+export default BrandShowcase;
