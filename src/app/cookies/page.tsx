@@ -37,8 +37,10 @@ export default function CookiesPage() {
       <div className="max-w-7xl mx-auto px-8 lg:px-16">
         <div className="space-y-16">
           <div className="space-y-8">
-            <span className="text-sm tracking-wider text-text-light dark:text-text-dark font-medium px-4 py-2 rounded-full 
-              border border-blue-500/10 dark:border-blue-400/10 bg-blue-500/[0.02] dark:bg-blue-400/[0.02]">
+            <span
+              className="text-sm tracking-wider text-text-light dark:text-text-dark font-medium px-4 py-2 rounded-full 
+              border border-blue-500/10 dark:border-blue-400/10 bg-blue-500/[0.02] dark:bg-blue-400/[0.02]"
+            >
               Cookies
             </span>
             <h1 className="font-monument text-4xl lg:text-5xl text-text-light dark:text-text-dark">
@@ -63,17 +65,23 @@ export default function CookiesPage() {
               <table className="w-full border-collapse">
                 <thead>
                   <tr className="border-b border-gray-200 dark:border-gray-800">
-                    <th className="py-4 px-4 text-left text-sm font-semibold text-gray-900 dark:text-text-dark">Cookie</th>
-                    <th className="py-4 px-4 text-left text-sm font-semibold text-gray-900 dark:text-text-dark">Účel</th>
-                    <th className="py-4 px-4 text-left text-sm font-semibold text-gray-900 dark:text-text-dark">Expirace</th>
+                    <th className="py-4 px-4 text-left text-sm font-semibold text-gray-900 dark:text-text-dark">
+                      Cookie
+                    </th>
+                    <th className="py-4 px-4 text-left text-sm font-semibold text-gray-900 dark:text-text-dark">
+                      Účel
+                    </th>
+                    <th className="py-4 px-4 text-left text-sm font-semibold text-gray-900 dark:text-text-dark">
+                      Expirace
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   {cookiesList.map((cookie, index) => (
-                    <tr 
+                    <tr
                       key={cookie.name}
                       className={`border-b border-gray-200 dark:border-gray-800 ${
-                        index % 2 === 0 ? 'bg-gray-50 dark:bg-gray-900/50' : ''
+                        index % 2 === 0 ? "bg-gray-50 dark:bg-gray-900/50" : ""
                       }`}
                     >
                       <td className="py-4 px-4 text-sm text-gray-600 dark:text-text-muted-dark font-mono">
@@ -95,4 +103,4 @@ export default function CookiesPage() {
       </div>
     </section>
   );
-} 
+}

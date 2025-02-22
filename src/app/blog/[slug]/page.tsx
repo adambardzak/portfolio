@@ -1,14 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Calendar, Clock, ArrowLeft, Github, ExternalLink } from "lucide-react";
+import { Calendar, Clock, Github, ExternalLink } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { StyledSection } from "@/components/blog/StyledSection";
 import { CodeBlock } from "@/components/blog/CodeBlock";
 import { InfoBox } from "@/components/blog/InfoBox";
 import { TextBlock } from "@/components/blog/TextBlock";
 import { SubHeading } from "@/components/blog/SubHeading";
-import { ContentSection } from "@/components/blog/ContentSection";
 import { Highlight } from "@/components/blog/Highlight";
 
 // Add proper typing for blog posts
