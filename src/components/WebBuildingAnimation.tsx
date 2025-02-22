@@ -12,17 +12,24 @@ import {
 } from "lucide-react";
 
 const WebBuildingAnimation = () => {
+  const iconColors = [
+    { icon: ShoppingCart, color: "rgba(59, 130, 246, 0.8)" },
+    { icon: Users, color: "rgba(59, 130, 246, 0.6)" },
+    { icon: TrendingUp, color: "rgba(59, 130, 246, 0.8)" },
+    { icon: Star, color: "rgba(59, 130, 246, 0.6)" },
+  ];
+
   return (
     <div className="w-full h-full relative p-8">
       <motion.div
         initial={{ scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="w-full h-full rounded-3xl bg-[#1A1A1A] border border-white/[0.08] overflow-hidden shadow-2xl"
+        className="w-full h-full rounded-3xl bg-white dark:bg-[#161616] border border-gray-200 dark:border-gray-800 overflow-hidden shadow-2xl"
       >
         <div className="grid grid-cols-2 h-full">
           {/* Website Preview Side */}
-          <div className="p-6 border-r border-white/[0.08]">
+          <div className="p-6 border-r border-gray-200 dark:border-gray-800">
             <div className="flex gap-2 mb-8">
               {[...Array(3)].map((_, i) => (
                 <motion.div
@@ -30,7 +37,7 @@ const WebBuildingAnimation = () => {
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.2 + i * 0.1 }}
-                  className="w-3 h-3 rounded-full bg-white/10"
+                  className="w-3 h-3 rounded-full bg-gray-200 dark:bg-gray-700"
                 />
               ))}
             </div>
@@ -43,30 +50,25 @@ const WebBuildingAnimation = () => {
                 transition={{ delay: 0.5 }}
                 className="space-y-3"
               >
-                <div className="h-8 w-3/4 rounded-xl bg-gradient-to-r from-purple-500/80 via-purple-400/70 to-purple-300/80 backdrop-blur-sm" />
-                <div className="h-4 w-1/2 rounded-xl bg-white/10" />
+                <div className="h-8 w-3/4 rounded-xl bg-gradient-to-r from-blue-500/80 via-blue-400/70 to-blue-300/80 backdrop-blur-sm" />
+                <div className="h-4 w-1/2 rounded-xl bg-gray-200 dark:bg-gray-700" />
               </motion.div>
 
               {/* Features Grid */}
               <div className="grid grid-cols-2 gap-4">
-                {[
-                  { icon: ShoppingCart, color: "#a855f7" },
-                  { icon: Users, color: "#d8b4fe" },
-                  { icon: TrendingUp, color: "#a855f7" },
-                  { icon: Star, color: "#d8b4fe" },
-                ].map((item, i) => (
+                {iconColors.map((item, i) => (
                   <motion.div
                     key={i}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.8 + i * 0.2 }}
-                    className="p-4 rounded-2xl bg-white/[0.03] border border-white/[0.08]"
+                    className="p-4 rounded-2xl bg-gray-100/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700"
                   >
                     <item.icon
-                      className="w-5 h-5 mb-3 opacity-80"
+                      className="w-5 h-5 mb-3"
                       style={{ color: item.color }}
                     />
-                    <div className="h-3 w-2/3 rounded-full bg-white/10" />
+                    <div className="h-3 w-2/3 rounded-full bg-gray-200 dark:bg-gray-700" />
                   </motion.div>
                 ))}
               </div>
@@ -79,7 +81,7 @@ const WebBuildingAnimation = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="text-base text-white/40 mb-8"
+              className="text-base text-gray-500 dark:text-gray-400 mb-8"
             >
               Business Results
             </motion.div>
@@ -96,15 +98,15 @@ const WebBuildingAnimation = () => {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 1.2 + i * 0.2 }}
-                  className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.03]"
+                  className="flex items-center justify-between p-4 rounded-2xl bg-gray-100/50 dark:bg-gray-800/50"
                 >
                   <div className="flex items-center gap-3">
-                    <metric.icon className="w-5 h-5 text-purple-500 opacity-80" />
-                    <span className="text-white/60 text-sm whitespace-nowrap">
+                    <metric.icon className="w-5 h-5 text-blue-500 dark:text-blue-400" />
+                    <span className="text-blue-500/60 dark:text-blue-400/60 text-sm whitespace-nowrap">
                       {metric.label}
                     </span>
                   </div>
-                  <span className="text-purple-400 text-sm ml-2 whitespace-nowrap">
+                  <span className="text-blue-500/60 dark:text-blue-400/60 text-sm ml-2 whitespace-nowrap">
                     {metric.trend}
                   </span>
                 </motion.div>
@@ -117,8 +119,7 @@ const WebBuildingAnimation = () => {
                 transition={{ delay: 2, duration: 1 }}
                 className="h-32 mt-8 rounded-2xl relative overflow-hidden"
                 style={{
-                  background:
-                    "linear-gradient(180deg, rgba(168, 85, 247, 0.03) 0%, rgba(216, 180, 254, 0.02) 100%)",
+                  background: "linear-gradient(180deg, rgba(59, 130, 246, 0.05) 0%, rgba(59, 130, 246, 0.02) 100%)",
                   transformOrigin: "bottom",
                 }}
               >

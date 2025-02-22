@@ -1,24 +1,41 @@
 "use client";
 
-import { useState } from "react";
+import { ForwardRefExoticComponent, RefAttributes, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ArrowRight, Check, Globe, ShoppingCart } from "lucide-react";
+import {
+  X,
+  ArrowRight,
+  Check,
+  Globe,
+  ShoppingCart,
+  LucideProps,
+} from "lucide-react";
 import Input from "@/components/ui/Input";
 
-const projectTypes = [
+interface ProjectType {
+  name: string;
+  description: string;
+  icon: ForwardRefExoticComponent<
+    Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
+  >;
+  gradient: string;
+  basePrice: number;
+}
+
+const projectTypes: ProjectType[] = [
   {
     name: "Webová prezentace",
-    description: "Ideální pro menší firmy a podnikatele",
-    gradient: "from-purple-500/80 via-purple-400/70 to-purple-300/80",
+    description: "Profesionální web pro vaši firmu nebo značku",
     icon: Globe,
-    basePrice: 80000,
+    gradient: "from-blue-500/80 via-blue-400/70 to-blue-300/80",
+    basePrice: 50000,
   },
   {
     name: "E-shop",
-    description: "Pro online prodej produktů a služeb",
-    gradient: "from-purple-400/80 via-purple-300/70 to-purple-200/80",
+    description: "Kompletní řešení pro online prodej",
     icon: ShoppingCart,
-    basePrice: 150000,
+    gradient: "from-blue-400/80 via-blue-300/70 to-blue-200/80",
+    basePrice: 50000,
   },
 ];
 
@@ -122,31 +139,31 @@ export default function ProjectCalculator() {
           appearance: none;
           width: 24px;
           height: 24px;
-          background: #000000;
+          background: #3b82f6;
           border: 2px solid #ffffff;
           border-radius: 50%;
           cursor: pointer;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
         }
 
         .dark input[type="range"]::-webkit-slider-thumb {
-          background: #ffffff;
-          border-color: #000000;
+          background: #60a5fa;
+          border-color: #161616;
         }
 
         input[type="range"]::-moz-range-thumb {
           width: 24px;
           height: 24px;
-          background: #000000;
+          background: #3b82f6;
           border: 2px solid #ffffff;
           border-radius: 50%;
           cursor: pointer;
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
         }
 
         .dark input[type="range"]::-moz-range-thumb {
-          background: #ffffff;
-          border-color: #000000;
+          background: #60a5fa;
+          border-color: #161616;
         }
 
         input[type="range"]::-webkit-slider-thumb:hover,
@@ -207,15 +224,15 @@ export default function ProjectCalculator() {
                       whileHover={{ scale: 1.02 }}
                       className={`p-6 rounded-2xl border text-left transition-colors duration-300 ${
                         selectedType.name === type.name
-                          ? "border-text-light dark:border-text-dark"
-                          : "border-border-light dark:border-border-dark"
+                          ? "border-blue-500 dark:border-blue-400"
+                          : "border-gray-200 dark:border-gray-800"
                       }`}
                     >
                       <div className="space-y-2">
                         <div
                           className={`w-12 h-12 rounded-xl bg-gradient-to-r ${type.gradient} backdrop-blur-sm flex items-center justify-center`}
                         >
-                          <type.icon className="w-6 h-6 text-text-light dark:text-text-dark" />
+                          <type.icon className="w-6 h-6 text-white" />
                         </div>
                         <div className="font-monument text-text-light dark:text-text-dark">
                           {type.name}
@@ -270,12 +287,12 @@ export default function ProjectCalculator() {
                       <div
                         className={`w-5 h-5 rounded flex items-center justify-center transition-colors ${
                           selectedFeatures.includes(feature.name)
-                            ? "bg-text-light dark:bg-text-dark"
-                            : "border border-border-light dark:border-border-dark"
+                            ? "bg-blue-500 dark:bg-blue-400"
+                            : "border border-gray-200 dark:border-gray-800"
                         }`}
                       >
                         {selectedFeatures.includes(feature.name) && (
-                          <Check className="w-3 h-3 text-light dark:text-dark" />
+                          <Check className="w-3 h-3 text-white" />
                         )}
                       </div>
                       <div className="text-left">
@@ -294,7 +311,7 @@ export default function ProjectCalculator() {
 
             {/* Right Column - Summary */}
             <div className="lg:sticky lg:top-32 space-y-8 h-fit">
-              <div className="p-8 rounded-2xl bg-hover-light dark:bg-hover-dark border border-border-light dark:border-border-dark">
+              <div className="p-8 rounded-2xl bg-white dark:bg-[#161616] border border-gray-200 dark:border-gray-800">
                 <div className="space-y-6">
                   <h3 className="font-monument text-xl text-text-light dark:text-text-dark">
                     Shrnutí projektu
@@ -333,7 +350,8 @@ export default function ProjectCalculator() {
               <motion.button
                 onClick={() => setShowEmailDialog(true)}
                 whileHover={{ scale: 1.02 }}
-                className="flex items-center justify-center gap-2 w-full px-8 py-4 bg-text-light dark:bg-text-dark text-light dark:text-dark rounded-lg font-medium transition-all duration-300"
+                className="flex items-center justify-center gap-2 w-full px-8 py-4 bg-blue-500 dark:bg-blue-400 
+                  text-white rounded-lg font-medium transition-all duration-300"
               >
                 Získat cenovou nabídku
                 <ArrowRight className="w-4 h-4" />
@@ -355,7 +373,7 @@ export default function ProjectCalculator() {
                 initial={{ scale: 0.95 }}
                 animate={{ scale: 1 }}
                 exit={{ scale: 0.95 }}
-                className="bg-light dark:bg-dark rounded-2xl p-8 max-w-lg w-full relative"
+                className="bg-white dark:bg-[#161616] rounded-2xl p-8 max-w-lg w-full relative"
               >
                 <button
                   onClick={() => setShowEmailDialog(false)}
@@ -384,7 +402,8 @@ export default function ProjectCalculator() {
                     />
                     <button
                       type="submit"
-                      className="w-full px-8 py-4 bg-text-light dark:bg-text-dark text-light dark:text-dark rounded-lg font-medium transition-all duration-300 hover:scale-[1.02]"
+                      className="w-full px-8 py-4 bg-blue-500 dark:bg-blue-400 text-white rounded-lg font-medium 
+                        transition-all duration-300 hover:scale-[1.02]"
                     >
                       Odeslat poptávku
                     </button>

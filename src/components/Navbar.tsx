@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Moon, Sun, ArrowUpRight } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
@@ -13,10 +13,16 @@ type NavItem = {
 };
 
 const Navbar = () => {
+  const [mounted, setMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const { isDark, toggleTheme } = useTheme();
+
+  // Handle mounting
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -31,25 +37,38 @@ const Navbar = () => {
     };
   }, [isOpen]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-      const progress = Math.min(
-        (window.scrollY /
-          (document.documentElement.scrollHeight - window.innerHeight)) *
-          100,
-        100
-      );
-      setScrollProgress(progress);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+  // Handle scroll
+  useLayoutEffect(() => {
+    if (typeof window !== "undefined") {
+      const handleScroll = () => {
+        setIsScrolled(window.scrollY > 0);
+        const progress = Math.min(
+          (window.scrollY /
+            (document.documentElement.scrollHeight - window.innerHeight)) *
+            100,
+          100
+        );
+        setScrollProgress(progress);
+      };
+
+      // Set initial scroll state
+      handleScroll();
+
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
+    }
   }, []);
 
+  // Don't render anything until mounted
+  if (!mounted) {
+    return null;
+  }
+
   const navItems: NavItem[] = [
-    { label: "Work", href: "#work" },
-    { label: "Process", href: "/process" },
-    { label: "About", href: "#about" },
+    { label: "Služby", href: "/services" },
+    { label: "Case Studies", href: "/case-studies" },
+    { label: "Blog", href: "/blog" },
+    { label: "FAQ", href: "/faq" },
   ];
 
   return (
@@ -58,13 +77,12 @@ const Navbar = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 
-        ${
+        className={clsx(
+          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           isScrolled
             ? "bg-light/90 dark:bg-dark/90 backdrop-blur-sm"
             : "bg-transparent"
-        } 
-        transition-all duration-300`}
+        )}
       >
         <div className="max-w-7xl mx-auto px-8 lg:px-16">
           <div className="flex items-center justify-between h-20">

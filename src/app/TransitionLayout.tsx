@@ -9,9 +9,9 @@ export default function TransitionLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <>
       <AnimatePresence mode="wait">{children}</AnimatePresence>
       <AnimatedCursor />
-    </html>
+    </>
   );
 }

@@ -1,11 +1,21 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 
 const Footer = () => {
+  const [mounted, setMounted] = useState(false);
   const currentYear = new Date().getFullYear();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <footer className="bg-light dark:bg-dark transition-colors duration-300 py-32">
@@ -56,14 +66,14 @@ const Footer = () => {
           <div className="space-y-8">
             <div className="grid grid-cols-2 gap-8">
               <div className="space-y-4">
-                <h4 className="font-monument text-sm text-purple-600 dark:text-purple-400">
+                <h4 className="font-monument text-sm text-blue-500 dark:text-blue-400">
                   Navigace
                 </h4>
                 <ul className="space-y-3">
                   <li>
                     <a
                       href="#services"
-                      className="text-text-muted-light dark:text-text-muted-dark hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                      className="text-text-muted-light dark:text-text-muted-dark hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
                     >
                       Služby
                     </a>
@@ -71,7 +81,7 @@ const Footer = () => {
                   <li>
                     <a
                       href="#process"
-                      className="text-text-muted-light dark:text-text-muted-dark hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                      className="text-text-muted-light dark:text-text-muted-dark hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
                     >
                       Proces
                     </a>
@@ -79,7 +89,7 @@ const Footer = () => {
                   <li>
                     <a
                       href="#projects"
-                      className="text-text-muted-light dark:text-text-muted-dark hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                      className="text-text-muted-light dark:text-text-muted-dark hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
                     >
                       Projekty
                     </a>
@@ -87,7 +97,7 @@ const Footer = () => {
                   <li>
                     <a
                       href="#contact"
-                      className="text-text-muted-light dark:text-text-muted-dark hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                      className="text-text-muted-light dark:text-text-muted-dark hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
                     >
                       Kontakt
                     </a>
@@ -96,7 +106,7 @@ const Footer = () => {
               </div>
 
               <div className="space-y-4">
-                <h4 className="font-monument text-sm text-purple-600 dark:text-purple-400">
+                <h4 className="font-monument text-sm text-blue-500 dark:text-blue-400">
                   Sociální sítě
                 </h4>
                 <ul className="space-y-3">
@@ -105,7 +115,7 @@ const Footer = () => {
                       href="https://github.com/adambardzak"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-text-muted-light dark:text-text-muted-dark hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                      className="text-text-muted-light dark:text-text-muted-dark hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
                     >
                       GitHub
                     </a>
@@ -115,7 +125,7 @@ const Footer = () => {
                       href="https://linkedin.com/in/adambardzak"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-text-muted-light dark:text-text-muted-dark hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                      className="text-text-muted-light dark:text-text-muted-dark hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
                     >
                       LinkedIn
                     </a>
@@ -126,22 +136,28 @@ const Footer = () => {
           </div>
         </div>
 
-        <motion.div
-          className="mt-32 pt-8 border-t border-border-light dark:border-border-dark"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          viewport={{ once: true }}
-        >
-          <div className="flex justify-between items-center">
-            <span className="font-monument text-sm text-text-muted-light dark:text-text-muted-dark">
-              © {currentYear} Adam Bardzak
-            </span>
-            <span className="font-monument text-sm text-text-muted-light dark:text-text-muted-dark">
-              Vytvořeno s láskou
-            </span>
+        {/* Footer Bottom */}
+        <div className="mt-16 pt-8 border-t border-gray-200 dark:border-gray-800">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-text-muted-light dark:text-text-muted-dark">
+              © {currentYear} Všechna práva vyhrazena
+            </p>
+            <div className="flex gap-6">
+              <Link 
+                href="/legal" 
+                className="text-sm text-text-muted-light dark:text-text-muted-dark hover:text-text-light dark:hover:text-text-dark transition-colors"
+              >
+                Právní informace
+              </Link>
+              <Link 
+                href="/cookies" 
+                className="text-sm text-text-muted-light dark:text-text-muted-dark hover:text-text-light dark:hover:text-text-dark transition-colors"
+              >
+                Cookies
+              </Link>
+            </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </footer>
   );

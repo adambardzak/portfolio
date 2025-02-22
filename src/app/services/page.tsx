@@ -1,21 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { GridPattern } from "@/components/DecorativeElements";
 import {
   Code,
   Paintbrush,
-  Rocket,
-  Layers,
   Database,
-  Smartphone,
   Search,
+  Workflow,
+  Layers,
+  Users,
   Zap,
   LineChart,
-  ShieldCheck,
-  Workflow,
-  Users,
-  ArrowRight,
 } from "lucide-react";
 
 const detailedServices = [
@@ -58,7 +53,6 @@ const detailedServices = [
       "Micro-interakce",
     ],
     tools: ["Figma", "Adobe CC", "Framer", "Maze", "Principle"],
-    gradient: "from-purple-500/80 via-purple-400/70 to-purple-300/80",
     metrics: [
       {
         value: "40%",
@@ -109,7 +103,6 @@ const detailedServices = [
       "Analytics",
     ],
     tools: ["React/Next.js", "TypeScript", "Node.js", "PostgreSQL", "AWS"],
-    gradient: "from-purple-400/80 via-purple-300/70 to-purple-200/80",
     metrics: [
       {
         value: "99%",
@@ -128,157 +121,117 @@ export default function ServicesPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center bg-light dark:bg-dark transition-colors duration-300 overflow-hidden">
-        <GridPattern />
+      <section className="relative min-h-[90vh] flex items-center bg-[#fafafa] dark:bg-[#121212] transition-colors duration-300 overflow-hidden">
+        {/* Background gradient overlay */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_150%,rgba(59,130,246,0.02),transparent_70%)]" />
+        </div>
 
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {/* Right Side Floating Icons */}
-          <div className="absolute top-1/2 right-[10%] -translate-y-1/2">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.5 }}
-              className="grid grid-cols-2 gap-8"
-            >
-              {[Code, Paintbrush, Rocket, Database, Smartphone].map(
-                (Icon, i) => (
-                  <motion.div
-                    key={i}
-                    animate={{
-                      y: [0, -10, 0],
-                      rotate: [0, i % 2 === 0 ? 5 : -5, 0],
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      delay: i * 0.2,
-                      ease: "easeInOut",
-                    }}
-                    className="w-16 h-16 rounded-2xl bg-gradient-to-r from-purple-500/10 to-purple-400/10 
-                    backdrop-blur-sm p-4 flex items-center justify-center hover:from-purple-500/20 hover:to-purple-400/20 
-                    transition-colors duration-300"
-                  >
-                    <Icon className="w-full h-full text-purple-500/30 dark:text-purple-400/30" />
-                  </motion.div>
-                )
-              )}
-            </motion.div>
-          </div>
-
-          {/* Left Side Decorative Elements */}
-          <div className="absolute top-[20%] left-[5%]">
-            <motion.div
-              animate={{
-                scale: [1, 1.1, 1],
-                rotate: [0, 5, 0],
-              }}
-              transition={{
-                duration: 8,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="w-32 h-32 rounded-full bg-gradient-to-r from-purple-500/5 to-purple-400/5 
-                backdrop-blur-sm"
-            />
-          </div>
+        {/* Floating Icons */}
+        <div className="absolute top-1/2 right-[10%] -translate-y-1/2 pointer-events-none">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="grid grid-cols-2 gap-8"
+          >
+            {[Code, Paintbrush, Database].map((Icon, i) => (
+              <motion.div
+                key={i}
+                animate={{
+                  y: [0, -10, 0],
+                  rotate: [0, i % 2 === 0 ? 5 : -5, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  delay: i * 0.2,
+                  ease: "easeInOut",
+                }}
+                className="w-16 h-16 rounded-2xl bg-blue-500/5 dark:bg-blue-400/5 
+                  backdrop-blur-sm p-4 flex items-center justify-center"
+              >
+                <Icon className="w-full h-full text-blue-500 dark:text-blue-400" />
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
 
         <div className="max-w-7xl mx-auto px-8 lg:px-16 w-full py-32">
           <div className="relative max-w-3xl space-y-8">
-            {/* Purple Accent Line */}
+            {/* Accent Line */}
             <motion.div
-              initial={{ scaleX: 0 }}
-              animate={{ scaleX: 1 }}
+              initial={{ scaleY: 0 }}
+              animate={{ scaleY: 1 }}
               transition={{ duration: 1, delay: 0.2 }}
-              className="absolute -left-8 top-0 h-16 w-1 bg-gradient-to-b from-purple-500 to-purple-400"
+              className="absolute -left-8 top-0 h-16 w-[2px] bg-blue-500/20 dark:bg-blue-400/20"
             />
 
+            {/* Label */}
             <div className="overflow-hidden">
               <motion.p
                 initial={{ y: "100%" }}
-                whileInView={{ y: 0 }}
+                animate={{ y: 0 }}
                 transition={{
                   duration: 1,
                   ease: [0.16, 1, 0.3, 1],
                   delay: 0.2,
                 }}
-                viewport={{ once: true }}
-                className="font-monument text-sm text-purple-600 dark:text-purple-400 tracking-wider"
+                className="font-monument text-sm text-blue-500 dark:text-blue-400 tracking-wide"
               >
                 SLUŽBY
               </motion.p>
             </div>
 
-            <div className="overflow-hidden">
-              <motion.h1
-                initial={{ y: "100%" }}
-                whileInView={{ y: 0 }}
-                transition={{
-                  duration: 1,
-                  ease: [0.16, 1, 0.3, 1],
-                  delay: 0.4,
-                }}
-                viewport={{ once: true }}
-                className="font-monument text-5xl md:text-6xl lg:text-7xl bg-gradient-to-r from-purple-600 to-purple-400 
-                  dark:from-purple-400 dark:to-purple-200 bg-clip-text text-transparent leading-tight"
+            {/* Main content */}
+            <div className="space-y-6">
+              <div className="overflow-hidden">
+                <motion.h1
+                  initial={{ y: "100%" }}
+                  animate={{ y: 0 }}
+                  transition={{
+                    duration: 1,
+                    ease: [0.16, 1, 0.3, 1],
+                    delay: 0.4,
+                  }}
+                  className="font-monument text-5xl md:text-6xl lg:text-7xl text-text-light dark:text-text-dark leading-tight"
+                >
+                  Digitální řešení pro moderní byznys
+                </motion.h1>
+              </div>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="text-xl text-text-muted-light dark:text-text-muted-dark max-w-2xl"
               >
-                Digitální řešení pro moderní byznys
-              </motion.h1>
+                Od návrhu po realizaci, vytvářím digitální produkty, které
+                kombinují estetiku s výkonem a pomohou vám růst.
+              </motion.p>
             </div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              viewport={{ once: true }}
-              className="text-xl text-text-muted-light dark:text-text-muted-dark max-w-2xl"
-            >
-              Od návrhu po realizaci, vytvářím digitální produkty, které
-              kombinují estetiku s výkonem a pomohou vám růst.
-            </motion.p>
-
-            {/* Service Pills with Enhanced Styling */}
+            {/* Service Pills */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
-              viewport={{ once: true }}
               className="flex flex-wrap gap-4"
             >
               {detailedServices.slice(0, 3).map((service) => (
                 <motion.div
                   key={service.id}
                   whileHover={{ scale: 1.05 }}
-                  className="flex items-center gap-2 px-4 py-2 rounded-full border border-border-light dark:border-border-dark
-                    hover:border-purple-500 dark:hover:border-purple-400 transition-colors duration-300
-                    hover:bg-purple-500/5 dark:hover:bg-purple-400/5"
+                  className="flex items-center gap-2 px-4 py-2 rounded-full border border-blue-500/10 dark:border-blue-400/10
+                    hover:border-blue-500/20 dark:hover:border-blue-400/20 transition-colors duration-300
+                    hover:bg-blue-500/[0.02] dark:hover:bg-blue-400/[0.02]"
                 >
-                  <service.icon className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+                  <service.icon className="w-4 h-4 text-blue-500 dark:text-blue-400" />
                   <span className="text-text-light dark:text-text-dark">
                     {service.title}
                   </span>
                 </motion.div>
               ))}
-            </motion.div>
-
-            {/* CTA Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1 }}
-              viewport={{ once: true }}
-              className="pt-8"
-            >
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-text-light dark:bg-text-dark 
-                  text-light dark:text-dark rounded-lg font-medium hover:opacity-90 
-                  transition-all duration-300 shadow-lg shadow-text-light/5 dark:shadow-text-dark/5"
-              >
-                Začít projekt
-                <ArrowRight className="w-4 h-4" />
-              </a>
             </motion.div>
           </div>
         </div>
@@ -290,8 +243,8 @@ export default function ServicesPage() {
           key={service.id}
           className={`relative py-32 ${
             index % 2 === 0
-              ? "bg-light dark:bg-dark"
-              : "bg-hover-light dark:bg-hover-dark"
+              ? "bg-[#fafafa] dark:bg-[#121212]"
+              : "bg-[#f5f5f5] dark:bg-[#161616]"
           } transition-colors duration-300`}
         >
           <div className="max-w-7xl mx-auto px-8 lg:px-16">
@@ -306,10 +259,10 @@ export default function ServicesPage() {
                   className="space-y-8"
                 >
                   <div
-                    className={`w-16 h-16 rounded-xl bg-gradient-to-r ${service.gradient} backdrop-blur-sm p-3.5 
-                      hover:scale-110 transition-transform duration-300`}
+                    className="w-16 h-16 rounded-xl bg-blue-500/5 dark:bg-blue-400/5 p-3.5 
+                      hover:scale-110 transition-transform duration-300 backdrop-blur-sm"
                   >
-                    <service.icon className="w-full h-full text-text-light dark:text-text-dark" />
+                    <service.icon className="w-full h-full text-blue-500 dark:text-blue-400" />
                   </div>
                   <div className="space-y-4">
                     <h2 className="font-monument text-4xl text-text-light dark:text-text-dark">
@@ -323,7 +276,7 @@ export default function ServicesPage() {
 
                 {/* Process Steps */}
                 <div className="space-y-8">
-                  <h3 className="font-monument text-sm text-purple-600 dark:text-purple-400">
+                  <h3 className="font-monument text-sm text-blue-500 dark:text-blue-400">
                     Proces
                   </h3>
                   <div className="grid gap-6">
@@ -334,13 +287,16 @@ export default function ServicesPage() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.2 + i * 0.1 }}
-                        className="group flex gap-4 p-4 rounded-xl hover:bg-hover-light dark:hover:bg-hover-dark transition-colors duration-300"
+                        className="group flex gap-4 p-4 rounded-xl hover:bg-blue-500/[0.02] dark:hover:bg-blue-400/[0.02] 
+                          transition-colors duration-300"
                       >
                         <div
-                          className={`w-10 h-10 rounded-xl bg-gradient-to-r ${service.gradient} flex-shrink-0 
-                            flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}
+                          className="w-10 h-10 rounded-xl bg-blue-500/5 dark:bg-blue-400/5 
+                            flex-shrink-0 flex items-center justify-center 
+                            group-hover:bg-blue-500/10 dark:group-hover:bg-blue-400/10 
+                            group-hover:scale-110 transition-all duration-300"
                         >
-                          <step.icon className="w-5 h-5 text-text-light dark:text-text-dark" />
+                          <step.icon className="w-5 h-5 text-blue-500 dark:text-blue-400" />
                         </div>
                         <div>
                           <h4 className="font-monument text-text-light dark:text-text-dark mb-1">
@@ -357,16 +313,17 @@ export default function ServicesPage() {
               </div>
 
               {/* Features & Tools */}
-              <div className="space-y-12">
+              <div className="lg:sticky lg:top-32 space-y-12">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.4 }}
-                  className="p-8 rounded-2xl border border-border-light dark:border-border-dark space-y-8 
-                    hover:border-purple-500/20 dark:hover:border-purple-400/20 transition-colors duration-300"
+                  className="p-8 rounded-2xl border border-gray-200 dark:border-gray-800 space-y-8 
+                    hover:border-blue-500/20 dark:hover:border-blue-400/20 transition-colors duration-300
+                    bg-white dark:bg-[#161616]"
                 >
-                  <h3 className="font-monument text-sm text-purple-600 dark:text-purple-400">
+                  <h3 className="font-monument text-sm text-blue-500 dark:text-blue-400">
                     Co získáte
                   </h3>
                   <div className="grid grid-cols-2 gap-6">
@@ -379,14 +336,11 @@ export default function ServicesPage() {
                         transition={{ delay: 0.5 + i * 0.1 }}
                         className="flex items-center gap-3 group"
                       >
-                        <div
-                          className="w-1.5 h-1.5 rounded-full bg-purple-600 dark:bg-purple-400 
-                          group-hover:scale-150 transition-transform duration-300"
-                        />
-                        <span
-                          className="text-text-muted-light dark:text-text-muted-dark group-hover:text-text-light 
-                          dark:group-hover:text-text-dark transition-colors duration-300"
-                        >
+                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500 dark:bg-blue-400 
+                          group-hover:scale-150 transition-transform duration-300" />
+                        <span className="text-text-muted-light dark:text-text-muted-dark 
+                          group-hover:text-blue-500 dark:group-hover:text-blue-400 
+                          transition-colors duration-300">
                           {feature}
                         </span>
                       </motion.div>
@@ -399,30 +353,24 @@ export default function ServicesPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.6 }}
-                  className="p-8 rounded-2xl border border-border-light dark:border-border-dark space-y-8
-                    hover:border-purple-500/20 dark:hover:border-purple-400/20 transition-colors duration-300"
+                  className="p-8 rounded-2xl border border-gray-200 dark:border-gray-800 space-y-8
+                    hover:border-blue-500/20 dark:hover:border-blue-400/20 transition-colors duration-300
+                    bg-white dark:bg-[#161616]"
                 >
-                  <h3 className="font-monument text-sm text-purple-600 dark:text-purple-400">
+                  <h3 className="font-monument text-sm text-blue-500 dark:text-blue-400">
                     Technologie
                   </h3>
                   <div className="grid grid-cols-2 gap-6">
                     {service.tools.map((tool, i) => (
                       <motion.div
                         key={i}
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.7 + i * 0.1 }}
                         className="flex items-center gap-3 group"
                       >
-                        <div
-                          className="w-1.5 h-1.5 rounded-full bg-purple-600 dark:bg-purple-400 
-                          group-hover:scale-150 transition-transform duration-300"
-                        />
-                        <span
-                          className="text-text-muted-light dark:text-text-muted-dark group-hover:text-text-light 
-                          dark:group-hover:text-text-dark transition-colors duration-300"
-                        >
+                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500 dark:bg-blue-400 
+                          group-hover:scale-150 transition-transform duration-300" />
+                        <span className="text-text-light dark:text-text-dark 
+                          group-hover:text-blue-500 dark:group-hover:text-blue-400 
+                          transition-colors duration-300">
                           {tool}
                         </span>
                       </motion.div>

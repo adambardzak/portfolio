@@ -1,7 +1,7 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { GridPattern } from "@/components/DecorativeElements";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -31,8 +31,8 @@ const caseStudy = {
   // Technical details
   stack: {
     frontend: ["Next.js 14", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    cms: ["Contentlayer", "MDX"],
-    deployment: ["Vercel", "GitHub Actions"],
+    cms: ["Strapi CMS"],
+    deployment: ["VPS/Docker"],
   },
 
   // Architecture & implementation details
@@ -46,10 +46,7 @@ const caseStudy = {
       • Flexibilní správu obsahu přes Strapi admin rozhraní
       • Spolehlivé uložení dat v MariaDB
       • Snadnou škálovatelnost jednotlivých komponent
-    `
-      .split("\n")
-      .filter((line) => line.trim())
-      .join("\n"),
+    `,
     components: {
       frontend: {
         name: "Next.js Frontend",
@@ -60,7 +57,7 @@ const caseStudy = {
           "Image optimization",
           "API routes",
         ],
-        hosting: "Vercel",
+        hosting: "VPS/Docker",
       },
       cms: {
         name: "Strapi CMS",
@@ -141,23 +138,36 @@ const caseStudy = {
 };
 
 export default function CaseStudyPage() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
   return (
     <>
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center bg-light dark:bg-dark">
-        <div className="max-w-7xl mx-auto px-8 lg:px-16 w-full py-32">
+      <section className="relative h-screen flex items-center bg-light dark:bg-dark overflow-hidden">
+        <div className="max-w-7xl mx-auto px-8 lg:px-16 w-full">
+          {/* Back Button */}
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-text-light dark:text-text-dark hover:text-ofta-blue-600 
-              dark:hover:text-ofta-blue-600 transition-colors mb-24 group"
+            className="absolute top-32 inline-flex items-center gap-2 text-text-light dark:text-text-dark 
+              hover:text-ofta-blue-600 dark:hover:text-ofta-blue-600 transition-colors group"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
             Zpět na projekty
           </Link>
 
-          <div className="grid lg:grid-cols-2 gap-24 items-start">
-            <div className="space-y-12">
-              <div className="space-y-6">
+          {/* Main Content */}
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center h-full pt-24">
+            {/* Left Column */}
+            <div className="space-y-8">
+              <div className="space-y-4">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -173,7 +183,7 @@ export default function CaseStudyPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 }}
-                  className="font-monument text-4xl md:text-6xl text-text-light dark:text-text-dark"
+                  className="font-monument text-3xl md:text-5xl text-text-light dark:text-text-dark"
                 >
                   {caseStudy.title}
                 </motion.h1>
@@ -181,7 +191,7 @@ export default function CaseStudyPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
-                  className="text-xl md:text-2xl text-text-muted-light dark:text-text-muted-dark max-w-2xl"
+                  className="text-lg md:text-xl text-text-muted-light dark:text-text-muted-dark max-w-2xl"
                 >
                   {caseStudy.subtitle}
                 </motion.p>
@@ -191,7 +201,7 @@ export default function CaseStudyPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="text-text-muted-light dark:text-text-muted-dark mt-4"
+                className="text-text-muted-light dark:text-text-muted-dark"
               >
                 Design by{" "}
                 <a
@@ -215,7 +225,7 @@ export default function CaseStudyPage() {
                   .map((tech, i) => (
                     <span
                       key={i}
-                      className="px-4 py-2 rounded-xl bg-hover-light dark:bg-hover-dark 
+                      className="px-3 py-1.5 rounded-lg bg-hover-light dark:bg-hover-dark 
                         text-text-light dark:text-text-dark text-sm border border-border-light dark:border-border-dark"
                     >
                       {tech}
@@ -227,15 +237,15 @@ export default function CaseStudyPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
-                className="flex flex-wrap gap-4 pt-4"
+                className="flex flex-wrap gap-4"
               >
                 {caseStudy.links.live && (
                   <a
                     href={caseStudy.links.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-8 py-4 bg-ofta-blue-600 hover:bg-ofta-blue-600 
-                      dark:bg-ofta-blue-600 dark:hover:bg-ofta-blue-600 text-white rounded-xl transition-all duration-300"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-ofta-blue-600 hover:bg-ofta-blue-600 
+                      dark:bg-ofta-blue-600 dark:hover:bg-ofta-blue-600 text-white rounded-lg transition-all duration-300"
                   >
                     Živá ukázka
                     <ExternalLink className="w-4 h-4" />
@@ -246,8 +256,8 @@ export default function CaseStudyPage() {
                     href={caseStudy.links.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-8 py-4 bg-hover-light dark:bg-hover-dark 
-                      text-text-light dark:text-text-dark rounded-xl border border-border-light dark:border-border-dark 
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-hover-light dark:bg-hover-dark 
+                      text-text-light dark:text-text-dark rounded-lg border border-border-light dark:border-border-dark 
                       hover:border-text-light/20 dark:hover:border-text-dark/20 transition-all duration-300"
                   >
                     GitHub
@@ -257,6 +267,7 @@ export default function CaseStudyPage() {
               </motion.div>
             </div>
 
+            {/* Right Column */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}

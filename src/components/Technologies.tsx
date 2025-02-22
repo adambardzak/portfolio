@@ -8,43 +8,43 @@ const technologies = [
     category: "Frontend",
     icon: Code2,
     skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    gradient: "from-purple-500/80 via-purple-400/70 to-purple-300/80",
+    gradient: "bg-blue-500/5 dark:bg-blue-400/5 group-hover:bg-blue-500/10 dark:group-hover:bg-blue-400/10",
   },
   {
     category: "Backend",
     icon: Server,
     skills: ["Node.js", "Express", "REST APIs", "GraphQL", "WebSockets"],
-    gradient: "from-purple-400/80 via-purple-300/70 to-purple-200/80",
+    gradient: "bg-blue-500/5 dark:bg-blue-400/5 group-hover:bg-blue-500/10 dark:group-hover:bg-blue-400/10",
   },
   {
     category: "Databáze",
     icon: Database,
     skills: ["MongoDB", "PostgreSQL", "Redis", "Prisma", "MySQL"],
-    gradient: "from-purple-500/80 via-purple-400/70 to-purple-300/80",
+    gradient: "bg-blue-500/5 dark:bg-blue-400/5 group-hover:bg-blue-500/10 dark:group-hover:bg-blue-400/10",
   },
   {
     category: "Mobilní vývoj",
     icon: Smartphone,
     skills: ["React Native", "iOS", "Android", "Expo", "Mobile UI/UX"],
-    gradient: "from-purple-400/80 via-purple-300/70 to-purple-200/80",
+    gradient: "bg-blue-500/5 dark:bg-blue-400/5 group-hover:bg-blue-500/10 dark:group-hover:bg-blue-400/10",
   },
   {
     category: "DevOps",
     icon: Globe,
     skills: ["Docker", "AWS", "CI/CD", "Vercel", "Cloudflare"],
-    gradient: "from-purple-500/80 via-purple-400/70 to-purple-300/80",
+    gradient: "bg-blue-500/5 dark:bg-blue-400/5 group-hover:bg-blue-500/10 dark:group-hover:bg-blue-400/10",
   },
   {
     category: "Další technologie",
     icon: Cpu,
     skills: ["Git", "Testing", "SEO", "Performance", "Security"],
-    gradient: "from-purple-400/80 via-purple-300/70 to-purple-200/80",
+    gradient: "bg-blue-500/5 dark:bg-blue-400/5 group-hover:bg-blue-500/10 dark:group-hover:bg-blue-400/10",
   },
 ];
 
 export default function Expertise() {
   return (
-    <section className="relative min-h-screen flex items-center bg-light dark:bg-dark transition-colors duration-300 py-32">
+    <section className="relative min-h-screen flex items-center bg-[#fafafa] dark:bg-[#121212] transition-colors duration-300 py-32">
       <div className="max-w-7xl mx-auto px-8 lg:px-16 w-full">
         {/* Section Header */}
         <div className="space-y-4 mb-24">
@@ -58,7 +58,7 @@ export default function Expertise() {
                 delay: 0.2,
               }}
               viewport={{ once: true }}
-              className="font-monument text-sm text-text-muted-light dark:text-text-muted-dark tracking-wide"
+              className="font-monument text-sm text-blue-500 dark:text-blue-400 tracking-wide"
             >
               Technologie
             </motion.p>
@@ -80,7 +80,7 @@ export default function Expertise() {
           </div>
         </div>
 
-        {/* Technologies Grid - New Layout */}
+        {/* Technologies Grid */}
         <div className="grid grid-cols-1 gap-16">
           {technologies.map((tech, index) => (
             <motion.div
@@ -92,10 +92,8 @@ export default function Expertise() {
               className="group"
             >
               <div className="flex flex-col md:flex-row gap-8 items-start">
-                <div
-                  className={`w-16 h-16 rounded-2xl bg-gradient-to-r ${tech.gradient} backdrop-blur-sm p-4 shrink-0`}
-                >
-                  <tech.icon className="w-full h-full text-text-light dark:text-text-dark" />
+                <div className={`w-16 h-16 rounded-2xl ${tech.gradient} transition-colors duration-300 p-4 shrink-0`}>
+                  <tech.icon className="w-full h-full text-blue-500 dark:text-blue-400" />
                 </div>
                 <div className="space-y-4 flex-grow">
                   <h3 className="font-monument text-2xl text-text-light dark:text-text-dark">
@@ -114,7 +112,9 @@ export default function Expertise() {
                           stiffness: 100,
                         }}
                         viewport={{ once: true }}
-                        className="px-4 py-2 rounded-xl bg-hover-light dark:bg-hover-dark border border-border-light dark:border-border-dark text-text-light dark:text-text-dark hover:border-text-light/20 dark:hover:border-text-dark/20 transition-colors duration-300"
+                        className="px-4 py-2 rounded-xl bg-white dark:bg-[#161616] border border-gray-200 dark:border-gray-800 
+                          text-text-light dark:text-text-dark hover:border-blue-500/20 dark:hover:border-blue-400/20 
+                          hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-300"
                       >
                         {skill}
                       </motion.span>
@@ -123,7 +123,7 @@ export default function Expertise() {
                 </div>
               </div>
               {index !== technologies.length - 1 && (
-                <div className="w-full h-px bg-border-light dark:bg-border-dark mt-16" />
+                <div className="w-full h-px bg-gray-200 dark:bg-gray-800 mt-16" />
               )}
             </motion.div>
           ))}

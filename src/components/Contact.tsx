@@ -57,7 +57,7 @@ export default function Contact() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="text-sm text-purple-600 dark:text-purple-400"
+        className="text-sm text-blue-500 dark:text-blue-400"
       >
         Zpráva byla úspěšně odeslána. Brzy se vám ozvu.
       </motion.div>
@@ -88,7 +88,7 @@ export default function Contact() {
                 delay: 0.2,
               }}
               viewport={{ once: true }}
-              className="font-monument text-sm text-purple-600 dark:text-purple-400 tracking-wide"
+              className="font-monument text-sm text-blue-500 dark:text-blue-400 tracking-wide"
             >
               Začněme spolupráci
             </motion.p>
@@ -158,13 +158,12 @@ export default function Contact() {
                 disabled={formStatus === "submitting"}
                 className={`
                   flex items-center justify-center gap-2 w-full px-8 py-4 
-                  bg-gradient-to-r from-purple-600 to-purple-500 
-                  dark:from-purple-500 dark:to-purple-400 
+                  bg-blue-500 dark:bg-blue-400
                   text-white rounded-lg font-medium transition-all duration-300 
                   ${
                     formStatus === "submitting"
                       ? "opacity-70 cursor-not-allowed"
-                      : "hover:scale-[1.02] hover:shadow-lg hover:shadow-purple-500/20"
+                      : "hover:scale-[1.02] hover:shadow-lg hover:shadow-blue-500/20"
                   }
                 `}
               >
@@ -209,18 +208,18 @@ export default function Contact() {
             </div>
             <div className="space-y-6">
               <div>
-                <h4 className="font-monument text-sm text-purple-600 dark:text-purple-400 mb-2">
+                <h4 className="font-monument text-sm text-blue-500 dark:text-blue-400 mb-2">
                   E-mail
                 </h4>
                 <a
                   href="mailto:info@example.com"
-                  className="text-text-muted-light dark:text-text-muted-dark hover:text-purple-600 dark:hover:text-purple-400 transition-colors text-lg"
+                  className="text-text-muted-light dark:text-text-muted-dark hover:text-blue-500 dark:hover:text-blue-400 transition-colors text-lg"
                 >
                   info@example.com
                 </a>
               </div>
               <div>
-                <h4 className="font-monument text-sm text-purple-600 dark:text-purple-400 mb-2">
+                <h4 className="font-monument text-sm text-blue-500 dark:text-blue-400 mb-2">
                   Dostupnost
                 </h4>
                 <p className="text-text-muted-light dark:text-text-muted-dark">
