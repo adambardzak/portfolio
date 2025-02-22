@@ -4,6 +4,9 @@ import { motion } from "framer-motion";
 import clsx from "clsx";
 import { Logo } from "@/components/Logo";
 import { useState } from "react";
+import { FramedBox } from "@/components/ui/FramedBox";
+import { Frame } from "@/lib/brand";
+import { LogoFrame } from "@/components/LogoFrame";
 
 // Minimal logo variations
 const logoVariations = [
@@ -259,44 +262,79 @@ const printMaterials = [
   },
 ];
 
-const LogoShowcase = () => {
-  const [activeVariant, setActiveVariant] = useState<"default" | "compact" | "framed-type">("default");
+const FrameShowcase = () => {
+  const [activeVariant, setActiveVariant] = useState<keyof typeof Frame.variants>("rounded");
+  const [activeSize, setActiveSize] = useState<"sm" | "md" | "lg">("md");
 
   return (
     <div className="min-h-screen py-32">
       <div className="max-w-7xl mx-auto px-8 lg:px-16">
         <div className="space-y-32">
-          {/* Interactive Logo Demo */}
+          {/* Interactive Frame Demo */}
           <section>
-            <h2 className="text-2xl font-monument mb-8">Logo System</h2>
-            <p className="text-gray-600 dark:text-gray-400 mb-16">
-              Hover and interact with the logo to see animations and variations.
-            </p>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-              {/* Logo Preview */}
-              <div className="relative aspect-square bg-gray-50 dark:bg-gray-900 rounded-lg flex items-center justify-center">
-                <Logo variant={activeVariant} className="scale-150" />
+            <div className="space-y-8">
+              <span className="text-sm tracking-wider text-gray-900 dark:text-gray-100 font-medium px-4 py-2 rounded-full 
+                border border-blue-500/10 dark:border-blue-400/10 bg-blue-500/[0.02] dark:bg-blue-400/[0.02]">
+                FRAME SYSTEM
+              </span>
+              <h1 className="font-monument text-4xl lg:text-5xl text-gray-900 dark:text-gray-100">
+                Framed Components
+              </h1>
+            </div>
+
+            <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-16">
+              {/* Preview */}
+              <div className="relative aspect-square bg-gray-50 dark:bg-gray-900 rounded-lg flex items-center justify-center p-8">
+                <FramedBox 
+                  variant={activeVariant}
+                  size={activeSize}
+                  className="w-full h-full flex items-center justify-center"
+                >
+                  <span className="font-monument text-xl">Preview</span>
+                </FramedBox>
               </div>
 
               {/* Controls */}
-              <div className="space-y-8">
+              <div className="space-y-12">
+                {/* Variant Selection */}
                 <div className="space-y-4">
-                  <h3 className="font-monument text-lg">Variants</h3>
-                  <div className="grid grid-cols-3 gap-4">
-                    {["default", "compact", "framed-type"].map((variant) => (
+                  <h3 className="font-monument text-lg">Frame Variants</h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    {(Object.keys(Frame.variants) as Array<keyof typeof Frame.variants>).map((variant) => (
                       <button
                         key={variant}
-                        onClick={() => setActiveVariant(variant as any)}
+                        onClick={() => setActiveVariant(variant)}
                         className={`relative p-4 rounded-lg ${
                           activeVariant === variant
                             ? "bg-gray-100 dark:bg-gray-800"
                             : "hover:bg-gray-50 dark:hover:bg-gray-900"
                         }`}
                       >
-                        <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-gray-900 dark:border-gray-100" />
-                        <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-gray-900 dark:border-gray-100" />
-                        <span className="text-sm font-medium capitalize">{variant}</span>
+                        <FramedBox variant={variant} size="sm">
+                          <span className="text-sm font-medium capitalize">{variant}</span>
+                        </FramedBox>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Size Selection */}
+                <div className="space-y-4">
+                  <h3 className="font-monument text-lg">Size Options</h3>
+                  <div className="grid grid-cols-3 gap-4">
+                    {["sm", "md", "lg"].map((size) => (
+                      <button
+                        key={size}
+                        onClick={() => setActiveSize(size as "sm" | "md" | "lg")}
+                        className={`relative p-4 rounded-lg ${
+                          activeSize === size
+                            ? "bg-gray-100 dark:bg-gray-800"
+                            : "hover:bg-gray-50 dark:hover:bg-gray-900"
+                        }`}
+                      >
+                        <FramedBox variant={activeVariant} size={size as "sm" | "md" | "lg"}>
+                          <span className="text-sm font-medium capitalize">{size}</span>
+                        </FramedBox>
                       </button>
                     ))}
                   </div>
@@ -304,24 +342,24 @@ const LogoShowcase = () => {
 
                 {/* Usage Examples */}
                 <div className="space-y-4">
-                  <h3 className="font-monument text-lg">Usage Examples</h3>
+                  <h3 className="font-monument text-lg">Examples</h3>
                   <div className="grid gap-4">
-                    {/* Navbar Example */}
-                    <div className="p-4 bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800">
-                      <div className="flex items-center justify-between">
-                        <Logo variant="compact" />
-                        <div className="flex space-x-6">
-                          <span className="text-sm text-gray-500">Menu</span>
-                          <span className="text-sm text-gray-500">Contact</span>
-                        </div>
+                    <FramedBox variant={activeVariant} size={activeSize} className="p-6">
+                      <div className="space-y-4">
+                        <h4 className="font-monument text-lg">Card Title</h4>
+                        <p className="text-gray-600 dark:text-gray-400">
+                          Example content with the selected frame style.
+                        </p>
                       </div>
-                    </div>
+                    </FramedBox>
 
-                    {/* Document Header */}
-                    <div className="p-6 bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800">
-                      <Logo variant="default" />
-                      <div className="mt-4 h-2 bg-gray-100 dark:bg-gray-800 rounded w-2/3" />
-                      <div className="mt-2 h-2 bg-gray-100 dark:bg-gray-800 rounded w-1/2" />
+                    <div className="flex gap-4">
+                      <FramedBox variant={activeVariant} size="sm" className="px-4 py-2">
+                        <span>Button</span>
+                      </FramedBox>
+                      <FramedBox variant={activeVariant} size="sm" className="px-4 py-2">
+                        <span>Action</span>
+                      </FramedBox>
                     </div>
                   </div>
                 </div>
@@ -329,82 +367,56 @@ const LogoShowcase = () => {
             </div>
           </section>
 
-          {/* Frame System */}
+          {/* Logo System with Frames */}
           <section>
-            <h2 className="text-2xl font-monument mb-8">Frame System</h2>
-            <p className="text-gray-600 dark:text-gray-400 mb-16">
-              A consistent framing system used across all brand elements.
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Frame Sizes */}
-              <div className="space-y-6">
-                <h3 className="font-monument text-lg">Frame Sizes</h3>
-                <div className="space-y-8">
-                  {["sm", "md", "lg"].map((size) => (
-                    <div key={size} className="relative">
-                      <div className={`relative aspect-video bg-gray-50 dark:bg-gray-900 rounded-lg ${
-                        size === "sm" ? "p-2" : size === "md" ? "p-3" : "p-4"
-                      }`}>
-                        <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-gray-900 dark:border-gray-100" />
-                        <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-gray-900 dark:border-gray-100" />
-                        <span className="text-sm font-medium capitalize">{size}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Frame Animations */}
-              <div className="space-y-6">
-                <h3 className="font-monument text-lg">Hover Effects</h3>
-                <div className="space-y-8">
-                  <motion.div
-                    className="relative p-8 bg-gray-50 dark:bg-gray-900 rounded-lg cursor-pointer"
-                    whileHover="hover"
-                  >
-                    <motion.div
-                      className="absolute top-0 left-0 w-3 h-3 border-t border-l border-gray-900 dark:border-gray-100"
-                      variants={{
-                        hover: { width: 24, height: 24 }
-                      }}
-                      transition={{ duration: 0.3 }}
-                    />
-                    <motion.div
-                      className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-gray-900 dark:border-gray-100"
-                      variants={{
-                        hover: { width: 24, height: 24 }
-                      }}
-                      transition={{ duration: 0.3 }}
-                    />
-                    <span className="text-sm">Hover me</span>
-                  </motion.div>
-                </div>
-              </div>
-
-              {/* Frame Applications */}
-              <div className="space-y-6">
-                <h3 className="font-monument text-lg">Applications</h3>
-                <div className="space-y-4">
-                  <button className="relative px-6 py-3 w-full group">
-                    <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-gray-900 dark:border-gray-100 transition-all group-hover:w-3 group-hover:h-3" />
-                    <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-gray-900 dark:border-gray-100 transition-all group-hover:w-3 group-hover:h-3" />
-                    <span>Button Example</span>
-                  </button>
-
-                  <div className="relative p-4">
-                    <div className="absolute top-0 left-0 w-2 h-2 border-t border-l border-gray-900 dark:border-gray-100" />
-                    <div className="absolute bottom-0 right-0 w-2 h-2 border-b border-r border-gray-900 dark:border-gray-100" />
-                    <span>Card Example</span>
-                  </div>
-                </div>
-              </div>
+            <h2 className="font-monument text-2xl mb-16">Logo System</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+              <FramedBox variant="rounded">
+                <h3 className="font-monument mb-8">Default</h3>
+                <Logo variant="default" />
+              </FramedBox>
+              <FramedBox variant="diagonal">
+                <h3 className="font-monument mb-8">Compact</h3>
+                <Logo variant="compact" />
+              </FramedBox>
+              <FramedBox variant="pill">
+                <h3 className="font-monument mb-8">Framed Type</h3>
+                <Logo variant="framed-type" />
+              </FramedBox>
             </div>
           </section>
+
+          {/* Logo Variants */}
+          <LogoVariants />
         </div>
       </div>
     </div>
   );
 };
 
-export default LogoShowcase; 
+const LogoVariants = () => {
+  return (
+    <section className="py-32">
+      <h2 className="font-monument text-2xl mb-16">Logo Frames</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <LogoFrame variant="code">
+          <Logo variant="default" />
+        </LogoFrame>
+        <LogoFrame variant="brackets">
+          <Logo variant="compact" />
+        </LogoFrame>
+        <LogoFrame variant="terminal">
+          <Logo variant="default" />
+        </LogoFrame>
+        <LogoFrame variant="pixels">
+          <Logo variant="compact" />
+        </LogoFrame>
+        <LogoFrame variant="circuit">
+          <Logo variant="default" />
+        </LogoFrame>
+      </div>
+    </section>
+  );
+};
+
+export default FrameShowcase; 

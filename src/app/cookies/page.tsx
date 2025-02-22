@@ -1,8 +1,6 @@
 "use client";
 
 import { ContentSection } from "@/components/blog/ContentSection";
-import { TextBlock } from "@/components/blog/TextBlock";
-import { SubHeading } from "@/components/blog/SubHeading";
 import { showCookieBar } from "@/components/CookieBar";
 
 const cookiesList = [

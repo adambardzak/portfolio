@@ -9,7 +9,6 @@ import Footer from "@/components/Footer";
 import AnimatedCursor from "@/components/AnimatedCursor";
 import TransitionLayout from "./TransitionLayout";
 import CookieBar from "@/components/CookieBar";
-import dynamic from "next/dynamic";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],

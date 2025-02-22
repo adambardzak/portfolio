@@ -75,7 +75,7 @@ const AnimatedCursor = () => {
 
     window.addEventListener("mousemove", moveCursor);
     return () => window.removeEventListener("mousemove", moveCursor);
-  }, [cursorX, cursorY, magneticX, magneticY, handleNavigation]);
+  }, [cursorX, cursorY, magneticX, magneticY]);
 
   return (
     <>

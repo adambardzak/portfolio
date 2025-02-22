@@ -3,6 +3,8 @@
 import { Logo } from "./Logo";
 import { Card } from "./ui/Card";
 import { Button } from "./ui/Button";
+import { FramedBox } from "./ui/FramedBox";
+import { Frame } from "@/lib/brand";
 
 const BrandShowcase = () => {
   return (
@@ -60,6 +62,29 @@ const BrandShowcase = () => {
                   <code className="font-mono text-sm">Code Text</code>
                 </div>
               </Card>
+            </div>
+          </section>
+
+          {/* Frame Variants */}
+          <section>
+            <h2 className="text-2xl font-monument mb-16">Frame Variants</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {(Object.keys(Frame.variants) as Array<keyof typeof Frame.variants>).map((variant) => (
+                <Card key={variant}>
+                  <h3 className="font-monument mb-4 capitalize">{variant}</h3>
+                  <div className="space-y-4">
+                    <FramedBox variant={variant} size="sm">
+                      Small Frame
+                    </FramedBox>
+                    <FramedBox variant={variant} size="md">
+                      Medium Frame
+                    </FramedBox>
+                    <FramedBox variant={variant} size="lg">
+                      Large Frame
+                    </FramedBox>
+                  </div>
+                </Card>
+              ))}
             </div>
           </section>
 
