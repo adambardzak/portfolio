@@ -1,20 +1,20 @@
 // import { jsPDF } from "jspdf";
 // import autoTable from "jspdf-autotable";
 
-// interface ProjectDetails {
-//   type: string;
-//   pages: number;
-//   features: string[];
-//   basePrice: number;
-//   featuresPrice: number;
-//   pagesPrice: number;
-//   totalPrice: number;
-//   email: string;
-//   selectedFeatureDetails: Array<{ name: string; price: number }>;
-// }
+interface ProjectDetails {
+  type: string;
+  pages: number;
+  features: string[];
+  basePrice: number;
+  featuresPrice: number;
+  pagesPrice: number;
+  totalPrice: number;
+  email: string;
+  selectedFeatureDetails: Array<{ name: string; price: number }>;
+}
 
 export const generatePDF = (
-  // projectDetails: ProjectDetails
+  projectDetails: ProjectDetails
 
 ) => {
   // try {
@@ -109,5 +109,5 @@ export const generatePDF = (
   //   console.error("Error generating PDF:", error);
   //   throw error;
   // }
-  return null;
+  return projectDetails;
 };
