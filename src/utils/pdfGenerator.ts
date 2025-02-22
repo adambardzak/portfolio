@@ -1,19 +1,22 @@
 // import { jsPDF } from "jspdf";
 // import autoTable from "jspdf-autotable";
 
-interface ProjectDetails {
-  type: string;
-  pages: number;
-  features: string[];
-  basePrice: number;
-  featuresPrice: number;
-  pagesPrice: number;
-  totalPrice: number;
-  email: string;
-  selectedFeatureDetails: Array<{ name: string; price: number }>;
-}
+// interface ProjectDetails {
+//   type: string;
+//   pages: number;
+//   features: string[];
+//   basePrice: number;
+//   featuresPrice: number;
+//   pagesPrice: number;
+//   totalPrice: number;
+//   email: string;
+//   selectedFeatureDetails: Array<{ name: string; price: number }>;
+// }
 
-export const generatePDF = (projectDetails: ProjectDetails) => {
+export const generatePDF = (
+  // projectDetails: ProjectDetails
+
+) => {
   // try {
   //   const doc = new jsPDF({
   //     orientation: "portrait",
