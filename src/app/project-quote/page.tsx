@@ -4,8 +4,10 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { ArrowLeft, Send, Download } from "lucide-react";
 import { generatePDF } from "@/utils/pdfGenerator";
+import { Suspense } from "react";
 
-const ProjectQuotePage = () => {
+// Create a separate component for the content
+const ProjectQuoteContent = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const projectDetails = JSON.parse(
@@ -178,6 +180,19 @@ const ProjectQuotePage = () => {
         </motion.div>
       </div>
     </section>
+  );
+};
+
+// Main page component with Suspense
+const ProjectQuotePage = () => {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    }>
+      <ProjectQuoteContent />
+    </Suspense>
   );
 };
 
