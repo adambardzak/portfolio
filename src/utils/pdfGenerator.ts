@@ -108,5 +108,4 @@ export const generatePDF = (projectDetails: ProjectDetails) => {
     console.error("Error generating PDF:", error);
     throw error;
   }
-  return projectDetails;
 };
