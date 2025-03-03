@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ExternalLink } from "lucide-react";
 
 const caseStudy = {
   slug: "marekpisl",
@@ -13,7 +13,11 @@ const caseStudy = {
   logo: "/projects/marekpisl/logo.svg",
   year: "2023",
   client: "Marek Pišl",
-  role: "Design & Development",
+  role: "Development",
+  designer: "Marek Pišl",
+  links: {
+    live: "https://marekpisl.cz",
+  },
   techStack: [
     "Next.js 14",
     "TypeScript",
@@ -22,7 +26,7 @@ const caseStudy = {
     "Image Gallery",
   ],
   overview: [
-    "Kompletní návrh a vývoj portfolia",
+    "Kompletní vývoj portfolia",
     "Responzivní design pro všechna zařízení",
     "Optimalizovaná galerie projektů",
     "Plynulé animace a přechody",
@@ -48,35 +52,26 @@ const caseStudy = {
   mockups: {
     desktop: [
       {
-        image: "/projects/marekpisl/desktop-1.jpg",
-        caption: "Úvodní stránka portfolia",
-      },
-      {
-        image: "/projects/marekpisl/desktop-2.jpg",
+        image: "/projects/marekpisl/marekpisl_mockup-kontakt.png",
         caption: "Galerie projektů",
       },
       {
-        image: "/projects/marekpisl/desktop-3.jpg",
-        caption: "Detail projektu",
+        image: "/projects/marekpisl/marekpisl_mockup-typografie.png",
+        caption: "Úvodní stránka portfolia",
       },
     ],
     mobile: [
       {
-        image: "/projects/marekpisl/mobile-1.jpg",
+        image: "/projects/marekpisl/marekpisl_mockup-homepage.png",
         caption: "Mobilní zobrazení úvodu",
       },
       {
-        image: "/projects/marekpisl/mobile-2.jpg",
+        image: "/projects/marekpisl/marekpisl_mockup-mobilemenu.png",
         caption: "Mobilní menu",
-      },
-      {
-        image: "/projects/marekpisl/mobile-3.jpg",
-        caption: "Mobilní galerie",
       },
     ],
     video: {
-      url: "/projects/marekpisl/showcase.mp4",
-      thumbnail: "/projects/marekpisl/video-thumbnail.jpg",
+      url: "/projects/marekpisl/marekpisl_video.mp4",
       caption: "Ukázka interakcí a animací",
     },
   },
@@ -112,6 +107,26 @@ export default function CaseStudyPage() {
                 <p className="text-text-muted-light dark:text-text-muted-dark text-lg md:text-xl">
                   {caseStudy.description}
                 </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                className="flex flex-wrap gap-4"
+              >
+                {caseStudy.links.live && (
+                  <a
+                    href={caseStudy.links.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-600 
+                      dark:bg-blue-500 dark:hover:bg-blue-600 text-white rounded-lg transition-all duration-300"
+                  >
+                    Živá ukázka
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                )}
               </motion.div>
 
               <motion.div
@@ -161,7 +176,10 @@ export default function CaseStudyPage() {
               </h2>
               <ul className="space-y-4">
                 {caseStudy.overview.map((item, index) => (
-                  <li key={index} className="text-text-muted-light dark:text-text-muted-dark">
+                  <li
+                    key={index}
+                    className="text-text-muted-light dark:text-text-muted-dark"
+                  >
                     {item}
                   </li>
                 ))}
@@ -216,7 +234,10 @@ export default function CaseStudyPage() {
               </h2>
               <ul className="space-y-4">
                 {caseStudy.challenges.map((item, index) => (
-                  <li key={index} className="text-text-muted-light dark:text-text-muted-dark">
+                  <li
+                    key={index}
+                    className="text-text-muted-light dark:text-text-muted-dark"
+                  >
                     {item}
                   </li>
                 ))}
@@ -236,7 +257,10 @@ export default function CaseStudyPage() {
               </h2>
               <ul className="space-y-4">
                 {caseStudy.solutions.map((item, index) => (
-                  <li key={index} className="text-text-muted-light dark:text-text-muted-dark">
+                  <li
+                    key={index}
+                    className="text-text-muted-light dark:text-text-muted-dark"
+                  >
                     {item}
                   </li>
                 ))}
@@ -271,11 +295,13 @@ export default function CaseStudyPage() {
               viewport={{ once: true }}
               className="space-y-4"
             >
-              <div className="aspect-video relative rounded-2xl overflow-hidden border border-border-light dark:border-border-dark">
+              <div className=" relative rounded-2xl overflow-hidden border border-border-light dark:border-border-dark">
                 <video
-                  controls
-                  poster={caseStudy.mockups.video.thumbnail}
-                  className="w-full"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className=" w-full h-full object-cover"
                 >
                   <source src={caseStudy.mockups.video.url} type="video/mp4" />
                 </video>
@@ -287,11 +313,54 @@ export default function CaseStudyPage() {
               </h2>
               <ul className="space-y-4">
                 {caseStudy.results.map((item, index) => (
-                  <li key={index} className="text-text-muted-light dark:text-text-muted-dark">
+                  <li
+                    key={index}
+                    className="text-text-muted-light dark:text-text-muted-dark"
+                  >
                     {item}
                   </li>
                 ))}
               </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Project Info */}
+      <section className="bg-white dark:bg-[#161616] py-32">
+        <div className="max-w-7xl mx-auto px-8 lg:px-16">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div>
+              <h3 className="text-text-muted-light dark:text-text-muted-dark mb-2">
+                Klient
+              </h3>
+              <p className="text-text-light dark:text-text-dark">
+                {caseStudy.client}
+              </p>
+            </div>
+            <div>
+              <h3 className="text-text-muted-light dark:text-text-muted-dark mb-2">
+                Rok
+              </h3>
+              <p className="text-text-light dark:text-text-dark">
+                {caseStudy.year}
+              </p>
+            </div>
+            <div>
+              <h3 className="text-text-muted-light dark:text-text-muted-dark mb-2">
+                Role
+              </h3>
+              <p className="text-text-light dark:text-text-dark">
+                {caseStudy.role}
+              </p>
+            </div>
+            <div>
+              <h3 className="text-text-muted-light dark:text-text-muted-dark mb-2">
+                Design
+              </h3>
+              <p className="text-text-light dark:text-text-dark">
+                {caseStudy.designer}
+              </p>
             </div>
           </div>
         </div>

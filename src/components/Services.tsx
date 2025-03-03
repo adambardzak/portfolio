@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { SectionHeader } from "./ui/SectionHeader";
-import clsx from "clsx";
 const services = [
   {
     id: 1,
@@ -43,14 +42,8 @@ const services = [
 
 export default function Services() {
   return (
-    <section
-      className={clsx(
-        "relative py-32",
-        // "bg-[#fafafa] dark:bg-[#121212]",
-        "transition-colors duration-300"
-      )}
-    >
-      <div className="relative max-w-7xl mx-auto px-8 lg:px-16">
+    <section className="py-16 md:py-20 lg:py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           label="SLUŽBY"
           title="Co můžu nabídnout"

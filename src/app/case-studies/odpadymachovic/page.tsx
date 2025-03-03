@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ExternalLink } from "lucide-react";
 
 const caseStudy = {
   slug: "odpadymachovic",
@@ -15,6 +15,10 @@ const caseStudy = {
   year: "2023",
   client: "Odpady Machovič s.r.o.",
   role: "Development",
+  designer: "Marek Pišl",
+  links: {
+    live: "https://odpadymachovic.cz",
+  },
   techStack: ["Next.js 14", "TypeScript", "Tailwind CSS", "Framer Motion"],
   overview: [
     "Moderní webová prezentace služeb",
@@ -23,7 +27,6 @@ const caseStudy = {
   ],
   challenges: [
     "Přehledná prezentace široké nabídky služeb",
-    "Jednoduchý objednávkový proces",
     "Důraz na dostupnost a přehlednost",
     "Optimalizace pro lokální vyhledávání",
   ],
@@ -32,43 +35,24 @@ const caseStudy = {
     "SEO optimalizace pro lokální vyhledávání",
   ],
   results: [
-    "Zvýšení počtu online objednávek o 150%",
     "Zlepšení pozic ve vyhledávačích",
-    "Snížení času potřebného pro vytvoření objednávky",
     "Pozitivní zpětná vazba od zákazníků",
   ],
   mockups: {
     desktop: [
       {
-        image: "/projects/machovic/desktop-1.jpg",
+        image: "/projects/machovic/machovic_mockup-services.png",
         caption: "Hlavní stránka s přehledem služeb",
-      },
-      {
-        image: "/projects/machovic/desktop-2.jpg",
-        caption: "Ceník služeb",
-      },
-      {
-        image: "/projects/machovic/desktop-3.jpg",
-        caption: "Objednávkový formulář",
       },
     ],
     mobile: [
       {
-        image: "/projects/machovic/mobile-1.jpg",
-        caption: "Mobilní zobrazení služeb",
-      },
-      {
-        image: "/projects/machovic/mobile-2.jpg",
-        caption: "Kontaktní informace",
-      },
-      {
-        image: "/projects/machovic/mobile-3.jpg",
-        caption: "Mobilní objednávka",
+        image: "/projects/machovic/machovic_mockup-mobiles.png",
+        caption: "Mobilní zobrazení webu",
       },
     ],
     video: {
-      url: "/projects/machovic/showcase.mp4",
-      thumbnail: "/projects/machovic/video-thumbnail.jpg",
+      url: "/projects/machovic/machovic_video.mp4",
       caption: "Průchod webem a ukázka funkcí",
     },
   },
@@ -104,6 +88,26 @@ export default function CaseStudyPage() {
                 <p className="text-text-muted-light dark:text-text-muted-dark text-lg md:text-xl">
                   {caseStudy.description}
                 </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                className="flex flex-wrap gap-4"
+              >
+                {caseStudy.links.live && (
+                  <a
+                    href={caseStudy.links.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-600 
+                      dark:bg-blue-500 dark:hover:bg-blue-600 text-white rounded-lg transition-all duration-300"
+                  >
+                    Živá ukázka
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
+                )}
               </motion.div>
 
               <motion.div
@@ -149,7 +153,7 @@ export default function CaseStudyPage() {
           <h2 className="font-monument text-3xl text-text-light dark:text-text-dark mb-8">
             O projektu
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div>
               <h3 className="text-text-muted-light dark:text-text-muted-dark mb-2">
                 Klient
@@ -174,6 +178,14 @@ export default function CaseStudyPage() {
                 {caseStudy.role}
               </p>
             </div>
+            <div>
+              <h3 className="text-text-muted-light dark:text-text-muted-dark mb-2">
+                Design
+              </h3>
+              <p className="text-text-light dark:text-text-dark">
+                {caseStudy.designer}
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -188,7 +200,10 @@ export default function CaseStudyPage() {
               </h2>
               <ul className="space-y-4">
                 {caseStudy.overview.map((item, index) => (
-                  <li key={index} className="text-text-muted-light dark:text-text-muted-dark">
+                  <li
+                    key={index}
+                    className="text-text-muted-light dark:text-text-muted-dark"
+                  >
                     {item}
                   </li>
                 ))}
@@ -217,25 +232,16 @@ export default function CaseStudyPage() {
       <section className="bg-white dark:bg-[#161616] py-32 border-t border-border-light dark:border-border-dark">
         <div className="max-w-7xl mx-auto px-8 lg:px-16">
           <div className="grid lg:grid-cols-2 gap-24 items-center">
-            <motion.div className="grid grid-cols-2 gap-8 order-last lg:order-first">
-              {caseStudy.mockups.mobile.slice(0, 2).map((mockup, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.2 }}
-                >
-                  <div className="aspect-[9/16] relative rounded-2xl overflow-hidden border border-border-light dark:border-border-dark">
-                    <Image
-                      src={mockup.image}
-                      alt={mockup.caption}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                </motion.div>
-              ))}
+            <motion.div className="order-last lg:order-first">
+              <div className="relative rounded-2xl overflow-hidden border border-border-light dark:border-border-dark">
+                <Image
+                  src={caseStudy.mockups.mobile[0].image}
+                  alt={caseStudy.mockups.mobile[0].caption}
+                  width={1000}
+                  height={1000}
+                  className="object-cover"
+                />
+              </div>
             </motion.div>
             <div className="space-y-8">
               <h2 className="font-monument text-3xl text-text-light dark:text-text-dark">
@@ -243,7 +249,10 @@ export default function CaseStudyPage() {
               </h2>
               <ul className="space-y-4">
                 {caseStudy.challenges.map((item, index) => (
-                  <li key={index} className="text-text-muted-light dark:text-text-muted-dark">
+                  <li
+                    key={index}
+                    className="text-text-muted-light dark:text-text-muted-dark"
+                  >
                     {item}
                   </li>
                 ))}
@@ -263,7 +272,10 @@ export default function CaseStudyPage() {
               </h2>
               <ul className="space-y-4">
                 {caseStudy.solutions.map((item, index) => (
-                  <li key={index} className="text-text-muted-light dark:text-text-muted-dark">
+                  <li
+                    key={index}
+                    className="text-text-muted-light dark:text-text-muted-dark"
+                  >
                     {item}
                   </li>
                 ))}
@@ -276,50 +288,17 @@ export default function CaseStudyPage() {
               className="space-y-4"
             >
               <div className="aspect-[16/10] relative rounded-2xl overflow-hidden border border-border-light dark:border-border-dark">
-                <Image
-                  src={caseStudy.mockups.desktop[1].image}
-                  alt={caseStudy.mockups.desktop[1].caption}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Results Section */}
-      <section className="bg-white dark:bg-[#161616] py-32 border-t border-border-light dark:border-border-dark">
-        <div className="max-w-7xl mx-auto px-8 lg:px-16">
-          <div className="grid lg:grid-cols-2 gap-24 items-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="space-y-4 order-last lg:order-first"
-            >
-              <div className="aspect-video relative rounded-2xl overflow-hidden border border-border-light dark:border-border-dark">
                 <video
-                  controls
-                  poster={caseStudy.mockups.video.thumbnail}
-                  className="w-full"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className=" w-full h-full object-cover"
                 >
                   <source src={caseStudy.mockups.video.url} type="video/mp4" />
                 </video>
               </div>
             </motion.div>
-            <div className="space-y-8">
-              <h2 className="font-monument text-3xl text-text-light dark:text-text-dark">
-                Výsledky
-              </h2>
-              <ul className="space-y-4">
-                {caseStudy.results.map((item, index) => (
-                  <li key={index} className="text-text-muted-light dark:text-text-muted-dark">
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
         </div>
       </section>

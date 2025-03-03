@@ -78,47 +78,12 @@ const caseStudy = {
         caption: "Formulář pro dotazy",
       },
     ],
-    strapi: [
-      {
-        image: "/projects/ofta/strapi-1.jpg",
-        caption: "Dashboard administrace",
-      },
-      {
-        image: "/projects/ofta/strapi-2.jpg",
-        caption: "Editor článků a služeb",
-      },
-      {
-        image: "/projects/ofta/strapi-3.jpg",
-        caption: "Správa médií",
-      },
-      {
-        image: "/projects/ofta/strapi-4.jpg",
-        caption: "SEO nastavení",
-      },
-    ],
     video: {
       main: {
         url: "/projects/ofta/ofta_video.mp4",
         caption: "Ukázka webu a administrace",
       },
     },
-    features: [
-      {
-        icon: "/projects/ofta/icons/seo.svg",
-        title: "SEO Optimalizace",
-        description: "Automatické generování meta tagů a strukturovaných dat",
-      },
-      {
-        icon: "/projects/ofta/icons/responsive.svg",
-        title: "Responzivní Design",
-        description: "Perfektní zobrazení na všech zařízeních",
-      },
-      {
-        icon: "/projects/ofta/icons/performance.svg",
-        title: "Vysoký Výkon",
-        description: "Optimalizované načítání a Core Web Vitals",
-      },
-    ],
   },
   architecture: {
     diagram: "/projects/ofta/architecture.svg",

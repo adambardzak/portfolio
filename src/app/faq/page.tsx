@@ -1,10 +1,3 @@
-// - Common client questions
-// - Pricing structure
-// - Project timelines
-// - Technology choices
-// - Maintenance services
-// // - Support options 
-
 "use client";
 
 import { motion } from "framer-motion";
@@ -21,88 +14,125 @@ type FAQItem = {
 
 const faqItems: FAQItem[] = [
   {
-    question: "Jak probíhá proces vývoje?",
+    question: "Jak probíhá spolupráce?",
     answer: (
       <>
-        Proces začíná <Highlight>úvodní konzultací</Highlight>, kde společně probereme vaše požadavky a cíle. 
-        Následně připravíme návrh řešení a časový harmonogram. Vývoj probíhá v iteracích s pravidelnými konzultacemi.
+        Spolupráce začíná úvodní konzultací, kde si ujasníme vaše potřeby a
+        cíle. Následně připravíme návrh řešení a cenovou kalkulaci. Po
+        odsouhlasení začneme pracovat na projektu s pravidelnými konzultacemi,
+        abyste měli přehled o postupu. Po dokončení vám předáme hotové dílo
+        včetně potřebné dokumentace a zaškolení.
       </>
     ),
     category: "general",
   },
   {
-    question: "Jaké technologie používáte?",
+    question: "Kolik stojí webová stránka nebo aplikace?",
     answer: (
       <>
-        Specializujeme se na moderní webové technologie jako <Highlight>React</Highlight>, <Highlight>Next.js</Highlight>, 
-        <Highlight>TypeScript</Highlight> a <Highlight>Tailwind CSS</Highlight>. Pro každý projekt 
-        vybíráme optimální technologický stack podle specifických požadavků.
-      </>
-    ),
-    category: "development",
-  },
-  {
-    question: "Jak se určuje cena projektu?",
-    answer: (
-      <>
-        Cena se odvíjí od <Highlight>rozsahu projektu</Highlight>, požadované funkcionality a časového rámce. 
-        Pro přesnější odhad můžete využít náš <Highlight>kalkulátor</Highlight> nebo nás kontaktovat pro 
-        detailní konzultaci.
+        Cena se odvíjí od rozsahu a složitosti projektu. Každý projekt je
+        jedinečný, proto připravujeme individuální kalkulace. Základní webové
+        prezentace začínají na 30 000 Kč, e-shopy a složitější aplikace na 80
+        000 Kč. Pro přesnou kalkulaci mě neváhejte kontaktovat.
       </>
     ),
     category: "pricing",
   },
   {
-    question: "Jaká je běžná doba realizace projektu?",
+    question: "Jak dlouho trvá vytvoření webu?",
     answer: (
       <>
-        Doba realizace závisí na komplexitě projektu. <Highlight>Menší projekty</Highlight> typicky 
-        trvají 4-6 týdnů, <Highlight>středně velké</Highlight> 2-3 měsíce. U rozsáhlejších 
-        projektů vytváříme detailní harmonogram na základě specifických požadavků.
+        Doba realizace závisí na komplexnosti projektu. Jednodušší webové
+        prezentace mohu dodat do 4-6 týdnů, složitější projekty jako e-shopy
+        nebo webové aplikace obvykle trvají 2-4 měsíce. Vždy se snažím dodržet
+        dohodnuté termíny a průběžně vás informovat o postupu.
       </>
     ),
     category: "general",
   },
   {
-    question: "Poskytujete maintenance po dokončení?",
+    question: "Používáte šablony nebo tvoříte na míru?",
     answer: (
       <>
-        Ano, nabízíme různé úrovně <Highlight>maintenance plánů</Highlight>. Od základní údržby 
-        a monitoringu až po komplexní support včetně pravidelných updatů a optimalizací. 
-        Plány lze přizpůsobit vašim potřebám.
+        Každý projekt vytváříme na míru podle vašich potřeb a požadavků.
+        Nepoužíváme předpřipravené šablony, ale navrhujeme a programujeme vše od
+        základů. Díky tomu získáte originální řešení, které přesně odpovídá
+        vašim představám a potřebám vašeho podnikání.
+      </>
+    ),
+    category: "development",
+  },
+  {
+    question: "Nabízíte i správu a údržbu webu?",
+    answer: (
+      <>
+        Ano, nabízíme kompletní správu a údržbu webů, které vytváříme.
+        Zajišťujeme pravidelné aktualizace, bezpečnostní kontroly, zálohování a
+        technickou podporu. Můžete si vybrat z několika servisních balíčků podle
+        vašich potřeb nebo se domluvíme na individuálním řešení.
       </>
     ),
     category: "support",
   },
   {
-    question: "Jak řešíte SEO optimalizaci?",
+    question: "Pomůžete mi i s marketingem?",
     answer: (
       <>
-        SEO je integrální součástí našeho vývojového procesu. Využíváme <Highlight>Next.js</Highlight> pro 
-        optimální server-side rendering, implementujeme strukturovaná data a dbáme na technické 
-        SEO best practices. Nabízíme také pokročilou SEO optimalizaci jako volitelnou službu.
+        Díky spolupráci s marketingovými specialisty mohu zajistit i kompletní
+        marketingovou strategii. Nabízíme služby jako SEO optimalizace, PPC
+        kampaně, správa sociálních sítí nebo email marketing. Vždy se snažíme
+        propojit technické řešení s efektivním marketingem pro maximální
+        výsledky.
       </>
     ),
     category: "development",
   },
   {
-    question: "Jaké jsou možnosti platby?",
+    question: "Jak přistupujete k SEO?",
     answer: (
       <>
-        Nabízíme flexibilní platební podmínky včetně <Highlight>milestone payments</Highlight> a 
-        měsíčních splátek. U větších projektů je standardem záloha 30% na začátku projektu. 
-        Akceptujeme bankovní převody i platby kartou.
+        SEO považujeme za klíčovou součást každého webu. Již při vývoji
+        implementujeme všechny technické aspekty SEO jako rychlost načítání,
+        mobilní optimalizaci, strukturovaná data a správné HTML značky. Dále
+        mohu zajistit obsahovou strategii, analýzu klíčových slov a průběžnou
+        optimalizaci pro lepší pozice ve vyhledávačích.
       </>
     ),
-    category: "pricing",
+    category: "development",
   },
   {
-    question: "Poskytujete podporu po spuštění?",
+    question: "Jaké technologie používáte?",
     answer: (
       <>
-        Ano, nabízíme <Highlight>30denní garanci</Highlight> na opravy bugů po launch. 
-        Dále poskytujeme různé úrovně SLA pro dlouhodobou podporu, monitoring a pravidelné 
-        aktualizace systému.
+        Specializujeme se na moderní webové technologie jako{" "}
+        <Highlight>React</Highlight>, <Highlight>Next.js</Highlight>,
+        <Highlight>TypeScript</Highlight> a <Highlight>Tailwind CSS</Highlight>.
+        Pro každý projekt vybíráme optimální technologický stack podle
+        specifických požadavků.
+      </>
+    ),
+    category: "development",
+  },
+  {
+    question: "Mohu si web spravovat sám?",
+    answer: (
+      <>
+        Určitě! Všechny weby, které vytváříme, jsou navrženy tak, aby je mohl
+        spravovat i netechnický uživatel. Součástí dodávky je vždy implementace
+        administračního rozhraní a zaškolení, jak s ním pracovat. Zároveň jsem
+        vám k dispozici pro případnou podporu nebo složitější úpravy.
+      </>
+    ),
+    category: "support",
+  },
+  {
+    question: "Jak řešíte hosting a domény?",
+    answer: (
+      <>
+        Mohu zajistit kompletní řešení včetně registrace domény a hostingu.
+        Používáme spolehlivé hostingové služby jako Vercel, Netlify nebo
+        DigitalOcean, které zajišťují vysokou dostupnost a bezpečnost. Pokud již
+        máte svůj hosting nebo doménu, není problém využít je pro váš nový web.
       </>
     ),
     category: "support",
@@ -142,13 +172,13 @@ const FAQItem = ({ item }: { item: FAQItem }) => {
       </button>
       <motion.div
         initial={false}
-        animate={{ 
-          height: isOpen ? "auto" : 0, 
+        animate={{
+          height: isOpen ? "auto" : 0,
           opacity: isOpen ? 1 : 0,
         }}
-        transition={{ 
+        transition={{
           height: { duration: 0.3, ease: "easeOut" },
-          opacity: { duration: 0.2, ease: "easeOut" }
+          opacity: { duration: 0.2, ease: "easeOut" },
         }}
         className="overflow-hidden"
       >
@@ -161,10 +191,12 @@ const FAQItem = ({ item }: { item: FAQItem }) => {
 };
 
 export default function FAQPage() {
-  const [selectedCategory, setSelectedCategory] = useState<keyof typeof categories | "all">("all");
+  const [selectedCategory, setSelectedCategory] = useState<
+    keyof typeof categories | "all"
+  >("all");
 
   const filteredItems = faqItems.filter(
-    item => selectedCategory === "all" || item.category === selectedCategory
+    (item) => selectedCategory === "all" || item.category === selectedCategory
   );
 
   return (
@@ -179,8 +211,10 @@ export default function FAQPage() {
               transition={{ duration: 0.5 }}
               className="inline-block"
             >
-              <span className="text-sm tracking-wider text-text-light dark:text-text-dark font-medium px-4 py-2 rounded-full 
-                border border-blue-500/10 dark:border-blue-400/10 bg-blue-500/[0.02] dark:bg-blue-400/[0.02]">
+              <span
+                className="text-sm tracking-wider text-text-light dark:text-text-dark font-medium px-4 py-2 rounded-full 
+                border border-blue-500/10 dark:border-blue-400/10 bg-blue-500/[0.02] dark:bg-blue-400/[0.02]"
+              >
                 FAQ
               </span>
             </motion.div>
@@ -199,11 +233,14 @@ export default function FAQPage() {
             {Object.entries(categories).map(([key, label]) => (
               <button
                 key={key}
-                onClick={() => setSelectedCategory(key as keyof typeof categories | "all")}
+                onClick={() =>
+                  setSelectedCategory(key as keyof typeof categories | "all")
+                }
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-colors
-                  ${selectedCategory === key
-                    ? "bg-blue-500 text-white"
-                    : "bg-gray-100 dark:bg-gray-800 text-text-muted-light dark:text-text-muted-dark hover:bg-blue-500/10 dark:hover:bg-blue-400/10"
+                  ${
+                    selectedCategory === key
+                      ? "bg-blue-500 text-white"
+                      : "bg-gray-100 dark:bg-gray-800 text-text-muted-light dark:text-text-muted-dark hover:bg-blue-500/10 dark:hover:bg-blue-400/10"
                   }`}
               >
                 {label}
@@ -213,7 +250,7 @@ export default function FAQPage() {
 
           {/* FAQ Content */}
           <ContentSection>
-            <motion.div 
+            <motion.div
               className="divide-y divide-gray-200 dark:divide-gray-800"
               layout
             >
@@ -230,8 +267,8 @@ export default function FAQPage() {
                 Nenašli jste odpověď?
               </h2>
               <p className="text-lg text-text-muted-light dark:text-text-muted-dark max-w-2xl mx-auto">
-                Neváhejte nás kontaktovat pro další informace. Rádi zodpovíme všechny vaše dotazy 
-                a pomůžeme vám s vaším projektem.
+                Neváhejte nás kontaktovat pro další informace. Rádi zodpovíme
+                všechny vaše dotazy a pomůžeme vám s vaším projektem.
               </p>
               <div className="pt-8">
                 <a

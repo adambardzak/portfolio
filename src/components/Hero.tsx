@@ -19,7 +19,7 @@ const Hero = () => {
       <div className="absolute inset-0 bg-noise opacity-[0.015] dark:opacity-[0.03]" />
 
       <motion.div
-        className="max-w-7xl mx-auto px-8 lg:px-16 w-full py-32"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-32"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
