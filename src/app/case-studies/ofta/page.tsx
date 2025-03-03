@@ -98,14 +98,8 @@ const caseStudy = {
     ],
     video: {
       main: {
-        url: "/projects/ofta/showcase.mp4",
-        thumbnail: "/projects/ofta/video-thumbnail.jpg",
+        url: "/projects/ofta/ofta_video.mp4",
         caption: "Ukázka webu a administrace",
-      },
-      admin: {
-        url: "/projects/ofta/admin-showcase.mp4",
-        thumbnail: "/projects/ofta/admin-thumbnail.jpg",
-        caption: "Práce s administrací",
       },
     },
     features: [
@@ -216,6 +210,18 @@ const caseStudy = {
       "API pro objednávkový systém",
     ],
   },
+};
+
+const getTechDescription = (tech: string) => {
+  const descriptions: { [key: string]: string } = {
+    "Next.js 14":
+      "Server-side rendering a App Router pro optimální výkon a SEO",
+    TypeScript: "Typově bezpečný kód pro lepší udržovatelnost",
+    "Tailwind CSS": "Utility-first CSS framework pro rychlý vývoj",
+    "Framer Motion": "Plynulé animace a interakce",
+    "Strapi CMS": "Headless CMS pro flexibilní správu obsahu",
+  };
+  return descriptions[tech] || "";
 };
 
 export default function CaseStudyPage() {
@@ -352,74 +358,141 @@ export default function CaseStudyPage() {
         </div>
       </section>
 
-      {/* Technical Overview */}
+      {/* Technical Overview & Architecture */}
       <section className="bg-light dark:bg-dark py-32 border-t border-border-light dark:border-border-dark">
         <div className="max-w-7xl mx-auto px-8 lg:px-16">
-          <div className="grid md:grid-cols-2 gap-24">
-            <div className="space-y-24">
-              <div className="space-y-12">
+          <div className="grid lg:grid-cols-2 gap-24">
+            {/* Video and Tech Stack */}
+            <div className="space-y-16">
+              {/* Tech Stack */}
+              <div className="space-y-8 flex flex-col h-full justify-between">
                 <h2 className="font-monument text-3xl text-text-light dark:text-text-dark">
                   Technický přehled
                 </h2>
                 <div className="space-y-12">
+                  {/* Tech Items */}
                   {caseStudy.techStack.map((tech, i) => (
                     <motion.div
                       key={i}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ delay: i * 0.1 }}
                       viewport={{ once: true }}
-                      className="space-y-6"
+                      transition={{ delay: i * 0.1 }}
+                      className="group"
                     >
-                      <h3 className="text-sm font-medium text-ofta-blue-600 dark:text-ofta-blue-600 uppercase tracking-wider">
-                        {tech}
-                      </h3>
+                      <div className="flex items-center gap-4 mb-2">
+                        <div
+                          className="w-2 h-2 rounded-full bg-blue-500 dark:bg-blue-400 
+                          group-hover:scale-150 transition-transform duration-300"
+                        />
+                        <h3 className="text-lg font-medium text-text-light dark:text-text-dark">
+                          {tech}
+                        </h3>
+                      </div>
+                      <div className="ml-6">
+                        <p className="text-text-muted-light dark:text-text-muted-dark">
+                          {getTechDescription(tech)}
+                        </p>
+                      </div>
                     </motion.div>
                   ))}
                 </div>
-              </div>
-
-              <div className="space-y-12">
-                <h2 className="font-monument text-3xl text-text-light dark:text-text-dark">
-                  Klíčové funkce
-                </h2>
-                {caseStudy.overview.map((feature, i) => (
-                  <motion.li
-                    key={i}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                    viewport={{ once: true }}
-                    className="flex items-center gap-4 text-text-light dark:text-text-dark"
-                  >
-                    <div className="w-1.5 h-1.5 rounded-full bg-ofta-blue-600 dark:bg-ofta-blue-600" />
-                    {feature}
-                  </motion.li>
-                ))}
+                {/* Video */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="rounded-2xl overflow-hidden border 
+                  border-border-light dark:border-border-dark"
+                >
+                  <video
+                    src="/projects/ofta/ofta_video.mp4"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    className=" w-full h-full object-cover"
+                  />
+                </motion.div>
               </div>
             </div>
 
-            <div className="space-y-12">
+            {/* Architecture */}
+            <div className="space-y-8">
               <h2 className="font-monument text-3xl text-text-light dark:text-text-dark">
                 Architektura
               </h2>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                className="aspect-square relative rounded-2xl overflow-hidden bg-hover-light dark:bg-hover-dark p-8 
-                  border border-border-light dark:border-border-dark"
-              >
-                <Image
-                  src={caseStudy.architecture.diagram}
-                  alt="Architecture diagram"
-                  fill
-                  className="object-contain"
-                />
-              </motion.div>
-              <p className="text-text-muted-light dark:text-text-muted-dark whitespace-pre-line text-lg leading-relaxed">
-                {caseStudy.architecture.description}
-              </p>
+              <div className="flex flex-col justify-between gap-24">
+                <div
+                  className="relative  rounded-2xl border border-border-light 
+                dark:border-border-dark p-8 bg-white dark:bg-[#161616] overflow-hidden group"
+                >
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    className="relative z-10"
+                  >
+                    <Image
+                      src={caseStudy.architecture.diagram}
+                      alt="Architecture diagram"
+                      width={800}
+                      height={800}
+                      className="w-full h-full object-contain"
+                    />
+                  </motion.div>
+                  {/* Subtle gradient overlay */}
+                  <div
+                    className="absolute inset-0 bg-gradient-to-t from-white/10 dark:from-black/10 
+                  to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  />
+                </div>
+                <div className="space-y-4">
+                  <div className="text-text-muted-light dark:text-text-muted-dark text-lg whitespace-pre-wrap">
+                    <p className="mb-6">
+                      Aplikace je postavena na moderní JAMstack architektuře
+                      využívající Next.js 14 s App Routerem. Frontend je
+                      optimalizován pro maximální výkon a SEO:
+                    </p>
+                    <ul className="space-y-2 mb-6">
+                      <li className="flex items-center gap-3">
+                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500 dark:bg-blue-400" />
+                        Server-side rendering pro rychlé první vykreslení
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500 dark:bg-blue-400" />
+                        Statická generace pro často navštěvované stránky
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500 dark:bg-blue-400" />
+                        Inkrementální statická regenerace pro dynamický obsah
+                      </li>
+                    </ul>
+                    <p className="mb-4">
+                      Backend je realizován pomocí Strapi CMS s GraphQL API, což
+                      umožňuje:
+                    </p>
+                    <ul className="space-y-2">
+                      <li className="flex items-center gap-3">
+                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500 dark:bg-blue-400" />
+                        Flexibilní správu obsahu
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500 dark:bg-blue-400" />
+                        Verzování a workflow
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500 dark:bg-blue-400" />
+                        Granulární řízení přístupu
+                      </li>
+                      <li className="flex items-center gap-3">
+                        <div className="w-1.5 h-1.5 rounded-full bg-blue-500 dark:bg-blue-400" />
+                        Automatické generování API dokumentace
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

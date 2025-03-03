@@ -72,9 +72,9 @@ const Navbar = () => {
   const scrollToContact = () => {
     const contactSection = document.getElementById("contact");
     if (contactSection) {
-      contactSection.scrollIntoView({ 
+      contactSection.scrollIntoView({
         behavior: "smooth",
-        block: "start"
+        block: "start",
       });
     }
   };
@@ -102,7 +102,7 @@ const Navbar = () => {
               whileHover={{ x: 2 }}
               transition={{ duration: 0.2 }}
             >
-              <span className="text-base font-normal">adam.bardzak</span>
+              <span className="text-xl font-normal">&#123; ab &#125;</span>
             </motion.a>
 
             {/* Center Navigation */}
