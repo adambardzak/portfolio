@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 
 // Hardcoded blog posts - easy to maintain for a developer
 const blogPosts = [
@@ -25,7 +27,7 @@ const blogPosts = [
     date: "2024-01-10",
     readTime: "12 min",
     category: "Development",
-    image: "/blog/server-actions.jpg",
+    image: "/blog/server-actions.png",
     href: "/blog/nextjs-14-server-actions",
   },
   {
@@ -36,7 +38,7 @@ const blogPosts = [
     date: "2024-01-05",
     readTime: "15 min",
     category: "Performance",
-    image: "/blog/react-performance.jpg",
+    image: "/blog/react.svg",
     href: "/blog/react-performance",
   },
   {
@@ -47,7 +49,7 @@ const blogPosts = [
     date: "2023-12-20",
     readTime: "10 min",
     category: "CSS",
-    image: "/blog/tailwind.jpg",
+    image: "/blog/tailwind.svg",
     href: "/blog/tailwind-best-practices",
   },
   {
@@ -58,50 +60,30 @@ const blogPosts = [
     date: "2023-12-15",
     readTime: "18 min",
     category: "TypeScript",
-    image: "/blog/typescript.jpg",
+    image: "/blog/ts.svg",
     href: "/blog/typescript-advanced",
-  }
+  },
 ];
 
 export default function BlogPage() {
   return (
-    <section className="py-32 bg-light dark:bg-dark transition-colors duration-300">
+    <section className="min-h-screen py-32 bg-[#fafafa] dark:bg-[#121212] transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-8 lg:px-16">
-        <div className="space-y-16">
-          {/* Header */}
-          <div className="space-y-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-block"
-            >
-              <span
-                className="text-sm tracking-wider text-text-light dark:text-text-dark font-medium px-4 py-2 rounded-full 
-                border border-blue-500/10 dark:border-blue-400/10 bg-blue-500/[0.02] dark:bg-blue-400/[0.02]"
-              >
-                BLOG
-              </span>
-            </motion.div>
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="font-monument text-4xl lg:text-5xl text-text-light dark:text-text-dark"
-            >
-              Články a case studies
-            </motion.h1>
-          </div>
+        <SectionHeader
+          label="BLOG"
+          title="Články a návody"
+          description="Sdílím své znalosti a zkušenosti z oblasti vývoje webových aplikací"
+        />
 
-          {/* Blog Posts Grid */}
-          <div className="grid md:grid-cols-2 gap-8">
+        <div className="relative z-10">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {blogPosts.map((post, index) => (
               <motion.div
                 key={post.slug}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
                 className="group h-full"
               >
                 <Link href={post.href} className="h-full">
@@ -110,12 +92,13 @@ export default function BlogPage() {
                       hover:border-blue-500/20 dark:hover:border-blue-400/20 transition-colors duration-300
                       bg-white dark:bg-[#161616] cursor-pointer"
                   >
-                    {/* Post Image - Fixed height */}
-                    <div className="h-[240px] overflow-hidden">
-                      <img
+                    <div className="aspect-[3/2] w-full overflow-hidden rounded-t-lg mb-4">
+                      <Image
                         src={post.image}
                         alt={post.title}
-                        className="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-500"
+                        width={1200}
+                        height={800}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       />
                     </div>
 
@@ -142,7 +125,7 @@ export default function BlogPage() {
                           {post.description}
                         </p>
                       </div>
-                      
+
                       {/* Push Read More link to bottom */}
                       <div className="mt-auto">
                         <div

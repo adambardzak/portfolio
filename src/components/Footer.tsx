@@ -18,7 +18,7 @@ const Footer = () => {
   }
 
   return (
-    <footer className="bg-light dark:bg-dark transition-colors duration-300 py-32">
+    <footer className="relative z-10 transition-colors duration-300 py-32">
       <div className="max-w-7xl mx-auto px-8 lg:px-16">
         <div className="grid md:grid-cols-2 gap-16 md:gap-24">
           {/* Left Column */}
@@ -143,14 +143,14 @@ const Footer = () => {
               © {currentYear} Všechna práva vyhrazena
             </p>
             <div className="flex gap-6">
-              <Link 
-                href="/legal" 
+              <Link
+                href="/legal"
                 className="text-sm text-text-muted-light dark:text-text-muted-dark hover:text-text-light dark:hover:text-text-dark transition-colors"
               >
                 Právní informace
               </Link>
-              <Link 
-                href="/cookies" 
+              <Link
+                href="/cookies"
                 className="text-sm text-text-muted-light dark:text-text-muted-dark hover:text-text-light dark:hover:text-text-dark transition-colors"
               >
                 Cookies

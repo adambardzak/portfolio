@@ -6,14 +6,11 @@ import { Moon, Sun, ArrowUpRight } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
 import AnimatedMenuButton from "./AnimatedMenuButton";
 import clsx from "clsx";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
 
-// type NavItem = {
-//   label: string;
-//   href: string;
-// };
+type NavItem = {
+  label: string;
+  href: string;
+};
 
 const Navbar = () => {
   const [mounted, setMounted] = useState(false);
@@ -21,7 +18,6 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const { isDark, toggleTheme } = useTheme();
-  const pathname = usePathname();
 
   // Handle mounting
   useEffect(() => {
@@ -63,20 +59,25 @@ const Navbar = () => {
     }
   }, []);
 
-  // Don't render anything until mounted
   if (!mounted) {
     return null;
   }
 
-  const navItems = [
-    { label: "Domů", href: "/" },
+  const navItems: NavItem[] = [
     { label: "Služby", href: "/services" },
-    { label: "Case Studies", href: "/case-studies" },
     { label: "Blog", href: "/blog" },
     { label: "FAQ", href: "/faq" },
-    { label: "Kalkulačka", href: "/calculator" },
-    { label: "Kontakt", href: "/contact" },
   ];
+
+  const scrollToContact = () => {
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({ 
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+  };
 
   return (
     <>
@@ -106,23 +107,21 @@ const Navbar = () => {
 
             {/* Center Navigation */}
             <div className="md:flex items-center gap-12 hidden">
-              <nav className="hidden md:flex items-center gap-12">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={cn(
-                      "relative text-sm transition-colors duration-200 group",
-                      pathname === item.href
-                        ? "text-gray-900 dark:text-gray-100"
-                        : "text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
-                    )}
-                  >
+              {navItems.map((item) => (
+                <motion.a
+                  key={item.label}
+                  href={item.href}
+                  className="text-text-light dark:text-text-dark text-sm tracking-wide relative py-2 group"
+                >
+                  <span className="relative">
                     {item.label}
-                    <span className="absolute -bottom-1 left-0 w-0 h-px bg-gray-900 dark:bg-gray-100 transition-all duration-300 group-hover:w-full" />
-                  </Link>
-                ))}
-              </nav>
+                    <span
+                      className="absolute -bottom-1 left-0 right-0 h-px bg-text-light dark:bg-text-dark transform scale-x-0 
+                    group-hover:scale-x-100 transition-transform duration-300 ease-[cubic-bezier(0.16, 1, 0.3, 1)]"
+                    />
+                  </span>
+                </motion.a>
+              ))}
             </div>
 
             {/* Right Side Controls */}
@@ -155,7 +154,8 @@ const Navbar = () => {
 
               {/* Contact Button */}
               <motion.button
-                className="relative h-10 px-5 rounded-full md:flex items-center gap-2 group hidden "
+                onClick={scrollToContact}
+                className="relative h-10 px-5 rounded-full md:flex items-center gap-2 group hidden"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.2 }}
               >
@@ -172,7 +172,7 @@ const Navbar = () => {
                   transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 />
                 <span className="relative text-sm text-text-light dark:text-text-dark">
-                  Contact
+                  Kontaktujte mě
                 </span>
                 <ArrowUpRight
                   className="relative w-4 h-4 text-text-light dark:text-text-dark 
@@ -218,37 +218,25 @@ const Navbar = () => {
 
             {/* Menu Items Container */}
             <div className="relative h-full w-full flex flex-col justify-center px-8">
-              <motion.nav
-                className="flex flex-col items-center gap-8 mt-16"
-                variants={{
-                  hidden: { opacity: 0, y: -20 },
-                  visible: { opacity: 1, y: 0 },
-                }}
-              >
-                {navItems.map((item, i) => (
-                  <motion.div
-                    key={item.href}
-                    variants={{
-                      hidden: { opacity: 0, y: -20 },
-                      visible: { opacity: 1, y: 0 },
+              {navItems.map((item, i) => (
+                <div key={item.label} className="overflow-hidden">
+                  <motion.a
+                    href={item.href}
+                    initial={{ y: 80, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: 80, opacity: 0 }}
+                    transition={{
+                      duration: 0.8,
+                      ease: [0.16, 1, 0.3, 1],
+                      delay: 0.1 + i * 0.1,
                     }}
-                    transition={{ delay: 0.05 * i }}
+                    onClick={() => setIsOpen(false)}
+                    className="block text-4xl font-monument py-4 text-text-light dark:text-text-dark"
                   >
-                    <Link
-                      href={item.href}
-                      className={cn(
-                        "text-2xl font-monument transition-colors duration-200",
-                        pathname === item.href
-                          ? "text-gray-900 dark:text-gray-100"
-                          : "text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
-                      )}
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {item.label}
-                    </Link>
-                  </motion.div>
-                ))}
-              </motion.nav>
+                    {item.label}
+                  </motion.a>
+                </div>
+              ))}
               <motion.button
                 className="relative h-12 px-5 flex mt-6 w-fit rounded-full items-center gap-2 group"
                 initial={{ y: 80, opacity: 0 }}

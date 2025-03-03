@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import AnimatedCursor from "@/components/AnimatedCursor";
 import TransitionLayout from "./TransitionLayout";
 import CookieBar from "@/components/CookieBar";
+import { Background } from "@/components/Background";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -35,17 +36,18 @@ export default function RootLayout({
       <head>
         <ThemeScript />
       </head>
-      <body
-        className={`${spaceGrotesk.className} ${monument.variable} bg-light dark:bg-dark`}
-      >
+      <body className={`${spaceGrotesk.className} ${monument.variable} `}>
         <ThemeProvider>
-          <TransitionLayout>
-            <Navbar />
-            {children}
-            <Footer />
-            <AnimatedCursor />
-            <CookieBar />
-          </TransitionLayout>
+          <div className="relative min-h-screen">
+            <Background />
+            <TransitionLayout>
+              <Navbar />
+              {children}
+              <Footer />
+              <AnimatedCursor />
+              <CookieBar />
+            </TransitionLayout>
+          </div>
         </ThemeProvider>
       </body>
     </html>

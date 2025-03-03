@@ -24,6 +24,72 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+  /* Enhanced mesh gradient background */
+  .bg-mesh {
+    background-color: rgba(59, 130, 246, 0.01);
+    background-image: 
+      radial-gradient(at 40% 20%, rgba(59, 130, 246, 0.03) 0px, transparent 50%),
+      radial-gradient(at 80% 0%, rgba(236, 72, 153, 0.02) 0px, transparent 50%),
+      radial-gradient(at 0% 50%, rgba(59, 130, 246, 0.02) 0px, transparent 50%),
+      radial-gradient(at 80% 50%, rgba(236, 72, 153, 0.01) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, rgba(59, 130, 246, 0.02) 0px, transparent 50%),
+      radial-gradient(at 80% 100%, rgba(236, 72, 153, 0.02) 0px, transparent 50%),
+      radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.01) 0px, transparent 50%);
+    filter: blur(60px);
+    opacity: 0.7;
+  }
+
+  /* Improved animated gradient */
+  .bg-gradient-animated {
+    background: linear-gradient(
+      45deg,
+      rgba(59, 130, 246, 0.02) 0%,
+      rgba(236, 72, 153, 0.02) 25%,
+      rgba(59, 130, 246, 0.02) 50%,
+      rgba(236, 72, 153, 0.02) 75%,
+      rgba(59, 130, 246, 0.02) 100%
+    );
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    opacity: 0.8;
+  }
+
+  /* Enhanced noise texture */
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.015'/%3E%3C/svg%3E");
+    opacity: 0.3;
+    mix-blend-mode: overlay;
+  }
+
+  /* Dot pattern */
+  .bg-dots {
+    background-image: radial-gradient(circle, currentColor 1px, transparent 1px);
+    background-size: 24px 24px;
+    @apply text-text-light/[0.03] dark:text-text-dark/[0.03];
+  }
+
+  /* Grid pattern */
+  .bg-grid {
+    background-size: 40px 40px;
+    background-image: linear-gradient(to right, currentColor 1px, transparent 1px),
+      linear-gradient(to bottom, currentColor 1px, transparent 1px);
+    @apply text-text-light/[0.03] dark:text-text-dark/[0.03];
+  }
+
+  /* Radial gradient overlay */
+  .bg-radial {
+    background-image: radial-gradient(circle at center, 
+      rgb(59 130 246 / 0.03) 0%, 
+      transparent 70%
+    );
+  }
+
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
 }
 
 @layer base {
@@ -34,12 +100,12 @@ body {
   .dark body {
     @apply bg-dark text-text-dark;
   }
+
+  :root {
+    /* Keep your existing variables */
+  }
 }
 
 * {
   cursor: none !important;
-}
-
-.bg-noise {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
 }

@@ -14,9 +14,9 @@ import {
 const WebBuildingAnimation = () => {
   const iconColors = [
     { icon: ShoppingCart, color: "rgba(59, 130, 246, 0.8)" },
-    { icon: Users, color: "rgba(59, 130, 246, 0.6)" },
+    { icon: Users, color: "rgba(59, 130, 246, 0.8)" },
     { icon: TrendingUp, color: "rgba(59, 130, 246, 0.8)" },
-    { icon: Star, color: "rgba(59, 130, 246, 0.6)" },
+    { icon: Star, color: "rgba(59, 130, 246, 0.8)" },
   ];
 
   return (
@@ -50,7 +50,7 @@ const WebBuildingAnimation = () => {
                 transition={{ delay: 0.5 }}
                 className="space-y-3"
               >
-                <div className="h-8 w-3/4 rounded-xl bg-gradient-to-r from-blue-500/80 via-blue-400/70 to-blue-300/80 backdrop-blur-sm" />
+                <div className="h-8 w-3/4 rounded-xl bg-gradient-to-r from-blue-500 via-blue-400 to-blue-300" />
                 <div className="h-4 w-1/2 rounded-xl bg-gray-200 dark:bg-gray-700" />
               </motion.div>
 
@@ -106,7 +106,7 @@ const WebBuildingAnimation = () => {
                       {metric.label}
                     </span>
                   </div>
-                  <span className="text-blue-500/60 dark:text-blue-400/60 text-sm ml-2 whitespace-nowrap">
+                  <span className="text-emerald-400 text-sm ml-2 whitespace-nowrap">
                     {metric.trend}
                   </span>
                 </motion.div>
@@ -119,7 +119,8 @@ const WebBuildingAnimation = () => {
                 transition={{ delay: 2, duration: 1 }}
                 className="h-32 mt-8 rounded-2xl relative overflow-hidden"
                 style={{
-                  background: "linear-gradient(180deg, rgba(59, 130, 246, 0.05) 0%, rgba(59, 130, 246, 0.02) 100%)",
+                  background:
+                    "linear-gradient(180deg, rgba(59, 130, 246, 0.05) 0%, rgba(59, 130, 246, 0.02) 100%)",
                   transformOrigin: "bottom",
                 }}
               >

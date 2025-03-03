@@ -19,22 +19,9 @@ export const FramedHeading = ({ children, className, size = "md" }: FramedHeadin
   return (
     <motion.div
       className={cn("relative inline-block", sizeClasses[size], className)}
-      whileHover="hover"
+      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.3 }}
     >
-      <motion.div
-        className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-gray-900 dark:border-gray-100 rounded-tl-lg"
-        variants={{
-          hover: { width: 24, height: 24, opacity: 1, borderRadius: "0.5rem" }
-        }}
-        transition={{ duration: 0.3 }}
-      />
-      <motion.div
-        className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-gray-900 dark:border-gray-100 rounded-br-lg"
-        variants={{
-          hover: { width: 24, height: 24, opacity: 1, borderRadius: "0.5rem" }
-        }}
-        transition={{ duration: 0.3 }}
-      />
       <span className="font-monument">{children}</span>
     </motion.div>
   );

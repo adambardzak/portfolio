@@ -11,7 +11,8 @@ import {
   LucideProps,
 } from "lucide-react";
 import Input from "@/components/ui/Input";
-
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import clsx from "clsx";
 interface ProjectType {
   name: string;
   description: string;
@@ -117,303 +118,224 @@ export default function ProjectCalculator() {
   };
 
   return (
-    <>
-      <style jsx global>{`
-        input[type="range"] {
-          -webkit-appearance: none;
-          appearance: none;
-          width: 100%;
-          height: 6px;
-          background: #e2e8f0;
-          border-radius: 3px;
-          outline: none;
-          margin: 10px 0;
-        }
+    <section
+      className={clsx(
+        "relative py-32",
+        // "bg-[#fafafa] dark:bg-[#121212]",
+        "transition-colors duration-300"
+      )}
+    >
+      <div className="relative max-w-7xl mx-auto px-8 lg:px-16">
+        <SectionHeader
+          label="KALKULAČKA"
+          title="Spočítejte si cenu"
+          description="Získejte předběžný odhad ceny vašeho projektu pomocí našeho kalkulátoru"
+        />
 
-        .dark input[type="range"] {
-          background: #374151;
-        }
-
-        input[type="range"]::-webkit-slider-thumb {
-          -webkit-appearance: none;
-          appearance: none;
-          width: 24px;
-          height: 24px;
-          background: #3b82f6;
-          border: 2px solid #ffffff;
-          border-radius: 50%;
-          cursor: pointer;
-          box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
-        }
-
-        .dark input[type="range"]::-webkit-slider-thumb {
-          background: #60a5fa;
-          border-color: #161616;
-        }
-
-        input[type="range"]::-moz-range-thumb {
-          width: 24px;
-          height: 24px;
-          background: #3b82f6;
-          border: 2px solid #ffffff;
-          border-radius: 50%;
-          cursor: pointer;
-          box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
-        }
-
-        .dark input[type="range"]::-moz-range-thumb {
-          background: #60a5fa;
-          border-color: #161616;
-        }
-
-        input[type="range"]::-webkit-slider-thumb:hover,
-        input[type="range"]::-moz-range-thumb:hover {
-          transform: scale(1.1);
-        }
-      `}</style>
-
-      <section className="relative min-h-screen flex items-center bg-light dark:bg-dark transition-colors duration-300 py-32">
-        <div className="max-w-7xl mx-auto px-8 lg:px-16 w-full">
-          {/* Section Header */}
-          <div className="space-y-4 mb-24">
-            <div className="overflow-hidden">
-              <motion.p
-                initial={{ y: "100%" }}
-                whileInView={{ y: 0 }}
-                transition={{
-                  duration: 1,
-                  ease: [0.16, 1, 0.3, 1],
-                  delay: 0.2,
-                }}
-                viewport={{ once: true }}
-                className="font-monument text-sm text-text-muted-light dark:text-text-muted-dark tracking-wide"
-              >
-                Kalkulace
-              </motion.p>
+        <div className="grid lg:grid-cols-2 gap-16">
+          {/* Left Column - Options */}
+          <div className="space-y-12">
+            {/* Project Type */}
+            <div className="space-y-6">
+              <h3 className="font-monument text-xl text-text-light dark:text-text-dark">
+                Typ projektu
+              </h3>
+              <div className="grid sm:grid-cols-2 gap-4">
+                {projectTypes.map((type) => (
+                  <motion.button
+                    key={type.name}
+                    onClick={() => setSelectedType(type)}
+                    whileHover={{ scale: 1.02 }}
+                    className={`p-6 rounded-2xl border text-left transition-colors duration-300 ${
+                      selectedType.name === type.name
+                        ? "border-blue-500 dark:border-blue-400"
+                        : "border-gray-200 dark:border-gray-800"
+                    }`}
+                  >
+                    <div className="space-y-2">
+                      <div
+                        className={`w-12 h-12 rounded-xl bg-gradient-to-r ${type.gradient} backdrop-blur-sm flex items-center justify-center`}
+                      >
+                        <type.icon className="w-6 h-6 text-white" />
+                      </div>
+                      <div className="font-monument text-text-light dark:text-text-dark">
+                        {type.name}
+                      </div>
+                      <div className="text-sm text-text-muted-light dark:text-text-muted-dark">
+                        {type.description}
+                      </div>
+                    </div>
+                  </motion.button>
+                ))}
+              </div>
             </div>
-            <div className="overflow-hidden">
-              <motion.h2
-                initial={{ y: "100%" }}
-                whileInView={{ y: 0 }}
-                transition={{
-                  duration: 1,
-                  ease: [0.16, 1, 0.3, 1],
-                  delay: 0.4,
-                }}
-                viewport={{ once: true }}
-                className="font-monument text-4xl text-text-light dark:text-text-dark max-w-xl"
-              >
-                Sestavte si svůj projekt
-              </motion.h2>
-            </div>
-          </div>
 
-          <div className="grid lg:grid-cols-2 gap-16">
-            {/* Left Column - Options */}
-            <div className="space-y-12">
-              {/* Project Type */}
-              <div className="space-y-6">
-                <h3 className="font-monument text-xl text-text-light dark:text-text-dark">
-                  Typ projektu
-                </h3>
-                <div className="grid sm:grid-cols-2 gap-4">
-                  {projectTypes.map((type) => (
-                    <motion.button
-                      key={type.name}
-                      onClick={() => setSelectedType(type)}
-                      whileHover={{ scale: 1.02 }}
-                      className={`p-6 rounded-2xl border text-left transition-colors duration-300 ${
-                        selectedType.name === type.name
-                          ? "border-blue-500 dark:border-blue-400"
-                          : "border-gray-200 dark:border-gray-800"
+            {/* Pages Count */}
+            <div className="space-y-6">
+              <h3 className="font-monument text-xl text-text-light dark:text-text-dark">
+                Počet stránek
+              </h3>
+              <div className="space-y-4">
+                <div className="flex items-center gap-4">
+                  <input
+                    type="range"
+                    min="1"
+                    max="20"
+                    value={pagesCount}
+                    onChange={(e) => setPagesCount(Number(e.target.value))}
+                    className="flex-grow"
+                  />
+                  <span className="font-monument text-xl text-text-light dark:text-text-dark min-w-[3ch] text-right">
+                    {pagesCount}
+                  </span>
+                </div>
+                <div className="flex justify-between text-sm text-text-muted-light dark:text-text-muted-dark">
+                  <span>1 stránka</span>
+                  <span>{pagesCount} stránek</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Features - Simplified */}
+            <div className="space-y-6">
+              <h3 className="font-monument text-xl text-text-light dark:text-text-dark">
+                Doplňkové funkce
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {features.map((feature) => (
+                  <button
+                    key={feature.name}
+                    onClick={() => toggleFeature(feature.name)}
+                    className="group flex items-center gap-3 w-full p-3 rounded-xl border transition-all duration-300 hover:scale-[1.02]"
+                  >
+                    <div
+                      className={`w-5 h-5 rounded flex items-center justify-center transition-colors ${
+                        selectedFeatures.includes(feature.name)
+                          ? "bg-blue-500 dark:bg-blue-400"
+                          : "border border-gray-200 dark:border-gray-800"
                       }`}
                     >
-                      <div className="space-y-2">
-                        <div
-                          className={`w-12 h-12 rounded-xl bg-gradient-to-r ${type.gradient} backdrop-blur-sm flex items-center justify-center`}
-                        >
-                          <type.icon className="w-6 h-6 text-white" />
-                        </div>
-                        <div className="font-monument text-text-light dark:text-text-dark">
-                          {type.name}
-                        </div>
-                        <div className="text-sm text-text-muted-light dark:text-text-muted-dark">
-                          {type.description}
-                        </div>
+                      {selectedFeatures.includes(feature.name) && (
+                        <Check className="w-3 h-3 text-white" />
+                      )}
+                    </div>
+                    <div className="text-left">
+                      <div className="text-sm font-medium text-text-light dark:text-text-dark">
+                        {feature.name}
                       </div>
-                    </motion.button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Pages Count */}
-              <div className="space-y-6">
-                <h3 className="font-monument text-xl text-text-light dark:text-text-dark">
-                  Počet stránek
-                </h3>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4">
-                    <input
-                      type="range"
-                      min="1"
-                      max="20"
-                      value={pagesCount}
-                      onChange={(e) => setPagesCount(Number(e.target.value))}
-                      className="flex-grow"
-                    />
-                    <span className="font-monument text-xl text-text-light dark:text-text-dark min-w-[3ch] text-right">
-                      {pagesCount}
-                    </span>
-                  </div>
-                  <div className="flex justify-between text-sm text-text-muted-light dark:text-text-muted-dark">
-                    <span>1 stránka</span>
-                    <span>{pagesCount} stránek</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Features - Simplified */}
-              <div className="space-y-6">
-                <h3 className="font-monument text-xl text-text-light dark:text-text-dark">
-                  Doplňkové funkce
-                </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {features.map((feature) => (
-                    <button
-                      key={feature.name}
-                      onClick={() => toggleFeature(feature.name)}
-                      className="group flex items-center gap-3 w-full p-3 rounded-xl border transition-all duration-300 hover:scale-[1.02]"
-                    >
-                      <div
-                        className={`w-5 h-5 rounded flex items-center justify-center transition-colors ${
-                          selectedFeatures.includes(feature.name)
-                            ? "bg-blue-500 dark:bg-blue-400"
-                            : "border border-gray-200 dark:border-gray-800"
-                        }`}
-                      >
-                        {selectedFeatures.includes(feature.name) && (
-                          <Check className="w-3 h-3 text-white" />
-                        )}
-                      </div>
-                      <div className="text-left">
-                        <div className="text-sm font-medium text-text-light dark:text-text-dark">
-                          {feature.name}
-                        </div>
-                        <div className="text-xs text-text-muted-light dark:text-text-muted-dark">
-                          {feature.description}
-                        </div>
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Right Column - Summary */}
-            <div className="lg:sticky lg:top-32 space-y-8 h-fit">
-              <div className="p-8 rounded-2xl bg-white dark:bg-[#161616] border border-gray-200 dark:border-gray-800">
-                <div className="space-y-6">
-                  <h3 className="font-monument text-xl text-text-light dark:text-text-dark">
-                    Shrnutí projektu
-                  </h3>
-                  <div className="space-y-4">
-                    <div>
-                      <div className="text-sm text-text-muted-light dark:text-text-muted-dark">
-                        Typ projektu
-                      </div>
-                      <div className="text-text-light dark:text-text-dark">
-                        {selectedType.name}
+                      <div className="text-xs text-text-muted-light dark:text-text-muted-dark">
+                        {feature.description}
                       </div>
                     </div>
-                    <div>
-                      <div className="text-sm text-text-muted-light dark:text-text-muted-dark">
-                        Počet stránek
-                      </div>
-                      <div className="text-text-light dark:text-text-dark">
-                        {pagesCount}
-                      </div>
-                    </div>
-                    {selectedFeatures.length > 0 && (
-                      <div>
-                        <div className="text-sm text-text-muted-light dark:text-text-muted-dark">
-                          Vybrané funkce
-                        </div>
-                        <div className="text-text-light dark:text-text-dark">
-                          {selectedFeatures.join(", ")}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
+                  </button>
+                ))}
               </div>
-
-              <motion.button
-                onClick={() => setShowEmailDialog(true)}
-                whileHover={{ scale: 1.02 }}
-                className="flex items-center justify-center gap-2 w-full px-8 py-4 bg-blue-500 dark:bg-blue-400 
-                  text-white rounded-lg font-medium transition-all duration-300"
-              >
-                Získat cenovou nabídku
-                <ArrowRight className="w-4 h-4" />
-              </motion.button>
             </div>
           </div>
-        </div>
 
-        {/* Email Dialog */}
-        <AnimatePresence>
-          {showEmailDialog && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-dark/50 backdrop-blur-sm z-50 flex items-center justify-center p-8"
-            >
-              <motion.div
-                initial={{ scale: 0.95 }}
-                animate={{ scale: 1 }}
-                exit={{ scale: 0.95 }}
-                className="bg-white dark:bg-[#161616] rounded-2xl p-8 max-w-lg w-full relative"
-              >
-                <button
-                  onClick={() => setShowEmailDialog(false)}
-                  className="absolute top-4 right-4 text-text-muted-light dark:text-text-muted-dark hover:text-text-light dark:hover:text-text-dark transition-colors"
-                >
-                  <X className="w-6 h-6" />
-                </button>
-
-                <div className="space-y-6">
-                  <h3 className="font-monument text-xl text-text-light dark:text-text-dark">
-                    Získat cenovou nabídku
-                  </h3>
-                  <p className="text-text-muted-light dark:text-text-muted-dark">
-                    Zadejte svůj e-mail a my vám zašleme detailní cenovou
-                    nabídku.
-                  </p>
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <Input
-                      id="email"
-                      type="email"
-                      required
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      label="E-mail"
-                      placeholder="vas@email.cz"
-                    />
-                    <button
-                      type="submit"
-                      className="w-full px-8 py-4 bg-blue-500 dark:bg-blue-400 text-white rounded-lg font-medium 
-                        transition-all duration-300 hover:scale-[1.02]"
-                    >
-                      Odeslat poptávku
-                    </button>
-                  </form>
+          {/* Right Column - Summary */}
+          <div className="lg:sticky lg:top-32 space-y-8 h-fit">
+            <div className="p-8 rounded-2xl bg-white dark:bg-[#161616] border border-gray-200 dark:border-gray-800">
+              <div className="space-y-6">
+                <h3 className="font-monument text-xl text-text-light dark:text-text-dark">
+                  Shrnutí projektu
+                </h3>
+                <div className="space-y-4">
+                  <div>
+                    <div className="text-sm text-text-muted-light dark:text-text-muted-dark">
+                      Typ projektu
+                    </div>
+                    <div className="text-text-light dark:text-text-dark">
+                      {selectedType.name}
+                    </div>
+                  </div>
+                  <div>
+                    <div className="text-sm text-text-muted-light dark:text-text-muted-dark">
+                      Počet stránek
+                    </div>
+                    <div className="text-text-light dark:text-text-dark">
+                      {pagesCount}
+                    </div>
+                  </div>
+                  {selectedFeatures.length > 0 && (
+                    <div>
+                      <div className="text-sm text-text-muted-light dark:text-text-muted-dark">
+                        Vybrané funkce
+                      </div>
+                      <div className="text-text-light dark:text-text-dark">
+                        {selectedFeatures.join(", ")}
+                      </div>
+                    </div>
+                  )}
                 </div>
-              </motion.div>
+              </div>
+            </div>
+
+            <motion.button
+              onClick={() => setShowEmailDialog(true)}
+              whileHover={{ scale: 1.02 }}
+              className="flex items-center justify-center gap-2 w-full px-8 py-4 bg-blue-500 dark:bg-blue-400 
+                text-white rounded-lg font-medium transition-all duration-300"
+            >
+              Získat cenovou nabídku
+              <ArrowRight className="w-4 h-4" />
+            </motion.button>
+          </div>
+        </div>
+      </div>
+
+      {/* Email Dialog */}
+      <AnimatePresence>
+        {showEmailDialog && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-dark/50 backdrop-blur-sm z-50 flex items-center justify-center p-8"
+          >
+            <motion.div
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.95 }}
+              className="bg-white dark:bg-[#161616] rounded-2xl p-8 max-w-lg w-full relative"
+            >
+              <button
+                onClick={() => setShowEmailDialog(false)}
+                className="absolute top-4 right-4 text-text-muted-light dark:text-text-muted-dark hover:text-text-light dark:hover:text-text-dark transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+
+              <div className="space-y-6">
+                <h3 className="font-monument text-xl text-text-light dark:text-text-dark">
+                  Získat cenovou nabídku
+                </h3>
+                <p className="text-text-muted-light dark:text-text-muted-dark">
+                  Zadejte svůj e-mail a my vám zašleme detailní cenovou nabídku.
+                </p>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <Input
+                    id="email"
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    label="E-mail"
+                    placeholder="vas@email.cz"
+                  />
+                  <button
+                    type="submit"
+                    className="w-full px-8 py-4 bg-blue-500 dark:bg-blue-400 text-white rounded-lg font-medium 
+                      transition-all duration-300 hover:scale-[1.02]"
+                  >
+                    Odeslat poptávku
+                  </button>
+                </form>
+              </div>
             </motion.div>
-          )}
-        </AnimatePresence>
-      </section>
-    </>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
   );
 }

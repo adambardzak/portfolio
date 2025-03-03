@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Code2, Lightbulb, Rocket, Search } from "lucide-react";
-
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import clsx from "clsx";
 const steps = [
   {
     icon: Search,
@@ -32,41 +33,19 @@ const steps = [
 
 export default function Process() {
   return (
-    <section className="relative min-h-screen flex items-center bg-light dark:bg-dark transition-colors duration-300 py-32">
-      <div className="max-w-7xl mx-auto px-8 lg:px-16 w-full">
-        {/* Section Header */}
-        <div className="space-y-4 mb-24">
-          <div className="overflow-hidden">
-            <motion.p
-              initial={{ y: "100%" }}
-              whileInView={{ y: 0 }}
-              transition={{
-                duration: 1,
-                ease: [0.16, 1, 0.3, 1],
-                delay: 0.2,
-              }}
-              viewport={{ once: true }}
-              className="font-monument text-sm text-text-muted-light dark:text-text-muted-dark tracking-wide"
-            >
-              Proces
-            </motion.p>
-          </div>
-          <div className="overflow-hidden">
-            <motion.h2
-              initial={{ y: "100%" }}
-              whileInView={{ y: 0 }}
-              transition={{
-                duration: 1,
-                ease: [0.16, 1, 0.3, 1],
-                delay: 0.4,
-              }}
-              viewport={{ once: true }}
-              className="font-monument text-4xl text-text-light dark:text-text-dark max-w-xl"
-            >
-              Jak pracuji
-            </motion.h2>
-          </div>
-        </div>
+    <section
+      className={clsx(
+        "relative py-32",
+        // "bg-[#fafafa] dark:bg-[#121212]",
+        "transition-colors duration-300"
+      )}
+    >
+      <div className="relative max-w-7xl mx-auto px-8 lg:px-16">
+        <SectionHeader
+          label="PROCES"
+          title="Jak pracuji"
+          description="Seznamte se s mým pracovním postupem od prvního kontaktu až po finální realizaci"
+        />
 
         {/* Process Steps */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">

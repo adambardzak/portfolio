@@ -81,7 +81,7 @@ const AnimatedCursor = () => {
     <>
       {/* Regular cursor */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-50"
+        className="fixed top-0 left-0 pointer-events-none z-[999]"
         style={{
           x: cursorXSpring,
           y: cursorYSpring,
@@ -104,7 +104,7 @@ const AnimatedCursor = () => {
       <AnimatePresence mode="wait">
         {isTransitioning && (
           <motion.div
-            className="fixed inset-0 pointer-events-none z-[60] bg-dark dark:bg-light"
+            className="fixed inset-0 pointer-events-none z-[998] bg-dark dark:bg-light"
             initial={{
               clipPath: `circle(0px at ${clickPosition.x}px ${clickPosition.y}px)`,
             }}

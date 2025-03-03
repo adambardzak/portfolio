@@ -1,65 +1,43 @@
 "use client";
 
-import clsx from "clsx";
 import { motion } from "framer-motion";
-import {
-  Code,
-  Paintbrush,
-  Layers,
-  Database,
-  Smartphone as Mobile,
-} from "lucide-react";
-
+import { SectionHeader } from "./ui/SectionHeader";
+import clsx from "clsx";
 const services = [
   {
     id: 1,
-    icon: Paintbrush,
-    title: "UI/UX Design",
+    title: "Webové aplikace",
     description:
-      "Vytvářím intuitivní a krásná uživatelská rozhraní, která zaujmou a potěší vaše uživatele.",
-    details: [
-      "Uživatelský výzkum",
-      "Wireframing",
-      "Prototypování",
-      "Vizuální design",
+      "Moderní a výkonné webové aplikace postavené na nejnovějších technologiích",
+    features: [
+      "Single Page Applications",
+      "Progressive Web Apps",
+      "Responzivní design",
+      "Optimalizace výkonu",
     ],
-    gradient: "from-gray-900/80 via-gray-800/70 to-gray-700/80",
   },
   {
     id: 2,
-    icon: Code,
-    title: "Webový vývoj",
+    title: "E-commerce řešení",
     description:
-      "Vyvíjím rychlé, responzivní a moderní webové stránky pomocí nejnovějších technologií.",
-    details: ["React/Next.js", "TypeScript", "Tailwind CSS", "API Integrace"],
-    gradient: "from-gray-800/80 via-gray-700/70 to-gray-600/80",
+      "Kompletní řešení pro váš online obchod s důrazem na konverze a UX",
+    features: [
+      "Vlastní e-shop na míru",
+      "Napojení na ERP systémy",
+      "Platební brány",
+      "Skladové hospodářství",
+    ],
   },
   {
     id: 3,
-    icon: Mobile,
-    title: "Mobilní aplikace",
-    description:
-      "Vyvíjím multiplatformní mobilní aplikace, které fungují plynule na všech zařízeních.",
-    details: ["React Native", "iOS", "Android", "Optimalizace výkonu"],
-    gradient: "from-gray-900/80 via-gray-800/70 to-gray-700/80",
-  },
-  {
-    id: 4,
-    icon: Database,
-    title: "Backend vývoj",
-    description:
-      "Vytvářím robustní a škálovatelná backend řešení pro vaše aplikace.",
-    details: ["Node.js", "Návrh databáze", "Vývoj API", "Cloudové služby"],
-    gradient: "from-gray-800/80 via-gray-700/70 to-gray-600/80",
-  },
-  {
-    id: 5,
-    icon: Layers,
-    title: "CMS Integrace",
-    description:
-      "Implementuji systémy pro správu obsahu pro snadnou aktualizaci vašeho webu.",
-    details: ["Headless CMS", "WordPress", "Vlastní CMS", "Obsahová strategie"],
-    gradient: "from-gray-900/80 via-gray-800/70 to-gray-700/80",
+    title: "Webové prezentace",
+    description: "Reprezentativní webové stránky, které prodávají vaše služby",
+    features: [
+      "Moderní design",
+      "SEO optimalizace",
+      "Správa obsahu",
+      "Analytika návštěvnosti",
+    ],
   },
 ];
 
@@ -67,80 +45,66 @@ export default function Services() {
   return (
     <section
       className={clsx(
-        "relative min-h-screen flex items-center",
-        // " bg-[#fafafa] dark:bg-[#121212]",
-        " transition-colors duration-300 py-32"
+        "relative py-32",
+        // "bg-[#fafafa] dark:bg-[#121212]",
+        "transition-colors duration-300"
       )}
     >
-      <div className="max-w-7xl mx-auto px-8 lg:px-16 w-full">
-        {/* Section Header */}
-        <div className="space-y-4 mb-24">
-          <div className="overflow-hidden">
-            <motion.p
-              initial={{ y: "100%" }}
-              whileInView={{ y: 0 }}
-              transition={{
-                duration: 1,
-                ease: [0.16, 1, 0.3, 1],
-                delay: 0.2,
-              }}
-              viewport={{ once: true }}
-              className="font-monument text-sm text-blue-500 dark:text-blue-400 tracking-wide"
-            >
-              Služby
-            </motion.p>
-          </div>
-          <div className="overflow-hidden">
-            <motion.h2
-              initial={{ y: "100%" }}
-              whileInView={{ y: 0 }}
-              transition={{
-                duration: 1,
-                ease: [0.16, 1, 0.3, 1],
-                delay: 0.4,
-              }}
-              viewport={{ once: true }}
-              className="font-monument text-4xl text-text-light dark:text-text-dark max-w-xl"
-            >
-              Komplexní řešení pro vaše digitální potřeby
-            </motion.h2>
-          </div>
-        </div>
+      <div className="relative max-w-7xl mx-auto px-8 lg:px-16">
+        <SectionHeader
+          label="SLUŽBY"
+          title="Co můžu nabídnout"
+          description="Komplexní řešení pro vaše digitální potřeby, od návrhu až po realizaci"
+        />
 
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <motion.div
               key={service.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 + index * 0.1 }}
+              transition={{ duration: 0.7, delay: index * 0.1 }}
               viewport={{ once: true }}
-              className="group p-8 rounded-2xl bg-white dark:bg-[#161616] border border-gray-200 dark:border-gray-800 
-                hover:border-blue-500/20 dark:hover:border-blue-400/20 transition-all duration-300 hover:-translate-y-1"
+              className="group relative bg-white dark:bg-[#161616] rounded-2xl p-8 border border-border-light 
+                dark:border-border-dark hover:border-blue-500/20 dark:hover:border-blue-400/20 
+                transition-all duration-300"
             >
-              <div className="space-y-6">
-                <div
-                  className="w-12 h-12 rounded-xl bg-blue-500/5 dark:bg-blue-400/5 p-2.5 
-                  group-hover:bg-blue-500/10 dark:group-hover:bg-blue-400/10 transition-colors duration-300"
-                >
-                  <service.icon className="w-full h-full text-blue-500 dark:text-blue-400" />
+              {/* Subtle blue gradient overlay */}
+              <div
+                className="absolute inset-0 bg-gradient-to-b from-blue-500/[0.02] to-transparent 
+                dark:from-blue-400/[0.02] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              />
+
+              {/* Content */}
+              <div className="relative space-y-6">
+                {/* Service number */}
+                <span className="text-6xl font-monument text-blue-500/10 dark:text-blue-400/10">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+
+                <div className="space-y-4">
+                  <h3 className="font-monument text-2xl text-text-light dark:text-text-dark">
+                    {service.title}
+                  </h3>
+                  <p className="text-text-muted-light dark:text-text-muted-dark">
+                    {service.description}
+                  </p>
                 </div>
-                <h3 className="font-monument text-xl text-text-light dark:text-text-dark">
-                  {service.title}
-                </h3>
-                <p className="text-text-muted-light dark:text-text-muted-dark">
-                  {service.description}
-                </p>
-                <ul className="space-y-2 pt-4 border-t border-gray-100 dark:border-gray-800">
-                  {service.details.map((detail, i) => (
-                    <li
-                      key={i}
-                      className="text-sm text-text-muted-light dark:text-text-muted-dark 
-                        group-hover:text-text-light dark:group-hover:text-text-dark transition-colors duration-300"
+
+                {/* Features list */}
+                <ul className="space-y-3">
+                  {service.features.map((feature, i) => (
+                    <motion.li
+                      key={feature}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
+                      viewport={{ once: true }}
+                      className="flex items-center gap-3 text-text-muted-light dark:text-text-muted-dark"
                     >
-                      {detail}
-                    </li>
+                      <div className="w-1.5 h-1.5 rounded-full bg-blue-500 dark:bg-blue-400" />
+                      {feature}
+                    </motion.li>
                   ))}
                 </ul>
               </div>

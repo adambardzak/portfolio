@@ -4,7 +4,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Send } from "lucide-react";
 import Input from "@/components/ui/Input";
-
+import { SectionHeader } from "./ui/SectionHeader";
+import clsx from "clsx";
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
@@ -74,41 +75,20 @@ export default function Contact() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center bg-light dark:bg-dark transition-colors duration-300 py-32">
-      <div className="max-w-7xl mx-auto px-8 lg:px-16 w-full">
-        {/* Section Header */}
-        <div className="space-y-4 mb-24">
-          <div className="overflow-hidden">
-            <motion.p
-              initial={{ y: "100%" }}
-              whileInView={{ y: 0 }}
-              transition={{
-                duration: 1,
-                ease: [0.16, 1, 0.3, 1],
-                delay: 0.2,
-              }}
-              viewport={{ once: true }}
-              className="font-monument text-sm text-blue-500 dark:text-blue-400 tracking-wide"
-            >
-              Začněme spolupráci
-            </motion.p>
-          </div>
-          <div className="overflow-hidden">
-            <motion.h2
-              initial={{ y: "100%" }}
-              whileInView={{ y: 0 }}
-              transition={{
-                duration: 1,
-                ease: [0.16, 1, 0.3, 1],
-                delay: 0.4,
-              }}
-              viewport={{ once: true }}
-              className="font-monument text-4xl md:text-5xl text-text-light dark:text-text-dark max-w-2xl"
-            >
-              Máte zajímavý projekt? Pojďme ho společně realizovat
-            </motion.h2>
-          </div>
-        </div>
+    <section
+      id="contact"
+      className={clsx(
+        "relative py-32",
+        // "bg-[#fafafa] dark:bg-[#121212]",
+        "transition-colors duration-300"
+      )}
+    >
+      <div className="max-w-7xl mx-auto px-8 lg:px-16">
+        <SectionHeader
+          label="KONTAKT"
+          title="Začněme spolupráci"
+          description="Máte zajímavý projekt? Pojďme ho společně realizovat"
+        />
 
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
           {/* Contact Form */}

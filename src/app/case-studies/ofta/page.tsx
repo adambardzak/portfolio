@@ -2,138 +2,219 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, ExternalLink, Github } from "lucide-react";
+import { ArrowLeft, ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 const caseStudy = {
   slug: "ofta",
   title: "OFTA - Centrum mikrochirurgie oka",
-  subtitle: "Moderní webová prezentace pro oční kliniku",
-  year: "2024",
-  duration: "2 měsíce",
-  role: "Full-stack Developer",
-
-  // Visual content
+  description: "Moderní webová prezentace pro oční kliniku",
   heroImage: "/projects/ofta/ofta_mockup-bg.png",
-
-  mockups: [
-    {
-      image: "/projects/ofta/ofta_mockup-right.png",
-      caption: "Responzivní design napříč zařízeními",
-    },
-    {
-      image: "/projects/ofta/ofta_mockup.png",
-      caption: "Přehledná navigace a struktura webu",
-    },
-  ],
-
-  // Technical details
-  stack: {
-    frontend: ["Next.js 14", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    cms: ["Strapi CMS"],
-    deployment: ["VPS/Docker"],
+  logo: "/projects/ofta/logo.svg",
+  year: "2024",
+  client: "OFTA s.r.o.",
+  role: "Full-stack Development",
+  links: {
+    live: "https://ofta.cz",
   },
-
-  // Architecture & implementation details
-  architecture: {
-    diagram: "/projects/ofta/architecture.svg",
-    description: `
-      Web využívá moderní headless architekturu, kde Next.js frontend komunikuje se Strapi CMS přes REST API.
-      Data jsou perzistentně uložena v MariaDB databázi. Toto řešení poskytuje:
-      
-      • Vysoký výkon díky statické generaci stránek
-      • Flexibilní správu obsahu přes Strapi admin rozhraní
-      • Spolehlivé uložení dat v MariaDB
-      • Snadnou škálovatelnost jednotlivých komponent
-    `,
-    components: {
-      frontend: {
-        name: "Next.js Frontend",
-        tech: ["Next.js 14", "TypeScript", "Tailwind CSS"],
-        features: [
-          "Server-side rendering",
-          "Statická generace stránek",
-          "Image optimization",
-          "API routes",
-        ],
-        hosting: "VPS/Docker",
+  techStack: [
+    "Next.js 14",
+    "TypeScript",
+    "Tailwind CSS",
+    "Framer Motion",
+    "Strapi CMS",
+  ],
+  overview: [
+    "Kompletní redesign webové prezentace",
+    "Implementace headless CMS pro správu obsahu",
+    "Optimalizace pro vyhledávače",
+    "Responzivní design pro všechna zařízení",
+  ],
+  challenges: [
+    "Přehledná prezentace široké nabídky služeb",
+    "Jednoduchá správa obsahu pro klienta",
+    "Optimalizace pro vyhledávače",
+    "Integrace objednávkového systému",
+  ],
+  solutions: [
+    "Implementace Strapi CMS pro snadnou správu obsahu",
+    "SEO optimalizace s důrazem na klíčová slova",
+    "Vlastní komponenty pro dynamický obsah",
+    "Automatické generování sitemap",
+  ],
+  results: [
+    "Zlepšení pozic ve vyhledávačích o 40%",
+    "Snížení času potřebného pro aktualizaci obsahu o 70%",
+    "Zvýšení konverzního poměru objednávek o 25%",
+    "Pozitivní zpětná vazba od pacientů",
+  ],
+  mockups: {
+    desktop: [
+      {
+        image: "/projects/ofta/ofta_mockup-2mobiles.png",
+        caption: "Mobilní zobrazení",
       },
-      cms: {
-        name: "Strapi CMS",
-        tech: ["Strapi v4", "Node.js"],
-        features: [
-          "REST API",
-          "Admin dashboard",
-          "Role-based access",
-          "Media library",
-        ],
-        hosting: "VPS/Docker",
+      {
+        image: "/projects/ofta/ofta_mockup-zakrok.png",
+        caption: "Detail zákroku",
       },
-      database: {
-        name: "MariaDB",
-        tech: ["MariaDB 10.6"],
-        features: [
-          "Relační databáze",
-          "Automatické zálohy",
-          "Data persistence",
-        ],
-        hosting: "Managed Database",
+      {
+        image: "/projects/ofta/ofta_mockup-faq.png",
+        caption: "Často kladené otázky",
+      },
+      {
+        image: "/projects/ofta/ofta_mockup-aktuality.png",
+        caption: "Aktuality",
+      },
+    ],
+    mobile: [
+      {
+        image: "/projects/ofta/ofta_mockup-mobile.png",
+        caption: "Mobilní zobrazení úvodu",
+      },
+      {
+        image: "/projects/ofta/ofta_mockup-mobile_contact.png",
+        caption: "Formulář pro dotazy",
+      },
+    ],
+    strapi: [
+      {
+        image: "/projects/ofta/strapi-1.jpg",
+        caption: "Dashboard administrace",
+      },
+      {
+        image: "/projects/ofta/strapi-2.jpg",
+        caption: "Editor článků a služeb",
+      },
+      {
+        image: "/projects/ofta/strapi-3.jpg",
+        caption: "Správa médií",
+      },
+      {
+        image: "/projects/ofta/strapi-4.jpg",
+        caption: "SEO nastavení",
+      },
+    ],
+    video: {
+      main: {
+        url: "/projects/ofta/showcase.mp4",
+        thumbnail: "/projects/ofta/video-thumbnail.jpg",
+        caption: "Ukázka webu a administrace",
+      },
+      admin: {
+        url: "/projects/ofta/admin-showcase.mp4",
+        thumbnail: "/projects/ofta/admin-thumbnail.jpg",
+        caption: "Práce s administrací",
       },
     },
-    dataFlow: [
+    features: [
       {
-        step: 1,
-        description: "Next.js posílá požadavek na Strapi API",
+        icon: "/projects/ofta/icons/seo.svg",
+        title: "SEO Optimalizace",
+        description: "Automatické generování meta tagů a strukturovaných dat",
       },
       {
-        step: 2,
-        description: "Strapi získá data z MariaDB",
+        icon: "/projects/ofta/icons/responsive.svg",
+        title: "Responzivní Design",
+        description: "Perfektní zobrazení na všech zařízeních",
       },
       {
-        step: 3,
-        description: "Data jsou transformována a poslána zpět",
-      },
-      {
-        step: 4,
-        description: "Next.js generuje statické stránky",
+        icon: "/projects/ofta/icons/performance.svg",
+        title: "Vysoký Výkon",
+        description: "Optimalizované načítání a Core Web Vitals",
       },
     ],
   },
+  architecture: {
+    diagram: "/projects/ofta/architecture.svg",
+    description: `Aplikace je postavena na moderní JAMstack architektuře využívající Next.js 14 s App Routerem. Frontend je optimalizován pro maximální výkon a SEO:
 
-  // Performance metrics
+    • Server-side rendering pro rychlé první vykreslení
+    • Statická generace pro často navštěvované stránky
+    • Inkrementální statická regenerace pro dynamický obsah
+    
+    Backend je realizován pomocí Strapi CMS s GraphQL API, což umožňuje:
+    
+    • Flexibilní správu obsahu
+    • Verzování a workflow
+    • Granulární řízení přístupu
+    • Automatické generování API dokumentace`,
+  },
   performance: {
-    lighthouse: 98,
-    fcp: "0.8s",
-    lcp: "1.2s",
-    ttfb: "0.2s",
+    metrics: [
+      {
+        label: "Performance Score",
+        value: "98/100",
+        change: "+15",
+      },
+      {
+        label: "First Contentful Paint",
+        value: "0.8s",
+        change: "-1.2s",
+      },
+      {
+        label: "Time to Interactive",
+        value: "1.2s",
+        change: "-2.1s",
+      },
+    ],
   },
-
-  // Links
-  links: {
-    live: "https://ofta.cz",
-    github: "https://github.com/example/ofta",
-  },
-
-  // Project goals
-  goals: [
-    "Vytvořit moderní a důvěryhodnou prezentaci oční kliniky",
-    "Zlepšit UX pro pacienty hledající informace o očních vadách",
-    "Optimalizovat web pro vyhledávače (SEO)",
-    "Implementovat systém pro správu aktualit a článků",
-  ],
-
-  // Results
-  results: [
-    "Zvýšení konverzního poměru o 40%",
-    "Zlepšení Core Web Vitals na 98/100",
-    "První pozice ve vyhledávání pro klíčová slova",
-    "Snížení bounce rate o 25%",
-  ],
-
+  duration: "2 měsíce",
   designer: {
     name: "Marek Pišl",
     url: "https://marekpisl.cz",
+  },
+  analytics: {
+    clarity: {
+      image: "/projects/ofta/ofta-clarity.png",
+      metrics: [
+        { label: "Průměrná doba návštěvy", value: "3:45", change: "+85%" },
+        { label: "Scroll depth", value: "75%", change: "+30%" },
+        { label: "Bounce rate", value: "25%", change: "-45%" },
+      ],
+    },
+    searchConsole: {
+      image: "/projects/ofta/ofta_search-console.png",
+      metrics: [
+        { label: "Průměrná pozice", value: "2.8", change: "+15" },
+        { label: "Celkové zobrazení", value: "25k", change: "+180%" },
+        { label: "CTR", value: "4.8%", change: "+2.1%" },
+      ],
+    },
+    analytics: {
+      image: "/projects/ofta/ofta_ga.png",
+      metrics: [
+        { label: "Konverze", value: "350+", change: "+125%" },
+        { label: "Uživatelé", value: "12k", change: "+85%" },
+        { label: "Engagement", value: "68%", change: "+40%" },
+      ],
+    },
+  },
+  cms: {
+    features: [
+      {
+        title: "Vlastní typy obsahu",
+        description: "Přizpůsobené content types pro služby, články a lékaře",
+        image: "/projects/ofta/strapi-content_type.png",
+      },
+      {
+        title: "Správa obsahu",
+        description: "Systém správy obsahu s verzováním",
+        image: "/projects/ofta/strapi-content.png",
+      },
+      {
+        title: "Media Library",
+        description: "Pokročilá správa médií s automatickou optimalizací",
+        image: "/projects/ofta/strapi-media.png",
+      },
+    ],
+    customizations: [
+      "Vlastní komponenty pro strukturovaný obsah",
+      "Automatická SEO optimalizace",
+      "Systém verzování obsahu",
+      "API pro objednávkový systém",
+    ],
   },
 };
 
@@ -193,7 +274,7 @@ export default function CaseStudyPage() {
                   transition={{ delay: 0.2 }}
                   className="text-lg md:text-xl text-text-muted-light dark:text-text-muted-dark max-w-2xl"
                 >
-                  {caseStudy.subtitle}
+                  {caseStudy.description}
                 </motion.p>
               </div>
 
@@ -220,17 +301,15 @@ export default function CaseStudyPage() {
                 transition={{ delay: 0.4 }}
                 className="flex flex-wrap gap-3"
               >
-                {Object.values(caseStudy.stack)
-                  .flat()
-                  .map((tech, i) => (
-                    <span
-                      key={i}
-                      className="px-3 py-1.5 rounded-lg bg-hover-light dark:bg-hover-dark 
-                        text-text-light dark:text-text-dark text-sm border border-border-light dark:border-border-dark"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                {caseStudy.techStack.map((tech, i) => (
+                  <span
+                    key={i}
+                    className="px-3 py-1.5 rounded-lg bg-hover-light dark:bg-hover-dark 
+                      text-text-light dark:text-text-dark text-sm border border-border-light dark:border-border-dark"
+                  >
+                    {tech}
+                  </span>
+                ))}
               </motion.div>
 
               <motion.div
@@ -249,19 +328,6 @@ export default function CaseStudyPage() {
                   >
                     Živá ukázka
                     <ExternalLink className="w-4 h-4" />
-                  </a>
-                )}
-                {caseStudy.links.github && (
-                  <a
-                    href={caseStudy.links.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-hover-light dark:bg-hover-dark 
-                      text-text-light dark:text-text-dark rounded-lg border border-border-light dark:border-border-dark 
-                      hover:border-text-light/20 dark:hover:border-text-dark/20 transition-all duration-300"
-                  >
-                    GitHub
-                    <Github className="w-4 h-4" />
                   </a>
                 )}
               </motion.div>
@@ -296,33 +362,20 @@ export default function CaseStudyPage() {
                   Technický přehled
                 </h2>
                 <div className="space-y-12">
-                  {Object.entries(caseStudy.stack).map(
-                    ([category, techs], i) => (
-                      <motion.div
-                        key={category}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ delay: i * 0.1 }}
-                        viewport={{ once: true }}
-                        className="space-y-6"
-                      >
-                        <h3 className="text-sm font-medium text-ofta-blue-600 dark:text-ofta-blue-600 uppercase tracking-wider">
-                          {category}
-                        </h3>
-                        <div className="flex flex-wrap gap-3">
-                          {techs.map((tech, j) => (
-                            <span
-                              key={j}
-                              className="px-4 py-2 rounded-xl bg-hover-light dark:bg-hover-dark 
-                              text-text-light dark:text-text-dark text-sm border border-border-light dark:border-border-dark"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )
-                  )}
+                  {caseStudy.techStack.map((tech, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: i * 0.1 }}
+                      viewport={{ once: true }}
+                      className="space-y-6"
+                    >
+                      <h3 className="text-sm font-medium text-ofta-blue-600 dark:text-ofta-blue-600 uppercase tracking-wider">
+                        {tech}
+                      </h3>
+                    </motion.div>
+                  ))}
                 </div>
               </div>
 
@@ -330,23 +383,19 @@ export default function CaseStudyPage() {
                 <h2 className="font-monument text-3xl text-text-light dark:text-text-dark">
                   Klíčové funkce
                 </h2>
-                <ul className="space-y-6">
-                  {caseStudy.architecture.components.frontend.features.map(
-                    (feature, i) => (
-                      <motion.li
-                        key={i}
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ delay: i * 0.1 }}
-                        viewport={{ once: true }}
-                        className="flex items-center gap-4 text-text-light dark:text-text-dark"
-                      >
-                        <div className="w-1.5 h-1.5 rounded-full bg-ofta-blue-600 dark:bg-ofta-blue-600" />
-                        {feature}
-                      </motion.li>
-                    )
-                  )}
-                </ul>
+                {caseStudy.overview.map((feature, i) => (
+                  <motion.li
+                    key={i}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex items-center gap-4 text-text-light dark:text-text-dark"
+                  >
+                    <div className="w-1.5 h-1.5 rounded-full bg-ofta-blue-600 dark:bg-ofta-blue-600" />
+                    {feature}
+                  </motion.li>
+                ))}
               </div>
             </div>
 
@@ -380,7 +429,7 @@ export default function CaseStudyPage() {
       <section className="bg-light dark:bg-dark py-32 border-t border-border-light dark:border-border-dark">
         <div className="max-w-7xl mx-auto px-8 lg:px-16">
           <div className="grid md:grid-cols-2 gap-24">
-            {caseStudy.mockups.map((mockup, i) => (
+            {caseStudy.mockups.desktop.map((mockup, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
@@ -402,6 +451,280 @@ export default function CaseStudyPage() {
                 </p>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Mobile Showcase Section */}
+      <section className="bg-light dark:bg-dark py-32 border-t border-border-light dark:border-border-dark">
+        <div className="max-w-7xl mx-auto px-8 lg:px-16">
+          <div className="grid lg:grid-cols-2 gap-24 items-center">
+            <div className="space-y-8">
+              <h2 className="font-monument text-3xl text-text-light dark:text-text-dark">
+                Mobile First
+              </h2>
+              <p className="text-text-muted-light dark:text-text-muted-dark text-lg leading-relaxed">
+                Důraz na mobilní zobrazení byl klíčový, protože více než 60%
+                návštěvníků přichází z mobilních zařízení. Design je
+                optimalizován pro:
+              </p>
+              <ul className="space-y-4">
+                <li className="text-text-muted-light dark:text-text-muted-dark">
+                  • Snadnou navigaci jedním palcem
+                </li>
+                <li className="text-text-muted-light dark:text-text-muted-dark">
+                  • Rychlé načítání na mobilních sítích
+                </li>
+                <li className="text-text-muted-light dark:text-text-muted-dark">
+                  • Přehledné zobrazení všech informací
+                </li>
+                <li className="text-text-muted-light dark:text-text-muted-dark">
+                  • Optimalizované formuláře pro mobilní vstup
+                </li>
+              </ul>
+            </div>
+            <motion.div className="grid grid-cols-2 gap-4">
+              {caseStudy.mockups.mobile.map((mockup, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.2 }}
+                >
+                  <div className="aspect-[9/16] relative rounded-2xl overflow-hidden border border-border-light dark:border-border-dark">
+                    <Image
+                      src={mockup.image}
+                      alt={mockup.caption}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <p className="mt-4 text-sm text-text-muted-light dark:text-text-muted-dark text-center">
+                    {mockup.caption}
+                  </p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Performance Metrics Section */}
+      <section className="bg-white dark:bg-[#161616] py-32 border-t border-border-light dark:border-border-dark">
+        <div className="max-w-7xl mx-auto px-8 lg:px-16">
+          <h2 className="font-monument text-3xl text-text-light dark:text-text-dark mb-16">
+            Výkon a Metriky
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {caseStudy.performance.metrics.map((metric, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="p-8 rounded-2xl border border-border-light dark:border-border-dark"
+              >
+                <p className="text-text-muted-light dark:text-text-muted-dark mb-2">
+                  {metric.label}
+                </p>
+                <div className="flex items-end gap-4">
+                  <span className="text-4xl font-monument text-text-light dark:text-text-dark">
+                    {metric.value}
+                  </span>
+                  <span className="text-green-500 mb-1">{metric.change}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Analytics Overview with Sticky Metrics */}
+      <section className="bg-light dark:bg-dark py-32 border-t border-border-light dark:border-border-dark">
+        <div className="max-w-7xl mx-auto px-8 lg:px-16">
+          <h2 className="font-monument text-3xl text-text-light dark:text-text-dark mb-16">
+            Analytická Data
+          </h2>
+
+          <div className="grid lg:grid-cols-12 gap-16">
+            {/* Sticky Metrics Panel */}
+            <div className="lg:col-span-4 lg:sticky lg:top-32 space-y-6 self-start">
+              <h3 className="text-xl font-semibold text-text-light dark:text-text-dark">
+                Klíčové Metriky
+              </h3>
+              <div className="grid gap-4">
+                {caseStudy.analytics.clarity.metrics
+                  .concat(
+                    caseStudy.analytics.searchConsole.metrics,
+                    caseStudy.analytics.analytics.metrics
+                  )
+                  .map((metric, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                      className="p-4 rounded-xl border border-border-light dark:border-border-dark"
+                    >
+                      <p className="text-sm text-text-muted-light dark:text-text-muted-dark mb-1">
+                        {metric.label}
+                      </p>
+                      <div className="flex items-baseline gap-2">
+                        <span className="text-2xl font-monument text-text-light dark:text-text-dark">
+                          {metric.value}
+                        </span>
+                        <span
+                          className={`text-sm ${
+                            metric.change.startsWith("+")
+                              ? "text-green-500"
+                              : "text-red-500"
+                          }`}
+                        >
+                          {metric.change}
+                        </span>
+                      </div>
+                    </motion.div>
+                  ))}
+              </div>
+            </div>
+
+            {/* Dashboards */}
+            <div className="lg:col-span-8 space-y-16">
+              {/* Microsoft Clarity */}
+              <div>
+                <h3 className="text-xl font-semibold text-text-light dark:text-text-dark mb-6">
+                  Microsoft Clarity - User Behavior
+                </h3>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="aspect-[16/10] relative rounded-2xl overflow-hidden border border-border-light dark:border-border-dark">
+                    <Image
+                      src={caseStudy.analytics.clarity.image}
+                      alt="Microsoft Clarity Dashboard"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Search Console */}
+              <div>
+                <h3 className="text-xl font-semibold text-text-light dark:text-text-dark mb-6">
+                  Google Search Console
+                </h3>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="aspect-[16/10] relative rounded-2xl overflow-hidden border border-border-light dark:border-border-dark">
+                    <Image
+                      src={caseStudy.analytics.searchConsole.image}
+                      alt="Search Console Performance"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Google Analytics */}
+              <div>
+                <h3 className="text-xl font-semibold text-text-light dark:text-text-dark mb-6">
+                  Google Analytics 4
+                </h3>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="aspect-[16/10] relative rounded-2xl overflow-hidden border border-border-light dark:border-border-dark">
+                    <Image
+                      src={caseStudy.analytics.analytics.image}
+                      alt="GA4 Dashboard"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CMS Implementation */}
+      <section className="bg-white dark:bg-[#161616] py-32 border-t border-border-light dark:border-border-dark">
+        <div className="max-w-7xl mx-auto px-8 lg:px-16">
+          <div className="grid lg:grid-cols-12 gap-16">
+            {/* Info Panel */}
+            <div className="lg:col-span-5">
+              <div className="lg:sticky lg:top-32 space-y-8">
+                <h2 className="font-monument text-3xl text-text-light dark:text-text-dark">
+                  Strapi CMS
+                </h2>
+                <p className="text-text-muted-light dark:text-text-muted-dark text-lg">
+                  Implementace vlastního řešení pomocí Strapi CMS s důrazem na
+                  jednoduchost správy obsahu a flexibilitu systému.
+                </p>
+                <ul className="space-y-4">
+                  {caseStudy.cms.customizations.map((item, i) => (
+                    <motion.li
+                      key={i}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.1 }}
+                      viewport={{ once: true }}
+                      className="flex items-center gap-3 text-text-light dark:text-text-dark"
+                    >
+                      <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                      {item}
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Screenshots */}
+            <div className="lg:col-span-7 space-y-8">
+              {caseStudy.cms.features.map((feature, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                >
+                  <div className="relative rounded-2xl overflow-hidden border border-border-light dark:border-border-dark">
+                    <div className="aspect-[16/10]">
+                      <Image
+                        src={feature.image}
+                        alt={feature.title}
+                        fill={false}
+                        width={1200}
+                        height={750}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  </div>
+                  <div className="mt-4">
+                    <h3 className="font-semibold text-text-light dark:text-text-dark">
+                      {feature.title}
+                    </h3>
+                    <p className="text-text-muted-light dark:text-text-muted-dark">
+                      {feature.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

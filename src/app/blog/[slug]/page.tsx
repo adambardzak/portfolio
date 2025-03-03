@@ -29,7 +29,7 @@ const blogPosts: Record<string, BlogPost> = {
     date: "2024-01-10",
     readTime: "15 min",
     category: "Development",
-    image: "/blog/server-actions.jpg",
+    image: "/blog/server-actions.png",
     content: (
       <>
         <StyledSection>
@@ -308,7 +308,7 @@ function TodoForm() {
     date: "2024-01-05",
     readTime: "15 min",
     category: "Performance",
-    image: "/blog/react-performance.jpg",
+    image: "/blog/react.svg",
     content: (
       <>
         <StyledSection>
@@ -543,7 +543,7 @@ const List = () => (
     date: "2023-12-20",
     readTime: "10 min",
     category: "CSS",
-    image: "/blog/tailwind.jpg",
+    image: "/blog/tailwind.svg",
     content: (
       <>
         <StyledSection>
@@ -984,7 +984,7 @@ module.exports = {
     date: "2023-12-15",
     readTime: "18 min",
     category: "TypeScript",
-    image: "/blog/typescript.jpg",
+    image: "/blog/ts.svg",
     content: (
       <>
         <StyledSection>

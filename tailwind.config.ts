@@ -55,6 +55,20 @@ const config: Config = {
         "ofta-apricot": "#FFD9B5",
         "ofta-green": "#3DD9B7",
       },
+      keyframes: {
+        "scroll-left": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+        "scroll-right": {
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0)" },
+        },
+      },
+      animation: {
+        "scroll-left": "scroll-left 20s linear infinite",
+        "scroll-right": "scroll-right 20s linear infinite",
+      },
     },
   },
   fontFamily: {
