@@ -94,7 +94,7 @@ body {
 
 @layer base {
   body {
-    @apply bg-light text-text-light transition-colors duration-300;
+    @apply bg-light text-text-light transition-colors duration-300 font-inter;
   }
 
   .dark body {
@@ -103,6 +103,21 @@ body {
 
   :root {
     /* Keep your existing variables */
+  }
+
+  /* Headings use Space Grotesk by default */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-space;
+  }
+  
+  /* Only elements with font-monument class will use Monument */
+  .font-monument {
+    font-family: var(--font-monument);
+  }
+  
+  /* Add a class for text blocks that should use Inter */
+  p, li, a, span, div {
+    @apply font-inter;
   }
 }
 

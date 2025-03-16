@@ -72,34 +72,30 @@ const Footer = () => {
                 <ul className="space-y-3">
                   <li>
                     <a
-                      href="#services"
+                      href="/services"
                       className="text-text-muted-light dark:text-text-muted-dark hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
                     >
                       Služby
                     </a>
                   </li>
+                </ul>
+                <ul className="space-y-3">
                   <li>
                     <a
-                      href="#process"
+                      href="/blog"
                       className="text-text-muted-light dark:text-text-muted-dark hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
                     >
-                      Proces
+                      Blog
                     </a>
                   </li>
+                </ul>
+                <ul className="space-y-3">
                   <li>
                     <a
-                      href="#projects"
+                      href="/faq"
                       className="text-text-muted-light dark:text-text-muted-dark hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
                     >
-                      Projekty
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#contact"
-                      className="text-text-muted-light dark:text-text-muted-dark hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
-                    >
-                      Kontakt
+                      Často kladené dotazy
                     </a>
                   </li>
                 </ul>

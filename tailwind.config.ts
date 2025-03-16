@@ -69,11 +69,12 @@ const config: Config = {
         "scroll-left": "scroll-left 20s linear infinite",
         "scroll-right": "scroll-right 20s linear infinite",
       },
+      fontFamily: {
+        space: ["var(--font-space-grotesk)"],
+        monument: ["var(--font-monument)"],
+        inter: ["var(--font-inter)"],
+      },
     },
-  },
-  fontFamily: {
-    space: ["var(--font-space-grotesk)"],
-    monument: ["var(--font-monument)"],
   },
   plugins: [],
 };

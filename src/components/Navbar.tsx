@@ -6,7 +6,7 @@ import { Moon, Sun, ArrowUpRight } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
 import AnimatedMenuButton from "./AnimatedMenuButton";
 import clsx from "clsx";
-
+import Link from "next/link";
 type NavItem = {
   label: string;
   href: string;
@@ -69,15 +69,15 @@ const Navbar = () => {
     { label: "FAQ", href: "/faq" },
   ];
 
-  const scrollToContact = () => {
-    const contactSection = document.getElementById("contact");
-    if (contactSection) {
-      contactSection.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  };
+  // const scrollToContact = () => {
+  //   const contactSection = document.getElementById("contact");
+  //   if (contactSection) {
+  //     contactSection.scrollIntoView({
+  //       behavior: "smooth",
+  //       block: "start",
+  //     });
+  //   }
+  // };
 
   return (
     <>
@@ -102,7 +102,9 @@ const Navbar = () => {
               whileHover={{ x: 2 }}
               transition={{ duration: 0.2 }}
             >
-              <span className="text-xl font-normal">&#123; ab &#125;</span>
+              <span className="text-xl font-normal font-space">
+                &#123; ab &#125;
+              </span>
             </motion.a>
 
             {/* Center Navigation */}
@@ -153,11 +155,9 @@ const Navbar = () => {
               </motion.button>
 
               {/* Contact Button */}
-              <motion.button
-                onClick={scrollToContact}
+              <Link
+                href="/#contact"
                 className="relative h-10 px-5 rounded-full md:flex items-center gap-2 group hidden"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.2 }}
               >
                 <motion.div
                   className="absolute inset-0 rounded-full border border-border-light dark:border-border-dark"
@@ -178,7 +178,7 @@ const Navbar = () => {
                   className="relative w-4 h-4 text-text-light dark:text-text-dark 
                 group-hover:rotate-45 transition-transform duration-200"
                 />
-              </motion.button>
+              </Link>
               <AnimatedMenuButton isOpen={isOpen} setIsOpen={setIsOpen} />
             </div>
           </div>
@@ -237,7 +237,7 @@ const Navbar = () => {
                   </motion.a>
                 </div>
               ))}
-              <motion.button
+              <motion.a
                 className="relative h-12 px-5 flex mt-6 w-fit rounded-full items-center gap-2 group"
                 initial={{ y: 80, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -247,6 +247,7 @@ const Navbar = () => {
                   ease: [0.16, 1, 0.3, 1],
                   delay: 0.1 + navItems.length * 0.1,
                 }}
+                href="/#contact"
               >
                 <motion.div
                   className="absolute inset-0 rounded-full border border-border-light dark:border-border-dark"
@@ -261,10 +262,10 @@ const Navbar = () => {
                   transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 />
                 <span className="relative text-md text-text-light dark:text-text-dark">
-                  Contact
+                  Kontaktujte mě
                 </span>
                 <ArrowUpRight className="relative w-4 h-4 text-text-light dark:text-text-dark " />
-              </motion.button>
+              </motion.a>
             </div>
           </motion.div>
         )}

@@ -29,12 +29,6 @@ const LogoCarousel = () => {
       <div className="flex flex-col gap-12">
         {/* First row */}
         <div className="relative overflow-hidden">
-          {/* Gradient overlays */}
-          <div className="absolute inset-0 z-10 pointer-events-none">
-            <div className="absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-[#fafafa] dark:from-[#121212] to-transparent" />
-            <div className="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-[#fafafa] dark:from-[#121212] to-transparent" />
-          </div>
-          
           <motion.div
             ref={row1Ref}
             className="flex gap-12 md:gap-36"
@@ -58,7 +52,7 @@ const LogoCarousel = () => {
                   height={200}
                   src={logo}
                   alt={`Technology logo ${index + 1}`}
-                  className="w-auto h-16 md:h-24 object-contain dark:invert"
+                  className="w-fit h-16 md:h-24 object-contain dark:invert"
                 />
               ))}
             </div>
@@ -70,7 +64,7 @@ const LogoCarousel = () => {
                   height={200}
                   src={logo}
                   alt={`Technology logo ${index + 1}`}
-                  className="w-auto h-16 md:h-24 object-contain dark:invert"
+                  className="w-fit h-16 md:h-24 object-contain dark:invert"
                 />
               ))}
             </div>
@@ -79,12 +73,6 @@ const LogoCarousel = () => {
 
         {/* Second row */}
         <div className="relative overflow-hidden">
-          {/* Gradient overlays */}
-          <div className="absolute inset-0 z-10 pointer-events-none">
-            <div className="absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-[#fafafa] dark:from-[#121212] to-transparent" />
-            <div className="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-[#fafafa] dark:from-[#121212] to-transparent" />
-          </div>
-          
           <motion.div
             ref={row2Ref}
             className="flex gap-12 md:gap-36"
@@ -108,7 +96,7 @@ const LogoCarousel = () => {
                   height={200}
                   src={logo}
                   alt={`Technology logo ${index + 1}`}
-                  className="w-auto h-16 md:h-24 object-contain dark:invert"
+                  className="w-fit h-16 md:h-24 object-contain dark:invert"
                 />
               ))}
             </div>
@@ -120,7 +108,7 @@ const LogoCarousel = () => {
                   height={200}
                   src={logo}
                   alt={`Technology logo ${index + 1}`}
-                  className="w-auto h-16 md:h-24 object-contain dark:invert"
+                  className="w-fit h-16 md:h-24 object-contain dark:invert"
                 />
               ))}
             </div>

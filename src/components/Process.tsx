@@ -65,7 +65,7 @@ export default function Process() {
                   <step.icon className="w-6 h-6 text-text-light dark:text-text-dark" />
                 </div>
                 <div>
-                  <h3 className="font-monument text-xl text-text-light dark:text-text-dark mb-2">
+                  <h3 className="text-xl text-text-light dark:text-text-dark mb-2">
                     {step.title}
                   </h3>
                   <p className="text-text-muted-light dark:text-text-muted-dark">

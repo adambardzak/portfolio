@@ -272,7 +272,7 @@ export default function FAQPage() {
               </p>
               <div className="pt-8">
                 <a
-                  href="mailto:info@example.com"
+                  href="mailto:hello@adambardzak.cz"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-full 
                     bg-blue-500 hover:bg-blue-600 transition-colors
                     text-white font-medium"

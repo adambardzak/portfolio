@@ -16,7 +16,7 @@ const blogPosts = [
     date: "2024-01-15",
     readTime: "5 min",
     category: "Case Study",
-    image: "/projects/ofta/ofta_mockup.png",
+    image: "/projects/ofta/ofta_mockup-bg.png",
     href: "/case-studies/ofta",
   },
   {
@@ -105,13 +105,15 @@ export default function BlogPage() {
                     {/* Post Info - Flex grow to fill space */}
                     <div className="flex flex-col flex-grow p-8 space-y-6">
                       <div className="space-y-4">
-                        <div className="flex items-center gap-4">
-                          <span className="text-sm text-blue-500 dark:text-blue-400 font-medium">
-                            {post.category}
-                          </span>
-                          <div className="flex items-center gap-2 text-sm text-text-muted-light dark:text-text-muted-dark">
-                            <Calendar className="w-4 h-4" />
-                            {new Date(post.date).toLocaleDateString("cs-CZ")}
+                        <div className="flex items-start gap-4 flex-col md:flex-row">
+                          <div className="flex items-center gap-4">
+                            <span className="text-sm text-blue-500 dark:text-blue-400 font-medium">
+                              {post.category}
+                            </span>
+                            <div className="flex items-center gap-2 text-sm text-text-muted-light dark:text-text-muted-dark">
+                              <Calendar className="w-4 h-4" />
+                              {new Date(post.date).toLocaleDateString("cs-CZ")}
+                            </div>
                           </div>
                           <div className="flex items-center gap-2 text-sm text-text-muted-light dark:text-text-muted-dark">
                             <Clock className="w-4 h-4" />

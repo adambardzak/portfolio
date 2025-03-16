@@ -1,30 +1,41 @@
-import type { Metadata } from "next";
 import "./globals.css";
 import { Space_Grotesk } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeScript } from "../components/theme-script";
-import localFont from "next/font/local";
 import Footer from "@/components/Footer";
 import AnimatedCursor from "@/components/AnimatedCursor";
 import TransitionLayout from "./TransitionLayout";
 import CookieBar from "@/components/CookieBar";
 import { Background } from "@/components/Background";
+import { generateMetadata } from "@/components/SEO";
+import type { Metadata } from "next";
 
+// Load Space Grotesk with all weights
 const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   display: "swap",
+  weight: ["300", "400", "500", "600", "700"],
 });
 
-const monument = localFont({
-  src: "../../public/fonts/MonumentExtended-Regular.otf",
-  variable: "--font-monument",
-});
+// const inter = Inter({
+//   subsets: ["latin", "latin-ext"],
+//   display: "swap",
+// });
 
-export const metadata: Metadata = {
-  title: "My Next.js App",
-  description: "A modern Next.js app with parallax background",
-};
+// // Register the Monument font
+// const monument = localFont({
+//   src: [
+//     {
+//       path: "../../public/fonts/MonumentExtended-Regular.otf",
+//       weight: "400",
+//       style: "normal",
+//     },
+//   ],
+//   variable: "--font-monument",
+// });
+
+export const metadata: Metadata = generateMetadata({});
 
 export default function RootLayout({
   children,
@@ -32,17 +43,59 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="cs" suppressHydrationWarning className={spaceGrotesk.variable}>
       <head>
         <ThemeScript />
+        {/* Dynamic favicon that changes based on theme */}
+        <link
+          rel="icon"
+          href="/favicon-light.svg"
+          media="(prefers-color-scheme: light)"
+          type="image/svg+xml"
+        />
+        <link
+          rel="icon"
+          href="/favicon-dark.svg"
+          media="(prefers-color-scheme: dark)"
+          type="image/svg+xml"
+        />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Adam Bardzák",
+              url: "https://adambardzak.cz",
+              jobTitle: "Frontend Developer",
+              worksFor: {
+                "@type": "Organization",
+                name: "Freelance",
+              },
+              sameAs: [
+                "https://github.com/adambardzak",
+                "https://linkedin.com/in/adambardzak",
+              ],
+              knowsAbout: [
+                "Web Development",
+                "React",
+                "Next.js",
+                "TypeScript",
+                "Tailwind CSS",
+              ],
+            }),
+          }}
+        />
       </head>
-      <body className={`${spaceGrotesk.className} ${monument.variable} `}>
+      <body className={spaceGrotesk.className}>
         <ThemeProvider>
           <div className="relative min-h-screen">
             <Background />
             <TransitionLayout>
               <Navbar />
-              {children}
+              <main>{children}</main>
               <Footer />
               <AnimatedCursor />
               <CookieBar />

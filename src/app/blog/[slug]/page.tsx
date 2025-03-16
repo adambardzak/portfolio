@@ -1210,7 +1210,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#fafafa]/50 to-[#fafafa] dark:via-[#121212]/50 dark:to-[#121212]" />
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-16 md:py-32">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-28 py-16 md:py-32">
           <div className="max-w-3xl space-y-6 md:space-y-8">
             {/* Metadata row - better mobile layout */}
             <motion.div className="flex flex-wrap gap-3 md:gap-4">

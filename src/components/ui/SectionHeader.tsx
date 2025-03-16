@@ -34,7 +34,7 @@ export const SectionHeader = ({ label, title, description }: SectionHeaderProps)
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="font-monument text-4xl md:text-5xl lg:text-6xl text-text-light dark:text-text-dark"
+            className="text-4xl md:text-5xl lg:text-6xl text-text-light dark:text-text-dark"
           >
             {title}
           </motion.h2>

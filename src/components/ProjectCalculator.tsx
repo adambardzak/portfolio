@@ -119,6 +119,7 @@ export default function ProjectCalculator() {
 
   return (
     <section
+      id="calculation"
       className={clsx(
         "relative py-32",
         // "bg-[#fafafa] dark:bg-[#121212]",

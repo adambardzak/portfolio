@@ -3,8 +3,27 @@
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import WebBuildingAnimation from "./WebBuildingAnimation";
-import Link from "next/link";
 import clsx from "clsx";
+
+const scrollToCalc = () => {
+  const contactSection = document.getElementById("calculation");
+  if (contactSection) {
+    contactSection.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
+};
+
+const scrollToContact = () => {
+  const contactSection = document.getElementById("contact");
+  if (contactSection) {
+    contactSection.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
+};
 
 const Hero = () => {
   return (
@@ -45,12 +64,9 @@ const Hero = () => {
                   initial={{ y: "100%" }}
                   animate={{ y: 0 }}
                   transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                  className="font-monument text-4xl lg:text-5xl xl:text-6xl text-text-light dark:text-text-dark"
+                  className="text-5xl md:text-6xl lg:text-7xl text-text-light dark:text-text-dark leading-tight"
                 >
-                  Vytvořím vám web,{" "}
-                  <span className="text-blue-500 dark:text-blue-400">
-                    který vydělává
-                  </span>
+                  Webové aplikace a weby na míru
                 </motion.h1>
               </div>
 
@@ -73,8 +89,8 @@ const Hero = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="flex flex-col sm:flex-row items-start gap-6"
             >
-              <Link
-                href="/calculator"
+              <motion.button
+                onClick={scrollToCalc}
                 className="group relative flex items-center gap-3 px-8 py-4 bg-blue-500 dark:bg-blue-400 
                   text-white rounded-lg font-medium text-base overflow-hidden"
               >
@@ -87,10 +103,10 @@ const Hero = () => {
                   className="relative w-4 h-4 transition-transform duration-200 
                   group-hover:translate-x-1"
                 />
-              </Link>
+              </motion.button>
 
-              <Link
-                href="/contact"
+              <motion.button
+                onClick={scrollToContact}
                 className="group relative flex items-center gap-3 px-8 py-4 
                   text-text-light dark:text-text-dark rounded-lg font-medium text-base
                   border border-border-light dark:border-border-dark overflow-hidden"
@@ -104,7 +120,7 @@ const Hero = () => {
                   className="relative w-4 h-4 transition-transform duration-200 
                   group-hover:translate-x-1"
                 />
-              </Link>
+              </motion.button>
             </motion.div>
           </div>
 

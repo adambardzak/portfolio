@@ -88,7 +88,7 @@ export default function ProjectsShowcase() {
 
                   {/* Content */}
                   <div className="space-y-6">
-                    <h3 className="font-monument text-2xl text-text-light dark:text-text-dark">
+                    <h3 className="text-2xl text-text-light dark:text-text-dark">
                       {project.title}
                     </h3>
                     <p className="text-text-muted-light dark:text-text-muted-dark">

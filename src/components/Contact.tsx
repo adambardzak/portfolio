@@ -6,11 +6,14 @@ import { Send } from "lucide-react";
 import Input from "@/components/ui/Input";
 import { SectionHeader } from "./ui/SectionHeader";
 import clsx from "clsx";
+import Link from "next/link";
+
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
+    consent: false,
   });
 
   const [formStatus, setFormStatus] = useState<
@@ -19,6 +22,14 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!formData.consent) {
+      alert(
+        "Pro odeslání formuláře je nutné souhlasit se zpracováním osobních údajů."
+      );
+      return;
+    }
+
     setFormStatus("submitting");
 
     try {
@@ -29,7 +40,7 @@ export default function Contact() {
       });
 
       // Reset form and show success
-      setFormData({ name: "", email: "", message: "" });
+      setFormData({ name: "", email: "", message: "", consent: false });
       setFormStatus("success");
 
       // Reset status after 5 seconds
@@ -132,6 +143,33 @@ export default function Contact() {
                 className="w-full p-3 rounded-lg bg-hover-light dark:bg-hover-dark border border-border-light dark:border-border-dark text-text-light dark:text-text-dark focus:outline-none focus:border-text-light dark:focus:border-text-dark transition-colors min-h-[150px] resize-y"
               />
             </div>
+
+            {/* Privacy Consent Checkbox */}
+            <div className="flex items-start gap-3">
+              <input
+                type="checkbox"
+                id="privacy-consent"
+                checked={formData.consent}
+                onChange={(e) =>
+                  setFormData({ ...formData, consent: e.target.checked })
+                }
+                className="mt-1 h-4 w-4 rounded border-gray-300 text-blue-500 focus:ring-blue-500"
+                required
+              />
+              <label
+                htmlFor="privacy-consent"
+                className="text-sm text-text-muted-light dark:text-text-muted-dark"
+              >
+                Souhlasím se zpracováním osobních údajů v souladu s{" "}
+                <Link
+                  href="/legal"
+                  className="text-blue-500 dark:text-blue-400 hover:underline"
+                >
+                  podmínkami ochrany osobních údajů
+                </Link>
+              </label>
+            </div>
+
             <div className="space-y-4">
               <button
                 type="submit"
@@ -192,10 +230,10 @@ export default function Contact() {
                   E-mail
                 </h4>
                 <a
-                  href="mailto:info@example.com"
+                  href="mailto:hello@adambardzak.cz"
                   className="text-text-muted-light dark:text-text-muted-dark hover:text-blue-500 dark:hover:text-blue-400 transition-colors text-lg"
                 >
-                  info@example.com
+                  hello@adambardzak.cz
                 </a>
               </div>
               <div>
