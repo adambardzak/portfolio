@@ -43,7 +43,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="cs" suppressHydrationWarning className={spaceGrotesk.variable}>
+    <html lang="cs" suppressHydrationWarning className={spaceGrotesk.className}>
       <head>
         <ThemeScript />
         {/* Dynamic favicon that changes based on theme */}
