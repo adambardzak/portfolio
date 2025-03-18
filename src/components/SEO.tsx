@@ -1,5 +1,8 @@
 import { Metadata } from "next";
-import { OpenGraph } from "next/dist/lib/metadata/types/opengraph-types";
+import {
+  OpenGraph,
+  OpenGraphType,
+} from "next/dist/lib/metadata/types/opengraph-types";
 
 type SEOProps = {
   title?: string;
@@ -32,22 +35,22 @@ export const generateMetadata = ({
   canonical,
   noIndex = false,
 }: SEOProps): Metadata => {
-  const metaTitle = title.includes("Adam Bardzák") 
-    ? title 
+  const metaTitle = title.includes("Adam Bardzák")
+    ? title
     : `${title} | Adam Bardzák`;
-  
+
   const openGraph: OpenGraph = {
     title: metaTitle,
     description,
     images: [
       {
-        url: ogImage,
+        url: ogImage || "https://adambardzak.cz/og-image.png",
         width: 1200,
         height: 630,
         alt: metaTitle,
       },
     ],
-    type: ogType,
+    type: (ogType || "website") as OpenGraphType,
     locale: "cs_CZ",
     siteName: "Adam Bardzák",
   };
@@ -68,4 +71,4 @@ export const generateMetadata = ({
       canonical: canonical || "https://adambardzak.cz",
     },
   };
-}; 
+};
