@@ -1,7 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+// import { ArrowRight } from "lucide-react";
+// import Link from "next/link";
 import { SectionHeader } from "./ui/SectionHeader";
+import { useMotionConfig } from "@/components/motion-config";
+
 const services = [
   {
     id: 1,
@@ -41,6 +45,30 @@ const services = [
 ];
 
 export default function Services() {
+  const { shouldReduceMotion } = useMotionConfig();
+
+  // Optimized animation variants
+  const fadeIn = {
+    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 10 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.3 },
+    },
+  };
+
+  // Container for staggered animations
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: shouldReduceMotion ? 0 : 0.05,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
   return (
     <section className="py-16 md:py-20 lg:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -50,14 +78,17 @@ export default function Services() {
           description="Komplexní řešení pro vaše digitální potřeby, od návrhu až po realizaci"
         />
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <motion.div
+          className="grid lg:grid-cols-3 gap-8"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
           {services.map((service, index) => (
             <motion.div
               key={service.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: index * 0.1 }}
-              viewport={{ once: true }}
+              variants={fadeIn}
               className="group relative bg-white dark:bg-[#161616] rounded-2xl p-8 border border-border-light 
                 dark:border-border-dark hover:border-blue-500/20 dark:hover:border-blue-400/20 
                 transition-all duration-300"
@@ -85,25 +116,28 @@ export default function Services() {
                 </div>
 
                 {/* Features list */}
-                <ul className="space-y-3">
-                  {service.features.map((feature, i) => (
+                <motion.ul
+                  className="space-y-3"
+                  variants={staggerContainer}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                >
+                  {service.features.map((feature) => (
                     <motion.li
                       key={feature}
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-                      viewport={{ once: true }}
+                      variants={fadeIn}
                       className="flex items-center gap-3 text-text-muted-light dark:text-text-muted-dark"
                     >
                       <div className="w-1.5 h-1.5 rounded-full bg-blue-500 dark:bg-blue-400" />
                       {feature}
                     </motion.li>
                   ))}
-                </ul>
+                </motion.ul>
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

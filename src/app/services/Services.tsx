@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useMotionConfig } from "@/components/motion-config";
 
 const myServices = [
   {
@@ -71,13 +72,37 @@ const myServices = [
 ];
 
 function Services() {
+  const { shouldReduceMotion } = useMotionConfig();
+  
+  // Optimized animation variants
+  const fadeIn = {
+    hidden: { opacity: 0, y: shouldReduceMotion ? 0 : 10 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.3 }
+    }
+  };
+  
+  // Container for staggered animations
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: shouldReduceMotion ? 0 : 0.05,
+        delayChildren: 0.1
+      }
+    }
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-8 lg:px-16 py-32">
       <div className="max-w-3xl mb-32">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          variants={fadeIn}
+          initial="hidden"
+          animate="visible"
         >
           <h1 className="font-monument text-4xl md:text-5xl lg:text-6xl text-text-light dark:text-text-dark mb-6">
             Služby
@@ -91,13 +116,13 @@ function Services() {
       </div>
 
       {/* My Core Services */}
-      {myServices.map((service, index) => (
+      {myServices.map((service) => (
         <motion.div
           key={service.id}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: index * 0.1 }}
+          variants={fadeIn}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
           className="mb-32"
         >
           <div className="grid lg:grid-cols-2 gap-16">
@@ -133,49 +158,64 @@ function Services() {
               <h3 className="font-monument text-sm text-blue-500 dark:text-blue-400">
                 Co získáte
               </h3>
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <motion.ul 
+                className="grid grid-cols-1 md:grid-cols-2 gap-4"
+                variants={staggerContainer}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+              >
                 {service.features.map((feature, i) => (
                   <motion.li
                     key={i}
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
+                    variants={fadeIn}
                     className="flex items-center gap-3 text-text-muted-light dark:text-text-muted-dark"
                   >
                     <div className="w-1.5 h-1.5 rounded-full bg-blue-500 dark:bg-blue-400" />
                     {feature}
                   </motion.li>
                 ))}
-              </ul>
+              </motion.ul>
             </div>
           </div>
         </motion.div>
       ))}
 
       {/* Additional Services */}
-      <div className="max-w-3xl">
+      <motion.div 
+        className="max-w-3xl"
+        variants={fadeIn}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
         <h2 className="font-monument text-3xl text-text-light dark:text-text-dark mb-6">
           Další služby
         </h2>
         <p className="text-text-muted-light dark:text-text-muted-dark text-lg">
           Ve spolupráci s ověřenými profesionály nabízím také:
         </p>
-        <ul className="mt-8 space-y-4 text-text-muted-light dark:text-text-muted-dark">
-          <li className="flex items-center gap-3">
+        <motion.ul 
+          className="mt-8 space-y-4 text-text-muted-light dark:text-text-muted-dark"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+        >
+          <motion.li variants={fadeIn} className="flex items-center gap-3">
             <div className="w-1.5 h-1.5 rounded-full bg-blue-500 dark:bg-blue-400" />
             UX/UI Design a branding
-          </li>
-          <li className="flex items-center gap-3">
+          </motion.li>
+          <motion.li variants={fadeIn} className="flex items-center gap-3">
             <div className="w-1.5 h-1.5 rounded-full bg-blue-500 dark:bg-blue-400" />
             Obsahový marketing
-          </li>
-          <li className="flex items-center gap-3">
+          </motion.li>
+          <motion.li variants={fadeIn} className="flex items-center gap-3">
             <div className="w-1.5 h-1.5 rounded-full bg-blue-500 dark:bg-blue-400" />
             Správa sociálních sítí
-          </li>
-        </ul>
-      </div>
+          </motion.li>
+        </motion.ul>
+      </motion.div>
     </div>
   );
 }
