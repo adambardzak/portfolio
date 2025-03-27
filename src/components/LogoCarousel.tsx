@@ -27,12 +27,12 @@ const LogoCarousel = () => {
 
   // Don't render anything during SSR or if reduced motion is preferred
   if (!isMounted) {
-    return <div className="w-full py-8 md:py-16" aria-hidden="true" />;
+    return <div className="w-full py-6 md:py-16" aria-hidden="true" />;
   }
 
   if (shouldReduceMotion) {
     return (
-      <div className="w-full py-8 md:py-16">
+      <div className="w-full py-6 md:py-16">
         <div className="flex flex-col gap-8 md:gap-12 max-w-7xl mx-auto px-4 md:px-8">
           <div className={`flex ${gapSize} overflow-x-auto pb-4`}>
             {logos1.map((logo, index) => (
@@ -42,7 +42,7 @@ const LogoCarousel = () => {
                 height={200}
                 src={logo}
                 alt={`Technology logo ${index + 1}`}
-                className="w-fit h-12 md:h-16 lg:h-24 object-contain dark:invert"
+                className="w-fit h-16 md:h-16 lg:h-24 object-contain dark:invert"
               />
             ))}
           </div>
@@ -54,7 +54,7 @@ const LogoCarousel = () => {
                 height={200}
                 src={logo}
                 alt={`Technology logo ${index + 1}`}
-                className="w-fit h-12 md:h-16 lg:h-24 object-contain dark:invert"
+                className="w-fit h-16 md:h-16 lg:h-24 object-contain dark:invert"
               />
             ))}
           </div>
@@ -64,7 +64,7 @@ const LogoCarousel = () => {
   }
 
   return (
-    <div className="w-full overflow-hidden py-8 md:py-16">
+    <div className="w-full overflow-hidden py-6 md:py-16">
       <div className="flex flex-col gap-8 md:gap-12">
         {/* First row - moving right */}
         <div className="relative overflow-hidden">
@@ -78,7 +78,7 @@ const LogoCarousel = () => {
                   height={200}
                   src={logo}
                   alt={`Technology logo ${index + 1}`}
-                  className="w-fit h-12 md:h-16 lg:h-24 object-contain dark:invert"
+                  className="w-fit h-16 md:h-16 lg:h-24 object-contain dark:invert"
                   loading="lazy"
                 />
               ))}
@@ -92,7 +92,7 @@ const LogoCarousel = () => {
                   height={200}
                   src={logo}
                   alt={`Technology logo ${index + 1}`}
-                  className="w-fit h-12 md:h-16 lg:h-24 object-contain dark:invert"
+                  className="w-fit h-16 md:h-16 lg:h-24 object-contain dark:invert"
                   loading="lazy"
                 />
               ))}
@@ -106,7 +106,7 @@ const LogoCarousel = () => {
                   height={200}
                   src={logo}
                   alt={`Technology logo ${index + 1}`}
-                  className="w-fit h-12 md:h-16 lg:h-24 object-contain dark:invert"
+                  className="w-fit h-16 md:h-16 lg:h-24 object-contain dark:invert"
                   loading="lazy"
                 />
               ))}
@@ -126,7 +126,7 @@ const LogoCarousel = () => {
                   height={200}
                   src={logo}
                   alt={`Technology logo ${index + 1}`}
-                  className="w-fit h-12 md:h-16 lg:h-24 object-contain dark:invert"
+                  className="w-fit h-16 md:h-16 lg:h-24 object-contain dark:invert"
                   loading="lazy"
                 />
               ))}
@@ -140,7 +140,7 @@ const LogoCarousel = () => {
                   height={200}
                   src={logo}
                   alt={`Technology logo ${index + 1}`}
-                  className="w-fit h-12 md:h-16 lg:h-24 object-contain dark:invert"
+                  className="w-fit h-16 md:h-16 lg:h-24 object-contain dark:invert"
                   loading="lazy"
                 />
               ))}
@@ -154,7 +154,7 @@ const LogoCarousel = () => {
                   height={200}
                   src={logo}
                   alt={`Technology logo ${index + 1}`}
-                  className="w-fit h-12 md:h-16 lg:h-24 object-contain dark:invert"
+                  className="w-fit h-16 md:h-16 lg:h-24 object-contain dark:invert"
                   loading="lazy"
                 />
               ))}
