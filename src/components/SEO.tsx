@@ -30,7 +30,7 @@ export const generateMetadata = ({
     "SEO optimalizace",
     "Adam Bardzák",
   ],
-  ogImage = "/og-image.jpg",
+  ogImage = "",
   ogType = "website",
   canonical,
   noIndex = false,
@@ -38,13 +38,19 @@ export const generateMetadata = ({
   const metaTitle = title.includes("Adam Bardzák")
     ? title
     : `${title} | Adam Bardzák`;
+  
+  // Use provided image, dynamic OG image, or fallback to static image
+  const ogImageUrl = ogImage || 
+    (process.env.NODE_ENV === 'production' 
+      ? `https://bardzak.online/api/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}&type=${encodeURIComponent(ogType)}`
+      : 'https://bardzak.online/og-image.png');
 
   const openGraph: OpenGraph = {
     title: metaTitle,
     description,
     images: [
       {
-        url: ogImage || "https://adambardzak.cz/og-image.png",
+        url: ogImageUrl,
         width: 1200,
         height: 630,
         alt: metaTitle,
@@ -64,11 +70,11 @@ export const generateMetadata = ({
       card: "summary_large_image",
       title: metaTitle,
       description,
-      images: [ogImage],
+      images: [ogImageUrl],
     },
     robots: noIndex ? "noindex, nofollow" : "index, follow",
     alternates: {
-      canonical: canonical || "https://adambardzak.cz",
+      canonical: canonical || "https://bardzak.online",
     },
   };
 };

@@ -3,6 +3,7 @@
 import React, { useRef, useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useMotionConfig } from "@/components/motion-config";
 
 const LogoCarousel = () => {
   const logos1 = Array.from(
@@ -19,6 +20,8 @@ const LogoCarousel = () => {
   const row1Ref = useRef<HTMLDivElement>(null);
   const row2Ref = useRef<HTMLDivElement>(null);
 
+  const { shouldReduceMotion } = useMotionConfig();
+
   useEffect(() => {
     if (row1Ref.current) setRow1Width(row1Ref.current.scrollWidth / 2);
     if (row2Ref.current) setRow2Width(row2Ref.current.scrollWidth / 2);
@@ -32,16 +35,13 @@ const LogoCarousel = () => {
           <motion.div
             ref={row1Ref}
             className="flex gap-12 md:gap-36"
-            animate={{
-              x: [0, -row1Width],
-              transition: {
-                x: {
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  duration: 15,
-                  ease: "linear",
-                },
-              },
+            animate={shouldReduceMotion ? {} : {
+              x: [-row1Width, 0],
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: 20,
+              ease: "linear",
             }}
           >
             <div className="flex gap-12 md:gap-36 shrink-0">

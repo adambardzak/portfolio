@@ -10,6 +10,7 @@ import CookieBar from "@/components/CookieBar";
 import { Background } from "@/components/Background";
 import { generateMetadata } from "@/components/SEO";
 import type { Metadata } from "next";
+import { MotionConfigProvider } from "@/components/motion-config";
 
 // Load Space Grotesk with all weights
 const spaceGrotesk = Space_Grotesk({
@@ -91,16 +92,18 @@ export default function RootLayout({
       </head>
       <body className={spaceGrotesk.className}>
         <ThemeProvider>
-          <div className="relative min-h-screen">
-            <Background />
-            <TransitionLayout>
-              <Navbar />
-              <main>{children}</main>
-              <Footer />
-              <AnimatedCursor />
-              <CookieBar />
-            </TransitionLayout>
-          </div>
+          <MotionConfigProvider>
+            {/* <div className="relative min-h-screen"> */}
+              <Background />
+              <TransitionLayout>
+                <Navbar />
+                <main>{children}</main>
+                <Footer />
+                <AnimatedCursor />
+                <CookieBar />
+              </TransitionLayout>
+            {/* </div> */}
+          </MotionConfigProvider>
         </ThemeProvider>
       </body>
     </html>

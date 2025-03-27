@@ -16,7 +16,7 @@ export const metadata: Metadata = generateMetadata({
   ],
   ogImage: "/projects/ofta/ofta_mockup-bg.png",
   ogType: "article",
-  canonical: "https://adambardzak.cz/case-studies/ofta",
+  canonical: "https://bardzak.online/case-studies/ofta",
 });
 
 export default function CaseStudyPage() {

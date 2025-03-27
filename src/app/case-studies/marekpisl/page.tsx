@@ -16,7 +16,7 @@ export const metadata: Metadata = generateMetadata({
   ],
   ogImage: "/projects/marekpisl/marekpisl_hero_mockup-large.png",
   ogType: "article",
-  canonical: "https://adambardzak.cz/case-studies/marekpisl",
+  canonical: "https://bardzak.online/case-studies/marekpisl",
 });
 
 export default function CaseStudyPage() {

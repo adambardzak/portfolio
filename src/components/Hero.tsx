@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import WebBuildingAnimation from "./WebBuildingAnimation";
 import clsx from "clsx";
+import { useMotionConfig } from "@/components/motion-config";
 
 const scrollToCalc = () => {
   const contactSection = document.getElementById("calculation");
@@ -26,6 +27,8 @@ const scrollToContact = () => {
 };
 
 const Hero = () => {
+  const { shouldReduceMotion } = useMotionConfig();
+
   return (
     <section
       className={clsx(
@@ -39,17 +42,17 @@ const Hero = () => {
 
       <motion.div
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-32"
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: shouldReduceMotion ? 0.3 : 0.8 }}
       >
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-10">
             {/* Label */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: shouldReduceMotion ? 0.3 : 0.5 }}
               className="inline-block px-5 py-2 text-sm font-medium text-blue-500 dark:text-blue-400 
                 bg-blue-500/[0.05] dark:bg-blue-400/[0.05] rounded-full border border-blue-500/10 
                 dark:border-blue-400/10 backdrop-blur-sm"
@@ -71,9 +74,9 @@ const Hero = () => {
               </div>
 
               <motion.p
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
+                transition={{ duration: shouldReduceMotion ? 0.3 : 0.5, delay: 0.1 }}
                 className="text-xl text-text-muted-light dark:text-text-muted-dark max-w-2xl"
               >
                 Specializuji se na vývoj moderních webových aplikací, které
@@ -84,9 +87,9 @@ const Hero = () => {
 
             {/* CTA Buttons */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              transition={{ duration: shouldReduceMotion ? 0.3 : 0.5, delay: 0.2 }}
               className="flex flex-col sm:flex-row items-start gap-6"
             >
               <motion.button
@@ -128,7 +131,7 @@ const Hero = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: shouldReduceMotion ? 0.3 : 0.8 }}
             className="relative aspect-square rounded-2xl overflow-hidden p-8 
               backdrop-blur-sm border border-blue-500/10 dark:border-blue-400/10
               hover:border-blue-500/20 dark:hover:border-blue-400/20 transition-colors duration-300

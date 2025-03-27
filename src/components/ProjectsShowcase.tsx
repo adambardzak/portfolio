@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { SectionHeader } from "./ui/SectionHeader";
 import clsx from "clsx";
+import { useMotionConfig } from "@/components/motion-config";
 
 const projects = [
   {
@@ -39,6 +40,8 @@ const projects = [
 ];
 
 export default function ProjectsShowcase() {
+  const { shouldReduceMotion } = useMotionConfig();
+
   return (
     <section
       className={clsx(
@@ -65,10 +68,13 @@ export default function ProjectsShowcase() {
           {projects.map((project, index) => (
             <Link href={project.href} key={project.id}>
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 + index * 0.1 }}
-                viewport={{ once: true }}
+                transition={{ 
+                  duration: shouldReduceMotion ? 0.3 : 0.8, 
+                  delay: shouldReduceMotion ? 0 : 0.2 + index * 0.1 
+                }}
+                viewport={{ once: true, margin: "-50px" }}
                 className="group cursor-pointer"
               >
                 <div className="space-y-8">

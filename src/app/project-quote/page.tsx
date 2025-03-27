@@ -154,7 +154,7 @@ const ProjectQuoteContent = () => {
 
           <div className="flex flex-wrap gap-4">
             <button
-              onClick={() => router.push("/")}
+              onClick={() => router.push("/#calculation")}
               className="flex items-center gap-2 px-8 py-4 rounded-lg border border-text-light dark:border-text-dark text-text-light dark:text-text-dark font-monument hover:bg-hover-light dark:hover:bg-hover-dark transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
@@ -170,7 +170,7 @@ const ProjectQuoteContent = () => {
             </button>
 
             <button
-              onClick={() => router.push("/contact")}
+              onClick={() => router.push("/#contact")}
               className="flex items-center gap-2 px-8 py-4 bg-text-light dark:bg-text-dark text-light dark:text-dark rounded-lg font-monument hover:opacity-90 transition-opacity ml-auto"
             >
               Nezávazně poptat

@@ -11,7 +11,7 @@ import Process from "@/components/Process";
 export const metadata: Metadata = generateMetadata({
   title: "Webové aplikace a weby na míru",
   description: "Vývoj moderních webových aplikací a webů na míru s důrazem na výkon, design a uživatelskou přívětivost. Specializace na Next.js, React a TypeScript.",
-  canonical: "https://adambardzak.cz",
+  canonical: "https://bardzak.online",
 });
 
 export default function Home() {

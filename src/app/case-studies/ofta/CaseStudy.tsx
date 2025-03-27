@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { useMotionConfig } from "@/components/motion-config";
 
 const getTechDescription = (tech: string) => {
   const descriptions: { [key: string]: string } = {
@@ -187,6 +188,7 @@ const caseStudy = {
 
 export default function CaseStudy() {
   const [mounted, setMounted] = useState(false);
+  const { shouldReduceMotion } = useMotionConfig();
 
   useEffect(() => {
     setMounted(true);
@@ -217,8 +219,9 @@ export default function CaseStudy() {
             <div className="space-y-8">
               <div className="space-y-4">
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                   animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: shouldReduceMotion ? 0.2 : 0.5 }}
                   className="flex items-center gap-4 text-text-muted-light dark:text-text-muted-dark text-sm"
                 >
                   <span className="font-medium">{caseStudy.year}</span>
@@ -230,17 +233,17 @@ export default function CaseStudy() {
                   <span>{caseStudy.role}</span>
                 </motion.div>
                 <motion.h1
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 }}
+                  transition={{ delay: 0.1, duration: shouldReduceMotion ? 0.2 : 0.5 }}
                   className="font-monument text-3xl md:text-5xl text-text-light dark:text-text-dark"
                 >
                   {caseStudy.title}
                 </motion.h1>
                 <motion.p
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
+                  transition={{ delay: 0.2, duration: shouldReduceMotion ? 0.2 : 0.5 }}
                   className="text-lg md:text-xl text-text-muted-light dark:text-text-muted-dark max-w-2xl"
                 >
                   {caseStudy.description}
@@ -248,9 +251,9 @@ export default function CaseStudy() {
               </div>
 
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
+                transition={{ delay: 0.3, duration: shouldReduceMotion ? 0.2 : 0.5 }}
                 className="text-text-muted-light dark:text-text-muted-dark"
               >
                 Design by{" "}
@@ -265,9 +268,9 @@ export default function CaseStudy() {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
+                transition={{ delay: 0.5, duration: shouldReduceMotion ? 0.2 : 0.5 }}
                 className="flex flex-wrap gap-4"
               >
                 {caseStudy.links.live && (
@@ -285,9 +288,9 @@ export default function CaseStudy() {
               </motion.div>
 
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
+                transition={{ delay: 0.4, duration: shouldReduceMotion ? 0.2 : 0.5 }}
                 className="flex flex-wrap gap-3"
               >
                 {caseStudy.techStack.map((tech, i) => (
@@ -306,7 +309,7 @@ export default function CaseStudy() {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2 }}
+              transition={{ delay: 0.2, duration: shouldReduceMotion ? 0.2 : 0.5 }}
               className=" rounded-2xl overflow-hidden"
             >
               <Image
@@ -338,10 +341,10 @@ export default function CaseStudy() {
                   {caseStudy.techStack.map((tech, i) => (
                     <motion.div
                       key={i}
-                      initial={{ opacity: 0, y: 20 }}
+                      initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      transition={{ delay: i * 0.1 }}
+                      transition={{ delay: i * 0.1, duration: shouldReduceMotion ? 0.2 : 0.5 }}
                       className="group"
                     >
                       <div className="flex items-center gap-4 mb-2">
@@ -363,7 +366,7 @@ export default function CaseStudy() {
                 </div>
                 {/* Video */}
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   className="rounded-2xl overflow-hidden border 
@@ -466,10 +469,10 @@ export default function CaseStudy() {
             {caseStudy.mockups.desktop.map((mockup, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.2 }}
+                transition={{ delay: i * 0.2, duration: shouldReduceMotion ? 0.2 : 0.5 }}
                 className="space-y-6"
               >
                 <div className="aspect-[4/3] relative rounded-2xl overflow-hidden border border-border-light dark:border-border-dark">
@@ -521,10 +524,10 @@ export default function CaseStudy() {
               {caseStudy.mockups.mobile.map((mockup, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.2 }}
+                  transition={{ delay: i * 0.2, duration: shouldReduceMotion ? 0.2 : 0.5 }}
                 >
                   <div className="aspect-[9/16] relative rounded-2xl overflow-hidden border border-border-light dark:border-border-dark">
                     <Image
@@ -554,10 +557,10 @@ export default function CaseStudy() {
             {caseStudy.performance.metrics.map((metric, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                transition={{ delay: i * 0.1, duration: shouldReduceMotion ? 0.2 : 0.5 }}
                 className="p-8 rounded-2xl border border-border-light dark:border-border-dark 
                   bg-white dark:bg-[#161616] hover:shadow-lg hover:border-ofta-blue-600/30 dark:hover:border-ofta-blue-600/30
                   transition-all duration-300 group"
@@ -607,7 +610,7 @@ export default function CaseStudy() {
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
-                      transition={{ delay: i * 0.1 }}
+                      transition={{ delay: i * 0.1, duration: shouldReduceMotion ? 0.2 : 0.5 }}
                       className="p-6 rounded-xl border border-border-light dark:border-border-dark
                         bg-white dark:bg-[#161616] hover:bg-ofta-blue-600/5 dark:hover:bg-ofta-blue-600/5
                         transition-all duration-300 group"
@@ -639,7 +642,7 @@ export default function CaseStudy() {
                   Microsoft Clarity - User Behavior
                 </h3>
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                 >
@@ -660,7 +663,7 @@ export default function CaseStudy() {
                   Google Search Console
                 </h3>
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                 >
@@ -681,7 +684,7 @@ export default function CaseStudy() {
                   Google Analytics 4
                 </h3>
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                 >
@@ -720,7 +723,7 @@ export default function CaseStudy() {
                       key={i}
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.1 }}
+                      transition={{ delay: i * 0.1, duration: shouldReduceMotion ? 0.2 : 0.5 }}
                       viewport={{ once: true }}
                       className="flex items-center gap-3 text-text-light dark:text-text-dark"
                     >
@@ -737,10 +740,10 @@ export default function CaseStudy() {
               {caseStudy.cms.features.map((feature, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
+                  transition={{ delay: i * 0.1, duration: shouldReduceMotion ? 0.2 : 0.5 }}
                 >
                   <div className="relative rounded-2xl overflow-hidden border border-border-light dark:border-border-dark">
                     <div className="aspect-auto">

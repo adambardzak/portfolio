@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://adambardzak.cz/sitemap.xml',
+    sitemap: 'https://bardzak.online/sitemap.xml',
   };
 } 

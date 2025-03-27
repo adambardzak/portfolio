@@ -8,8 +8,19 @@ import {
   AnimatePresence,
 } from "framer-motion";
 import { useRouter } from "next/navigation";
+import { useMotionConfig } from "@/components/motion-config";
 
 const AnimatedCursor = () => {
+  const { shouldReduceMotion } = useMotionConfig();
+  
+  // Add this condition to disable cursor on mobile
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  
+  // If reduced motion or mobile, don't render the cursor
+  if (shouldReduceMotion || isMobile) {
+    return null;
+  }
+
   const [isHovered, setIsHovered] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [clickPosition, setClickPosition] = useState({ x: 0, y: 0 });

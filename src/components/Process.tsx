@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { Code2, Lightbulb, Rocket, Search } from "lucide-react";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import clsx from "clsx";
+import { useMotionConfig } from "@/components/motion-config";
+
 const steps = [
   {
     icon: Search,
@@ -32,6 +34,8 @@ const steps = [
 ];
 
 export default function Process() {
+  const { shouldReduceMotion } = useMotionConfig();
+
   return (
     <section
       className={clsx(
@@ -52,10 +56,13 @@ export default function Process() {
           {steps.map((step, index) => (
             <motion.div
               key={step.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ 
+                duration: shouldReduceMotion ? 0.2 : 0.5, 
+                delay: shouldReduceMotion ? 0 : index * 0.1 
+              }}
               className="group p-8 rounded-2xl border border-border-light dark:border-border-dark hover:border-text-light dark:hover:border-text-dark transition-colors"
             >
               <div className="space-y-6">

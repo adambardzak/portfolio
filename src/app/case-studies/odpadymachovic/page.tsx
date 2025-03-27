@@ -16,7 +16,7 @@ export const metadata: Metadata = generateMetadata({
   ],
   ogImage: "/projects/machovic/machovic_hero_mockup-large.png",
   ogType: "article",
-  canonical: "https://adambardzak.cz/case-studies/odpadymachovic",
+  canonical: "https://bardzak.online/case-studies/odpadymachovic",
 });
 
 export default function CaseStudyPage() {

@@ -117,8 +117,8 @@ const faqItems: FAQItem[] = [
     question: "Mohu si web spravovat sám?",
     answer: (
       <>
-        Určitě! Všechny weby, které vytváříme, jsou navrženy tak, aby je mohl
-        spravovat i netechnický uživatel. Součástí dodávky je vždy implementace
+        Určitě! Po domluvě dokáži vytvořit takový web, aby ho mohl spravovat i
+        netechnický uživatel. Součástí dodávky je vždy implementace
         administračního rozhraní a zaškolení, jak s ním pracovat. Zároveň jsem
         vám k dispozici pro případnou podporu nebo složitější úpravy.
       </>
