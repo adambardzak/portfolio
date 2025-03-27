@@ -42,7 +42,7 @@ const LogoCarousel = () => {
                 height={200}
                 src={logo}
                 alt={`Technology logo ${index + 1}`}
-                className="w-fit h-16 md:h-16 lg:h-24 object-contain dark:invert"
+                className="w-fit h-20 md:h-16 lg:h-24 object-contain dark:invert"
               />
             ))}
           </div>
@@ -54,7 +54,7 @@ const LogoCarousel = () => {
                 height={200}
                 src={logo}
                 alt={`Technology logo ${index + 1}`}
-                className="w-fit h-16 md:h-16 lg:h-24 object-contain dark:invert"
+                className="w-fit h-20 md:h-16 lg:h-24 object-contain dark:invert"
               />
             ))}
           </div>
@@ -78,7 +78,7 @@ const LogoCarousel = () => {
                   height={200}
                   src={logo}
                   alt={`Technology logo ${index + 1}`}
-                  className="w-fit h-16 md:h-16 lg:h-24 object-contain dark:invert"
+                  className="w-fit h-20 md:h-16 lg:h-24 object-contain dark:invert"
                   loading="lazy"
                 />
               ))}
@@ -92,7 +92,7 @@ const LogoCarousel = () => {
                   height={200}
                   src={logo}
                   alt={`Technology logo ${index + 1}`}
-                  className="w-fit h-16 md:h-16 lg:h-24 object-contain dark:invert"
+                  className="w-fit h-20 md:h-16 lg:h-24 object-contain dark:invert"
                   loading="lazy"
                 />
               ))}
@@ -106,7 +106,7 @@ const LogoCarousel = () => {
                   height={200}
                   src={logo}
                   alt={`Technology logo ${index + 1}`}
-                  className="w-fit h-16 md:h-16 lg:h-24 object-contain dark:invert"
+                  className="w-fit h-20 md:h-16 lg:h-24 object-contain dark:invert"
                   loading="lazy"
                 />
               ))}
@@ -126,7 +126,7 @@ const LogoCarousel = () => {
                   height={200}
                   src={logo}
                   alt={`Technology logo ${index + 1}`}
-                  className="w-fit h-16 md:h-16 lg:h-24 object-contain dark:invert"
+                  className="w-fit h-20 md:h-16 lg:h-24 object-contain dark:invert"
                   loading="lazy"
                 />
               ))}
@@ -140,7 +140,7 @@ const LogoCarousel = () => {
                   height={200}
                   src={logo}
                   alt={`Technology logo ${index + 1}`}
-                  className="w-fit h-16 md:h-16 lg:h-24 object-contain dark:invert"
+                  className="w-fit h-20 md:h-16 lg:h-24 object-contain dark:invert"
                   loading="lazy"
                 />
               ))}
@@ -154,7 +154,7 @@ const LogoCarousel = () => {
                   height={200}
                   src={logo}
                   alt={`Technology logo ${index + 1}`}
-                  className="w-fit h-16 md:h-16 lg:h-24 object-contain dark:invert"
+                  className="w-fit h-20 md:h-16 lg:h-24 object-contain dark:invert"
                   loading="lazy"
                 />
               ))}
