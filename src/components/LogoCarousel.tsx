@@ -1,11 +1,13 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { useMotionConfig } from "@/components/motion-config";
 
 const LogoCarousel = () => {
+  // Define consistent gap size
+  const gapSize = "gap-8 md:gap-12 lg:gap-36";
+  
   const logos1 = Array.from(
     { length: 4 },
     (_, i) => `/technologies/Frame ${58 + i}.svg`
@@ -15,36 +17,60 @@ const LogoCarousel = () => {
     (_, i) => `/technologies/Frame ${54 + i}.svg`
   );
 
-  const [row1Width, setRow1Width] = useState(0);
-  const [row2Width, setRow2Width] = useState(0);
-  const row1Ref = useRef<HTMLDivElement>(null);
-  const row2Ref = useRef<HTMLDivElement>(null);
-
+  const [isMounted, setIsMounted] = useState(false);
   const { shouldReduceMotion } = useMotionConfig();
 
+  // Only run animations after component is mounted
   useEffect(() => {
-    if (row1Ref.current) setRow1Width(row1Ref.current.scrollWidth / 2);
-    if (row2Ref.current) setRow2Width(row2Ref.current.scrollWidth / 2);
+    setIsMounted(true);
   }, []);
 
+  // Don't render anything during SSR or if reduced motion is preferred
+  if (!isMounted) {
+    return <div className="w-full py-8 md:py-16" aria-hidden="true" />;
+  }
+
+  if (shouldReduceMotion) {
+    return (
+      <div className="w-full py-8 md:py-16">
+        <div className="flex flex-col gap-8 md:gap-12 max-w-7xl mx-auto px-4 md:px-8">
+          <div className={`flex ${gapSize} overflow-x-auto pb-4`}>
+            {logos1.map((logo, index) => (
+              <Image
+                key={`row1-${index}`}
+                width={200}
+                height={200}
+                src={logo}
+                alt={`Technology logo ${index + 1}`}
+                className="w-fit h-12 md:h-16 lg:h-24 object-contain dark:invert"
+              />
+            ))}
+          </div>
+          <div className={`flex ${gapSize} overflow-x-auto pb-4`}>
+            {logos2.map((logo, index) => (
+              <Image
+                key={`row2-${index}`}
+                width={200}
+                height={200}
+                src={logo}
+                alt={`Technology logo ${index + 1}`}
+                className="w-fit h-12 md:h-16 lg:h-24 object-contain dark:invert"
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="w-full overflow-hidden py-16">
-      <div className="flex flex-col gap-12">
-        {/* First row */}
+    <div className="w-full overflow-hidden py-8 md:py-16">
+      <div className="flex flex-col gap-8 md:gap-12">
+        {/* First row - moving right */}
         <div className="relative overflow-hidden">
-          <motion.div
-            ref={row1Ref}
-            className="flex gap-12 md:gap-36"
-            animate={shouldReduceMotion ? {} : {
-              x: [-row1Width, 0],
-            }}
-            transition={{
-              repeat: Infinity,
-              duration: 20,
-              ease: "linear",
-            }}
-          >
-            <div className="flex gap-12 md:gap-36 shrink-0">
+          <div className={`flex ${gapSize} animate-scroll-right-mobile md:animate-scroll-right`}>
+            {/* First set of logos */}
+            <div className={`flex ${gapSize} shrink-0`}>
               {logos1.map((logo, index) => (
                 <Image
                   key={`row1-${index}`}
@@ -52,11 +78,13 @@ const LogoCarousel = () => {
                   height={200}
                   src={logo}
                   alt={`Technology logo ${index + 1}`}
-                  className="w-fit h-16 md:h-24 object-contain dark:invert"
+                  className="w-fit h-12 md:h-16 lg:h-24 object-contain dark:invert"
+                  loading="lazy"
                 />
               ))}
             </div>
-            <div className="flex gap-12 md:gap-36 shrink-0">
+            {/* Duplicate set for seamless looping */}
+            <div className={`flex ${gapSize} shrink-0`}>
               {logos1.map((logo, index) => (
                 <Image
                   key={`row1-duplicate-${index}`}
@@ -64,31 +92,33 @@ const LogoCarousel = () => {
                   height={200}
                   src={logo}
                   alt={`Technology logo ${index + 1}`}
-                  className="w-fit h-16 md:h-24 object-contain dark:invert"
+                  className="w-fit h-12 md:h-16 lg:h-24 object-contain dark:invert"
+                  loading="lazy"
                 />
               ))}
             </div>
-          </motion.div>
+            {/* Third set to ensure no empty space */}
+            <div className={`flex ${gapSize} shrink-0`}>
+              {logos1.map((logo, index) => (
+                <Image
+                  key={`row1-triplicate-${index}`}
+                  width={200}
+                  height={200}
+                  src={logo}
+                  alt={`Technology logo ${index + 1}`}
+                  className="w-fit h-12 md:h-16 lg:h-24 object-contain dark:invert"
+                  loading="lazy"
+                />
+              ))}
+            </div>
+          </div>
         </div>
 
-        {/* Second row */}
+        {/* Second row - moving left */}
         <div className="relative overflow-hidden">
-          <motion.div
-            ref={row2Ref}
-            className="flex gap-12 md:gap-36"
-            animate={{
-              x: [-row2Width, 0],
-              transition: {
-                x: {
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  duration: 15,
-                  ease: "linear",
-                },
-              },
-            }}
-          >
-            <div className="flex gap-12 md:gap-36 shrink-0">
+          <div className={`flex ${gapSize} animate-scroll-left-mobile md:animate-scroll-left`}>
+            {/* First set of logos */}
+            <div className={`flex ${gapSize} shrink-0`}>
               {logos2.map((logo, index) => (
                 <Image
                   key={`row2-${index}`}
@@ -96,11 +126,13 @@ const LogoCarousel = () => {
                   height={200}
                   src={logo}
                   alt={`Technology logo ${index + 1}`}
-                  className="w-fit h-16 md:h-24 object-contain dark:invert"
+                  className="w-fit h-12 md:h-16 lg:h-24 object-contain dark:invert"
+                  loading="lazy"
                 />
               ))}
             </div>
-            <div className="flex gap-12 md:gap-36 shrink-0">
+            {/* Duplicate set for seamless looping */}
+            <div className={`flex ${gapSize} shrink-0`}>
               {logos2.map((logo, index) => (
                 <Image
                   key={`row2-duplicate-${index}`}
@@ -108,11 +140,26 @@ const LogoCarousel = () => {
                   height={200}
                   src={logo}
                   alt={`Technology logo ${index + 1}`}
-                  className="w-fit h-16 md:h-24 object-contain dark:invert"
+                  className="w-fit h-12 md:h-16 lg:h-24 object-contain dark:invert"
+                  loading="lazy"
                 />
               ))}
             </div>
-          </motion.div>
+            {/* Third set to ensure no empty space */}
+            <div className={`flex ${gapSize} shrink-0`}>
+              {logos2.map((logo, index) => (
+                <Image
+                  key={`row2-triplicate-${index}`}
+                  width={200}
+                  height={200}
+                  src={logo}
+                  alt={`Technology logo ${index + 1}`}
+                  className="w-fit h-12 md:h-16 lg:h-24 object-contain dark:invert"
+                  loading="lazy"
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>

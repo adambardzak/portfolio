@@ -1,40 +1,41 @@
 "use client";
 
 import { motion } from "framer-motion";
-// import { ArrowRight } from "lucide-react";
-// import Link from "next/link";
 import { SectionHeader } from "./ui/SectionHeader";
 import { useMotionConfig } from "@/components/motion-config";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 const services = [
   {
-    id: 1,
+    id: "web-development",
     title: "Webové aplikace",
     description:
-      "Moderní a výkonné webové aplikace postavené na nejnovějších technologiích",
+      "Vývoj moderních webových aplikací s důrazem na výkon a uživatelský zážitek.",
     features: [
-      "Single Page Applications",
-      "Progressive Web Apps",
+      "Single Page Aplikace",
+      "Progresivní webové aplikace",
       "Responzivní design",
-      "Optimalizace výkonu",
+      "API integrace",
     ],
   },
   {
-    id: 2,
+    id: "e-commerce",
     title: "E-commerce řešení",
     description:
-      "Kompletní řešení pro váš online obchod s důrazem na konverze a UX",
+      "Kompletní řešení pro váš online obchod s důrazem na konverze a uživatelský zážitek.",
     features: [
       "Vlastní e-shop na míru",
       "Napojení na ERP systémy",
-      "Platební brány",
-      "Skladové hospodářství",
+      "Integrace platebních bran",
+      "Správa produktů",
     ],
   },
   {
-    id: 3,
+    id: "websites",
     title: "Webové prezentace",
-    description: "Reprezentativní webové stránky, které prodávají vaše služby",
+    description:
+      "Reprezentativní webové stránky, které prodávají vaše služby a budují vaši značku.",
     features: [
       "Moderní design",
       "SEO optimalizace",
@@ -70,13 +71,15 @@ export default function Services() {
   };
 
   return (
-    <section className="py-16 md:py-20 lg:py-24">
+    <section id="services" className="py-16 md:py-20 lg:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SectionHeader
-          label="SLUŽBY"
-          title="Co můžu nabídnout"
-          description="Komplexní řešení pro vaše digitální potřeby, od návrhu až po realizaci"
-        />
+        <div className="flex flex-col md:flex-row md:items-end justify-between">
+          <SectionHeader
+            label="SLUŽBY"
+            title="Co můžu nabídnout"
+            description="Komplexní řešení pro vaše digitální potřeby, od návrhu až po realizaci"
+          />
+        </div>
 
         <motion.div
           className="grid lg:grid-cols-3 gap-8"
@@ -138,6 +141,16 @@ export default function Services() {
             </motion.div>
           ))}
         </motion.div>
+
+        <div className="mt-12 text-center">
+          <Link
+            href="/services"
+            className="inline-flex items-center justify-center px-6 py-3 bg-blue-500 hover:bg-blue-600 dark:bg-blue-600 dark:hover:bg-blue-700 text-white rounded-lg font-medium transition-colors"
+          >
+            Zobrazit všechny služby
+            <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
+        </div>
       </div>
     </section>
   );

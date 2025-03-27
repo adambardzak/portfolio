@@ -68,6 +68,8 @@ const config: Config = {
       animation: {
         "scroll-left": "scroll-left 20s linear infinite",
         "scroll-right": "scroll-right 20s linear infinite",
+        "scroll-left-mobile": "scroll-left 15s linear infinite",
+        "scroll-right-mobile": "scroll-right 15s linear infinite",
       },
       fontFamily: {
         space: ["var(--font-space-grotesk)"],
