@@ -11,6 +11,7 @@ import { Background } from "@/components/Background";
 import { generateMetadata } from "@/components/SEO";
 import type { Metadata } from "next";
 import { MotionConfigProvider } from "@/components/motion-config";
+import Analytics from "@/components/analytics/Analytics";
 
 // Load Space Grotesk with all weights
 const spaceGrotesk = Space_Grotesk({
@@ -89,6 +90,11 @@ export default function RootLayout({
             }),
           }}
         />
+        {/* Google Search Console Verification */}
+        <meta 
+          name="google-site-verification" 
+          content="YOUR_VERIFICATION_CODE_HERE" 
+        />
       </head>
       <body className={spaceGrotesk.className}>
         <ThemeProvider>
@@ -105,6 +111,7 @@ export default function RootLayout({
             {/* </div> */}
           </MotionConfigProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );

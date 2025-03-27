@@ -5,6 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
+      disallow: ['/project-quote'],
     },
     sitemap: 'https://bardzak.online/sitemap.xml',
   };
