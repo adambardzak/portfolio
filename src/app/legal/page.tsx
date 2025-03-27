@@ -29,9 +29,9 @@ export default function LegalPage() {
                   </h2>
                   <p>
                     Tyto obchodní podmínky upravují vztahy mezi poskytovatelem
-                    služeb a zákazníkem. Poskytovatelem služeb je OSVČ [Vaše
-                    Jméno], IČO: [Vaše IČO], se sídlem [Vaše Adresa]. Není
-                    plátcem DPH.
+                    služeb a zákazníkem. Poskytovatelem služeb je OSVČ Adam
+                    Bardzák, IČO: 21389349, se sídlem Plzeň - Východní
+                    Předměstí, Spojovací 1927/6, 32600. Není plátcem DPH.
                   </p>
                 </div>
 
