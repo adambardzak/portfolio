@@ -130,20 +130,23 @@ export async function GET() {
       {
         width: 1200,
         height: 630,
-        fonts: [
-          {
-            name: "Space Grotesk",
-            data: fontRegular as ArrayBuffer | Buffer,
-            weight: 400,
-            style: "normal",
-          },
-          {
-            name: "Space Grotesk",
-            data: fontBold as ArrayBuffer | Buffer,
-            weight: 700,
-            style: "normal",
-          },
-        ],
+        fonts:
+          fontRegular && fontBold
+            ? [
+                {
+                  name: "Space Grotesk",
+                  data: fontRegular as ArrayBuffer | Buffer,
+                  weight: 400,
+                  style: "normal",
+                },
+                {
+                  name: "Space Grotesk",
+                  data: fontBold as ArrayBuffer | Buffer,
+                  weight: 700,
+                  style: "normal",
+                },
+              ]
+            : undefined,
       }
     );
   } catch (e) {
