@@ -230,10 +230,10 @@ export default function Contact() {
                   E-mail
                 </h4>
                 <a
-                  href="mailto:hello@adambardzak.cz"
+                  href="mailto:adam@bardzak.com"
                   className="text-text-muted-light dark:text-text-muted-dark hover:text-blue-500 dark:hover:text-blue-400 transition-colors text-lg"
                 >
-                  hello@adambardzak.cz
+                  adam@bardzak.com
                 </a>
               </div>
               <div>

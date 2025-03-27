@@ -50,11 +50,11 @@ const Footer = () => {
                 viewport={{ once: true }}
               >
                 <a
-                  href="mailto:hello@adambardzak.com"
+                  href="mailto:adam@bardzak.com"
                   className="inline-block group"
                 >
                   <span className="font-monument text-lg text-text-light dark:text-text-dark flex items-center gap-2">
-                    hello@adambardzak.com
+                    adam@bardzak.com
                     <ArrowUpRight className="w-4 h-4 transform transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
                   </span>
                 </a>

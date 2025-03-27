@@ -272,13 +272,13 @@ export default function FAQPage() {
               </p>
               <div className="pt-8">
                 <a
-                  href="mailto:hello@adambardzak.cz"
+                  href="mailto:adam@bardzak.com"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-full 
                     bg-blue-500 hover:bg-blue-600 transition-colors
                     text-white font-medium"
                 >
                   <Mail className="w-4 h-4" />
-                  Kontaktujte nás
+                  Kontaktujte mě
                 </a>
               </div>
             </div>
