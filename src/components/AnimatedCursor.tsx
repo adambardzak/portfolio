@@ -12,21 +12,13 @@ import { useMotionConfig } from "@/components/motion-config";
 
 const AnimatedCursor = () => {
   const { shouldReduceMotion } = useMotionConfig();
+  const router = useRouter();
   
-  // Add this condition to disable cursor on mobile
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  
-  // If reduced motion or mobile, don't render the cursor
-  if (shouldReduceMotion || isMobile) {
-    return null;
-  }
-
+  // Initialize all hooks first, before any conditional returns
   const [isHovered, setIsHovered] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [clickPosition, setClickPosition] = useState({ x: 0, y: 0 });
-
-  const router = useRouter();
-
+  
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
 
@@ -43,6 +35,10 @@ const AnimatedCursor = () => {
   const magneticSpringConfig = { damping: 15, stiffness: 150, mass: 0.5 };
   const magneticXSpring = useSpring(magneticX, magneticSpringConfig);
   const magneticYSpring = useSpring(magneticY, magneticSpringConfig);
+  
+  // Add this condition to check if we should render the cursor
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const shouldRenderCursor = !shouldReduceMotion && !isMobile;
 
   // Handle navigation with transition
   const handleNavigation = async (href: string, e: MouseEvent) => {
@@ -56,6 +52,8 @@ const AnimatedCursor = () => {
   };
 
   useEffect(() => {
+    if (!shouldRenderCursor) return;
+    
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
@@ -86,7 +84,11 @@ const AnimatedCursor = () => {
 
     window.addEventListener("mousemove", moveCursor);
     return () => window.removeEventListener("mousemove", moveCursor);
-  }, [cursorX, cursorY, magneticX, magneticY]);
+  }, [cursorX, cursorY, magneticX, magneticY, shouldRenderCursor, handleNavigation]);
+
+  if (!shouldRenderCursor) {
+    return null;
+  }
 
   return (
     <>
