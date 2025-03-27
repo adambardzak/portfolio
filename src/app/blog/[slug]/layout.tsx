@@ -16,6 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     keywords: string[];
     image: string;
     publishedTime?: string;
+    author?: string;
   }> = {
     "nextjs-14-server-actions": {
       title: "Server Actions v Next.js 14",
@@ -23,6 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       keywords: ["Next.js 14", "Server Actions", "React", "Web Development", "JavaScript", "TypeScript"],
       image: "/blog/server-actions.png",
       publishedTime: "2024-01-10",
+      author: "Adam Bardzák",
     },
     "react-performance": {
       title: "Optimalizace výkonu React aplikací",
@@ -30,6 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       keywords: ["React", "Performance", "Optimization", "useMemo", "useCallback", "memo", "Web Development"],
       image: "/blog/react.svg",
       publishedTime: "2024-01-05",
+      author: "Adam Bardzák",
     },
     "tailwind-best-practices": {
       title: "Tailwind CSS - Best Practices a Architektura",
@@ -37,6 +40,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       keywords: ["Tailwind CSS", "CSS", "Web Development", "Frontend", "Best Practices", "Architecture"],
       image: "/blog/tailwind.svg",
       publishedTime: "2023-12-20",
+      author: "Adam Bardzák",
+    },
+    "typescript-advanced": {
+      title: "Pokročilé TypeScript patterns",
+      description: "Utility types, generics, conditional types a další pokročilé koncepty v TypeScriptu.",
+      keywords: ["TypeScript", "Generics", "Utility Types", "Advanced TypeScript", "Type Safety", "Web Development"],
+      image: "/blog/ts.svg",
+      publishedTime: "2023-12-15",
+      author: "Adam Bardzák",
     },
     // Add more blog posts as needed
   };
@@ -46,14 +58,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: "Blog Post",
     description: "Článek o webovém vývoji a moderních technologiích",
     keywords: ["web development", "blog", "článek"],
-    image: "",
+    image: "/og-image.png",
+    author: "Adam Bardzák",
   };
+  
+  // Create dynamic OG image URL for production or use static image
+  const ogImageUrl = process.env.NODE_ENV === 'production'
+    ? `https://bardzak.online/api/og?title=${encodeURIComponent(postMeta.title)}&description=${encodeURIComponent(postMeta.description)}&type=article`
+    : `https://bardzak.online${postMeta.image}`;
   
   return createMetadata({
     title: postMeta.title,
     description: postMeta.description,
     keywords: postMeta.keywords,
-    ogImage: postMeta.image,
+    ogImage: ogImageUrl,
     ogType: "article",
     canonical: `https://bardzak.online/blog/${slug}`,
   });

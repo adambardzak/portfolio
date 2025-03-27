@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Calendar, Clock, Github, ExternalLink } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -9,6 +10,8 @@ import { InfoBox } from "@/components/blog/InfoBox";
 import { TextBlock } from "@/components/blog/TextBlock";
 import { SubHeading } from "@/components/blog/SubHeading";
 import { Highlight } from "@/components/blog/Highlight";
+import SocialShare from "@/components/blog/SocialShare";
+import { useMotionConfig } from "@/components/motion-config";
 
 // Add proper typing for blog posts
 type BlogPost = {
@@ -1181,20 +1184,48 @@ type UserCredentials = Pick<User, 'email' | 'id'>
 };
 
 export default function BlogPost({ params }: { params: { slug: string } }) {
+  const { shouldReduceMotion } = useMotionConfig();
   const router = useRouter();
+  const post = blogPosts[params.slug];
+  const canonicalUrl = `https://bardzak.online/blog/${params.slug}`;
+  
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: shouldReduceMotion ? 0 : 0.15,
+      },
+    },
+  };
+  
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: shouldReduceMotion ? 0 : 0.5 } 
+    },
+  };
 
-  // Add error boundary
-  if (!blogPosts[params.slug]) {
-    router.replace("/blog");
+  if (!post) {
+    // Handle case when post is not found
+    useEffect(() => {
+      router.push("/blog");
+    }, [router]);
     return null;
   }
-
-  const post = blogPosts[params.slug];
 
   return (
     <>
       {/* Hero Section with Featured Image */}
-      <section className="relative min-h-[60vh] md:min-h-[80vh] flex items-center bg-[#fafafa] dark:bg-[#121212] transition-colors duration-300 overflow-hidden">
+      <motion.section 
+        className="relative min-h-[60vh] md:min-h-[80vh] flex items-center bg-[#fafafa] dark:bg-[#121212] transition-colors duration-300 overflow-hidden"
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+      >
         {/* Background gradient */}
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_150%,rgba(59,130,246,0.08),transparent_70%)]" />
@@ -1213,7 +1244,10 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-28 py-16 md:py-32">
           <div className="max-w-3xl space-y-6 md:space-y-8">
             {/* Metadata row - better mobile layout */}
-            <motion.div className="flex flex-wrap gap-3 md:gap-4">
+            <motion.div 
+              className="flex flex-wrap gap-3 md:gap-4"
+              variants={itemVariants}
+            >
               <span
                 className="text-sm text-blue-500 dark:text-blue-400 font-medium
                 bg-blue-500/5 dark:bg-blue-400/5 px-3 py-1.5 md:px-4 md:py-2 rounded-full"
@@ -1235,32 +1269,48 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
                 {post.readTime}
               </div>
             </motion.div>
-
+            
             {/* Title - responsive font sizes */}
-            <motion.h1 className="font-monument text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-text-light dark:text-text-dark">
+            <motion.h1 
+              className="font-monument text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-text-light dark:text-text-dark"
+              variants={itemVariants}
+            >
               {post.title}
             </motion.h1>
-
+            
             {/* Description - adjusted for mobile */}
-            <motion.p className="text-lg sm:text-xl text-text-muted-light dark:text-text-muted-dark leading-relaxed">
+            <motion.p 
+              className="text-lg sm:text-xl text-text-muted-light dark:text-text-muted-dark leading-relaxed"
+              variants={itemVariants}
+            >
               {post.description}
             </motion.p>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Blog Content with Table of Contents */}
       <section className="py-16 md:py-32 bg-light dark:bg-dark transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_300px] gap-8 lg:gap-16">
             {/* Main content - add min-w-0 to prevent overflow */}
-            <div className="min-w-0 prose prose-lg dark:prose-invert prose-pre:overflow-x-auto">
+            <motion.div 
+              className="min-w-0 prose prose-lg dark:prose-invert prose-pre:overflow-x-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+            >
               {post.content}
-            </div>
-
+            </motion.div>
+          
             {/* Table of contents sidebar */}
             <div className="hidden lg:block space-y-8">
-              <div className="sticky top-24 space-y-8 bg-white dark:bg-[#161616] rounded-xl border border-gray-200 dark:border-gray-800 p-4 md:p-6">
+              <motion.div 
+                className="sticky top-24 space-y-8 bg-white dark:bg-[#161616] rounded-xl border border-gray-200 dark:border-gray-800 p-4 md:p-6"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5, duration: 0.5 }}
+              >
                 <h3 className="font-monument text-lg text-text-light dark:text-text-dark">
                   Obsah článku
                 </h3>
@@ -1275,28 +1325,25 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
                   {/* Add more TOC items */}
                 </nav>
 
-                {/* Share buttons */}
+                {/* Replace with enhanced social sharing */}
                 <div className="pt-8 mt-8 border-t border-gray-200 dark:border-gray-800">
-                  <h3 className="font-monument text-lg text-text-light dark:text-text-dark mb-4">
-                    Sdílet článek
-                  </h3>
-                  <div className="flex gap-4">
-                    <button
-                      className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 
-                      hover:bg-blue-500/10 dark:hover:bg-blue-400/10 transition-colors"
-                    >
-                      <Github className="w-5 h-5 text-text-light dark:text-text-dark" />
-                    </button>
-                    <button
-                      className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 
-                      hover:bg-blue-500/10 dark:hover:bg-blue-400/10 transition-colors"
-                    >
-                      <ExternalLink className="w-5 h-5 text-text-light dark:text-text-dark" />
-                    </button>
-                  </div>
+                  <SocialShare 
+                    title={post.title}
+                    url={canonicalUrl}
+                    description={post.description}
+                  />
                 </div>
-              </div>
+              </motion.div>
             </div>
+          </div>
+          
+          {/* Mobile-only social sharing */}
+          <div className="lg:hidden mt-12">
+            <SocialShare 
+              title={post.title}
+              url={canonicalUrl}
+              description={post.description}
+            />
           </div>
         </div>
       </section>

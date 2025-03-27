@@ -4,8 +4,6 @@ import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeScript } from "../components/theme-script";
 import Footer from "@/components/Footer";
-import AnimatedCursor from "@/components/AnimatedCursor";
-import TransitionLayout from "./TransitionLayout";
 import CookieBar from "@/components/CookieBar";
 import { Background } from "@/components/Background";
 import { generateMetadata } from "@/components/SEO";
@@ -70,7 +68,7 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               name: "Adam Bardzák",
-              url: "https://adambardzak.cz",
+              url: "https://bardzak.online",
               jobTitle: "Frontend Developer",
               worksFor: {
                 "@type": "Organization",
@@ -91,23 +89,20 @@ export default function RootLayout({
           }}
         />
         {/* Google Search Console Verification */}
-        <meta 
-          name="google-site-verification" 
-          content="YOUR_VERIFICATION_CODE_HERE" 
+        <meta
+          name="google-site-verification"
+          content="YOUR_VERIFICATION_CODE_HERE"
         />
       </head>
       <body className={spaceGrotesk.className}>
         <ThemeProvider>
           <MotionConfigProvider>
             {/* <div className="relative min-h-screen"> */}
-              <Background />
-              <TransitionLayout>
-                <Navbar />
-                <main>{children}</main>
-                <Footer />
-                <AnimatedCursor />
-                <CookieBar />
-              </TransitionLayout>
+            <Background />
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+            <CookieBar />
             {/* </div> */}
           </MotionConfigProvider>
         </ThemeProvider>

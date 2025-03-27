@@ -12,20 +12,12 @@ export async function GET(req: NextRequest) {
     const description = searchParams.get('description') || 'Webové aplikace a weby na míru';
     const type = searchParams.get('type') || 'website';
     
-    // Load Space Grotesk font
-    const spaceGroteskFont = await fetch(
-      new URL('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap', import.meta.url)
-    ).then(res => res.text());
+    // Font
+    const fontData = await fetch(
+      new URL('../../../assets/fonts/Inter-Bold.ttf', import.meta.url)
+    ).then((res) => res.arrayBuffer());
     
-    // Extract font URLs from the CSS
-    const fontRegularUrl = spaceGroteskFont.match(/src: url\(([^)]+)\)/)?.[1];
-    const fontBoldUrl = spaceGroteskFont.match(/src: url\(([^)]+)\)/g)?.[1]?.match(/src: url\(([^)]+)\)/)?.[1];
-    
-    // Fetch the actual font files
-    const fontRegular = fontRegularUrl ? await fetch(new URL(fontRegularUrl, import.meta.url)).then(res => res.arrayBuffer()) : null;
-    const fontBold = fontBoldUrl ? await fetch(new URL(fontBoldUrl, import.meta.url)).then(res => res.arrayBuffer()) : null;
-    
-    // Generate the image
+    // Generate the OG image
     return new ImageResponse(
       (
         <div
@@ -36,81 +28,109 @@ export async function GET(req: NextRequest) {
             flexDirection: 'column',
             alignItems: 'flex-start',
             justifyContent: 'center',
-            backgroundColor: '#0f172a',
-            backgroundImage: 'radial-gradient(circle at center, rgba(59, 130, 246, 0.15), transparent 70%)',
+            backgroundColor: '#121212',
+            backgroundImage: 'radial-gradient(circle at 25px 25px, #333 2%, transparent 0%), radial-gradient(circle at 75px 75px, #333 2%, transparent 0%)',
+            backgroundSize: '100px 100px',
             padding: '80px',
-            position: 'relative',
-            fontFamily: '"Space Grotesk", sans-serif',
           }}
         >
-          {/* Logo */}
-          <div style={{ position: 'absolute', top: 40, left: 40, display: 'flex', alignItems: 'center' }}>
-            <div style={{ fontSize: 24, color: 'white', fontWeight: 'bold' }}>
-              {'{ab}'}
-            </div>
-          </div>
-          
           {/* Type badge */}
-          {type !== 'website' && (
-            <div style={{
-              backgroundColor: '#3b82f6',
-              color: 'white',
-              padding: '6px 12px',
-              borderRadius: '4px',
-              fontSize: 16,
-              marginBottom: 24,
-              textTransform: 'uppercase',
-              fontWeight: 500,
-            }}>
-              {type === 'article' ? 'Case Study' : type}
+          {type === 'article' && (
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                color: '#3b82f6',
+                borderRadius: '9999px',
+                padding: '8px 16px',
+                marginBottom: '32px',
+                fontSize: 24,
+                fontWeight: 'bold',
+              }}
+            >
+              Článek
             </div>
           )}
           
           {/* Title */}
-          <div style={{
-            fontSize: 64,
-            fontWeight: 'bold',
-            color: 'white',
-            marginBottom: 24,
-            maxWidth: '70%',
-            lineHeight: 1.1,
-          }}>
+          <div
+            style={{
+              display: 'flex',
+              fontSize: 64,
+              fontWeight: 'bold',
+              color: 'white',
+              marginBottom: '24px',
+              lineHeight: 1.2,
+              maxWidth: '80%',
+            }}
+          >
             {title}
           </div>
           
           {/* Description */}
-          <div style={{
-            fontSize: 32,
-            color: '#94a3b8',
-            maxWidth: '60%',
-            lineHeight: 1.3,
-          }}>
+          <div
+            style={{
+              display: 'flex',
+              fontSize: 32,
+              color: '#9ca3af',
+              marginBottom: '48px',
+              lineHeight: 1.4,
+              maxWidth: '80%',
+            }}
+          >
             {description}
           </div>
           
-          {/* Footer */}
-          <div style={{
-            position: 'absolute',
-            bottom: 40,
-            left: 40,
-            right: 40,
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            color: 'white',
-          }}>
-            <div>bardzak.online</div>
-            <div style={{ display: 'flex', gap: '12px' }}>
-              {['Next.js', 'React', 'TypeScript'].map((tech) => (
-                <div key={tech} style={{
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                  padding: '6px 12px',
-                  borderRadius: '4px',
-                  fontSize: 16,
-                }}>
-                  {tech}
-                </div>
-              ))}
+          {/* Author/Website info */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              marginTop: 'auto',
+            }}
+          >
+            <div
+              style={{
+                width: 64,
+                height: 64,
+                borderRadius: '50%',
+                backgroundColor: '#3b82f6',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'white',
+                fontSize: 32,
+                fontWeight: 'bold',
+                marginRight: 16,
+              }}
+            >
+              AB
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
+              <div
+                style={{
+                  fontSize: 28,
+                  fontWeight: 'bold',
+                  color: 'white',
+                }}
+              >
+                Adam Bardzák
+              </div>
+              <div
+                style={{
+                  fontSize: 20,
+                  color: '#9ca3af',
+                }}
+              >
+                bardzak.online
+              </div>
             </div>
           </div>
         </div>
@@ -118,25 +138,19 @@ export async function GET(req: NextRequest) {
       {
         width: 1200,
         height: 630,
-        fonts: fontRegular && fontBold ? [
+        fonts: [
           {
-            name: 'Space Grotesk',
-            data: fontRegular as ArrayBuffer | Buffer,
-            weight: 400,
+            name: 'Inter',
+            data: fontData,
             style: 'normal',
-          },
-          {
-            name: 'Space Grotesk',
-            data: fontBold as ArrayBuffer | Buffer,
             weight: 700,
-            style: 'normal',
           },
-        ] : undefined,
+        ],
       }
     );
   } catch (e) {
     console.error(e);
-    return new Response(`Failed to generate image`, {
+    return new Response(`Failed to generate OG image`, {
       status: 500,
     });
   }

@@ -89,7 +89,6 @@ const AnimatedCursor = () => {
   if (!shouldRenderCursor) {
     return null;
   }
-
   return (
     <>
       {/* Regular cursor */}
@@ -140,3 +139,4 @@ const AnimatedCursor = () => {
 };
 
 export default AnimatedCursor;
+
