@@ -133,13 +133,13 @@ export async function GET() {
         fonts: [
           {
             name: "Space Grotesk",
-            data: fontRegular as ArrayBuffer,
+            data: fontRegular as ArrayBuffer | Buffer,
             weight: 400,
             style: "normal",
           },
           {
             name: "Space Grotesk",
-            data: fontBold as ArrayBuffer,
+            data: fontBold as ArrayBuffer | Buffer,
             weight: 700,
             style: "normal",
           },
